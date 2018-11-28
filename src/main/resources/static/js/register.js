@@ -33,7 +33,7 @@ $(function () {
             createSpan($(this), value);
         }
         else {
-            var img = $("<img src='../image/ok.png'>");
+            var img = $("<img src='image/ok.png'>");
             $(this).siblings("span").html("");
             img.css({"width": "10", "height": "10"});
             img.appendTo($(this).siblings("span"));
@@ -46,7 +46,23 @@ $(function () {
             // console.log(1);
             var pwd = $(this).val();
             var level = 0;
-            $(".passwordStrength").show();
+            if (pwd != $("#passwordAgain").val() && $("#passwordAgain").val() != "") {
+                if ($("#passwordAgain").parent().next("span")) {
+                    $("#passwordAgain").parent().next("span").remove();
+                }
+                $("#passwordAgain").siblings("span").html("*");
+                createSpan($("#passwordAgain"), "两次密码不一致");
+            }
+            else if (pwd == $("#passwordAgain").val() && $("#passwordAgain").val() != "") {
+                $("#passwordAgain").parent().next("span").remove();
+                var img = $("<img src='image/ok.png'>");
+                $("#passwordAgain").siblings("span").html("");
+                img.css({"width": "10", "height": "10"});
+                img.appendTo($("#passwordAgain").siblings("span"));
+            }
+            if (pwd.length > 6) {
+                $(".passwordStrength").show();
+            }
             if (/[0-9]/.test(pwd)) {
                 level++;
             }
@@ -59,8 +75,16 @@ $(function () {
             $("#strengthLevel").attr("class", "strengthLv" + (pwd.length > 6 ? level : 0));
         }
         if ($(this).val() != "" && $(this).attr("name") == "passwordAgain" && $(this).val() != $("#password").val()) {
-            $(this).siblings("span").html("*");
-            createSpan($(this), "两次密码不一致");
+            if ($(this).parent().next("span")) {
+                $(this).parent().next("span").remove();
+            }
+            if ($("#password").val() == "") {
+                $(this).siblings("span").html("*");
+                createSpan($(this), "请先输入密码");
+            }else {
+                $(this).siblings("span").html("*");
+                createSpan($(this), "两次密码不一致");
+            }
         }
         // 手机号码的正则表达式
         // 130 131 132 133 134 135 136 137 138 139
@@ -75,7 +99,7 @@ $(function () {
                 createSpan($(this), "请输入正确的手机号");
             }
         }
-        if ($(this).val() != "" && $(this).attr("name") == "code" && $(this).val() != $("#checkCode").val()) {
+        if ($(this).val() != "" && $(this).attr("name") == "code" && $(this).val().toUpperCase() != $("#checkCode").val()) {
             createSpan($(this), "验证码不正确");
         }
     });
@@ -88,19 +112,12 @@ $(function () {
         }
     });
     $("#registerBtn").on("click", function () {
-        $(".registry input").trigger("blur");
         if ($(".registry input").val() != "" && $(".registry>span").length == 0) {
             // console.log($(".registry>span"));
         } else {
             console.log("请正确填写信息");
         }
     });
-    // $(".registry input").on("focus", function () {
-    //     if ($(this).parent().next("span")) {
-    //         $(this).parent().next("span").remove();
-    //     }
-    //
-    // });
 
     // 创建span节点封装
     function createSpan(container, value) {
