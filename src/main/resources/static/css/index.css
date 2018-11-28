@@ -1,0 +1,940 @@
+
+/*main模块开始*/
+.main {
+    height: 370px;
+    margin-top: 8px;
+}
+
+/*main模块左边*/
+.main .main_left {
+    width: 300px;
+    height: 370px;
+    float: left;
+    border: 1px solid #eee;
+    /*background-color: pink;*/
+}
+
+.main .main_left .main_left_top {
+    width: 300px;
+    height: 50px;
+    background-color: #ffc001;
+}
+
+.main .main_left .main_left_top span {
+    width: 100%;
+    height: 100%;
+    line-height: 50px;
+    text-align: center;
+    font-family: "微软雅黑";
+    font-size: 16px;
+    color: #f5f5f5;
+}
+
+.main .main_left .main_left_bottom {
+    width: 300px;
+    height: 321px;
+}
+
+.main .main_left .main_left_bottom ul {
+    width: 100%;
+    height: 100%;
+}
+
+.main .main_left .main_left_bottom li {
+    width: 300px;
+    height: 60px;
+    line-height: 21px;
+    padding-top: 20px;
+    border-bottom: 1px dotted #ededed;
+}
+
+.main .main_left .main_left_bottom li .itemTitle {
+    width: 252px;
+    height: 21px;
+    padding-left: 30px;
+    cursor: pointer;
+}
+
+.itemTitle:hover {
+    color: rgb(256, 192, 1);
+}
+
+.main .main_left .main_left_bottom li .itemList {
+    width: 252px;
+    height: 21px;
+    padding-left: 30px;
+    color: #999;
+    cursor: pointer;
+}
+
+.itemList:hover > span {
+    color: rgb(256, 192, 1);
+}
+
+.main .main_left .main_left_bottom li .itemList span {
+    line-height: 21px;
+    padding-right: 5px;
+}
+
+/*main模块中间部分*/
+.main_middle {
+    width: 600px;
+    height: 370px;
+    /*background-color: pink;*/
+    float: left;
+    margin-left: 10px;
+    position: relative;
+}
+
+.main_middle ul li {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: none;
+}
+
+.main_middle ul li:first-child {
+    display: block;
+}
+
+.main_middle li img {
+    width: 600px;
+    height: 370px;
+}
+
+.main_middle ol {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    margin-left: -90px;
+    width: 180px;
+    height: 20px;
+    background: rgba(255, 255, 255, .3);
+    border-radius: 10px;
+}
+
+.main_middle ol li {
+    width: 12px;
+    height: 12px;
+    background-color: #fff;
+    border-radius: 50%;
+    float: left;
+    margin: 4px 5px;
+    cursor: pointer;
+}
+
+.main_middle .current {
+    background-color: #F10215;
+}
+
+.arrow-left,
+.arrow-right {
+    font-family: "SimSun", "宋体";
+    width: 30px;
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 50%;
+    margin-top: -30px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 60px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.arrow {
+    display: none;
+}
+
+.main_middle:hover .arrow {
+    display: block;
+}
+
+.arrow-left:hover,
+.arrow-right:hover {
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.arrow-left {
+    left: 0;
+}
+
+.arrow-right {
+    right: 0;
+}
+
+/*main右边部分开始*/
+.main_right {
+    width: 260px;
+    height: 340px;
+    background-color: #eee;
+    float: right;
+    padding: 15px 10px;
+}
+
+.main_right_tl, .main_right_tr {
+    width: 105px;
+    height: 100px;
+    background-color: white;
+    float: left;
+    margin-top: 10px;
+    vertical-align: top;
+    padding: 20px 10px;
+}
+
+.main_right_tr {
+    margin-left: 10px;
+}
+
+.main_right_tl a, .main_right_tr a {
+    width: 72px;
+    height: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: black;
+    line-height: 24px;
+    margin-left: 15px;
+    font-size: 18px;
+}
+
+.main_right_tl .des, .main_right_tr .des {
+    width: 89px;
+    height: 19px;
+    text-align: center;
+    color: rgb(153, 153, 153);
+    line-height: 19px;
+    margin-left: 6px;
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.main_right_tl img, .main_right_tr img {
+    margin-left: 23px;
+    margin-top: 10px;
+}
+
+.main_right_b {
+    width: 280px;
+    height: 185px;
+    background: url("../image/AD0I-uSFCBAEGAAg8Mu92AUoiIfdvgEwmAI4uQE.png") no-repeat;
+    float: left;
+    margin-left: -10px;
+    margin-top: 20px;
+}
+
+.main_right_b img {
+    border: 2px solid #eee;
+    padding: 1px;
+    margin-left: 20px;
+    margin-top: 30px;
+    float: left;
+}
+
+.main_right_b b {
+    float: left;
+    font-size: 18px;
+    margin-top: 47px;
+    margin-left: 20px;
+}
+
+.main_right_b div {
+    float: left;
+    width: 106px;
+    height: 19px;
+    margin-left: 13px;
+    font-size: 14px;
+    color: gray;
+    line-height: 19px;
+    text-align: center;
+}
+
+.main_right_b div:nth-of-type(1) {
+    margin-top: 15px;
+}
+
+/*main右边部分结束*/
+/*main模块结束*/
+/*body模块开始*/
+/*body模块第一栏开始*/
+.my_clo1 {
+    width: 100%;
+    height: 328px;
+    /*background-color: pink;*/
+    margin-top: 40px;
+    position: relative;
+}
+
+.my_clo1 .my_clo1_left {
+    width: 210px;
+    height: 306px;
+    /*background-color: blue;*/
+    position: absolute;
+    top: 10px;
+    left: 0;
+    border: 1px solid #f5f5f5;
+}
+
+.my_clo1 .my_clo1_left .my_clo1_left_title {
+    position: absolute;
+    width: 108px;
+    height: 24px;
+    left: 21px;
+    top: 30px;
+    line-height: 24px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.my_clo1 .my_clo1_left .my_clo1_left_des_t {
+    position: absolute;
+    left: 14px;
+    top: 68px;
+}
+
+.my_clo1 .my_clo1_left .my_clo1_left_des_t .my_clo1_left_des {
+    float: left;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: rgba(245, 245, 245, 1);
+    height: 10px;
+    padding: 10px;
+    text-align: center;
+    line-height: 10px;
+    margin-left: 5px;
+    margin-top: 15px;
+}
+
+.my_clo1 .my_clo1_left .my_clo1_left_des_t .my_clo1_left_des a {
+    color: rgb(153, 153, 153);
+}
+
+.my_clo1 .my_clo1_middle {
+    width: 757px;
+    height: 100%;
+    /*background-color: blue;*/
+    position: absolute;
+    left: 222px;
+    border: 1px solid #eee;
+}
+
+.my_clo1 .my_clo1_middle .my_clo1_middle_top {
+    width: 100%;
+    height: 62px;
+    border-bottom: 3px solid orange;
+    /*background-color: pink;*/
+}
+
+.my_clo1 .my_clo1_middle .my_clo1_middle_top .guessYouLike {
+    width: 162px;
+    height: 40px;
+    /*background-color: yellow;*/
+    position: absolute;
+    top: 10px;
+    left: 0;
+    font-size: 18px;
+    text-align: center;
+    line-height: 40px;
+}
+
+.my_clo1 .my_clo1_middle .my_clo1_middle_top span {
+    cursor: default;
+}
+
+.my_clo1 .my_clo1_middle .my_clo1_middle_top .hotThings {
+    width: 162px;
+    height: 40px;
+    /*background-color: yellow;*/
+    position: absolute;
+    top: 10px;
+    left: 172px;
+    font-size: 18px;
+    text-align: center;
+    line-height: 40px;
+}
+
+
+
+.guessYouLike .trangle {
+    display: block;
+}
+
+.my_clo1 .my_clo1_middle .my_clo1_middle_bottom, .my_clo1 .my_clo1_middle .my_clo1_middle_bottom_second {
+    width: 100%;
+    height: 262px;
+    /*background-color: pink;*/
+    float: left;
+    overflow: hidden;
+    position: absolute;
+    display: none;
+}
+
+.my_clo1 .my_clo1_middle .my_clo1_middle_bottom {
+    display: block;
+}
+
+.my_clo1 .my_clo1_middle .my_clo1_middle_bottom ul, .my_clo1 .my_clo1_middle .my_clo1_middle_bottom_second ul {
+    width: 2244px;
+    float: left;
+    list-style: none;
+    animation-name: move;
+    animation-duration: 15s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.my_clo1 .my_clo1_middle .my_clo1_middle_bottom:hover > ul, .my_clo1 .my_clo1_middle .my_clo1_middle_bottom_second:hover > ul {
+    animation-play-state: paused;
+}
+
+.my_clo1 .my_clo1_middle .my_clo1_middle_bottom .imgItem li, .my_clo1 .my_clo1_middle .my_clo1_middle_bottom_second .imgItem li {
+    float: left;
+    border: 1px solid #f5f5f5;
+    margin-left: 25px;
+    margin-top: 20px;
+}
+
+.my_clo1 .my_clo1_middle .my_clo1_middle_bottom .imgItem li div, .my_clo1 .my_clo1_middle .my_clo1_middle_bottom_second .imgItem li div {
+    position: absolute;
+    width: 62px;
+    height: 20px;
+    background: rgb(255, 192, 1);
+    top: 20px;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    font-weight: normal;
+    color: white;
+}
+
+.my_clo1 .my_clo1_middle .my_clo1_middle_bottom .couponItem li, .my_clo1 .my_clo1_middle .my_clo1_middle_bottom_second .couponItem li {
+    width: 160px;
+    height: 30px;
+    float: left;
+    border: 1px solid #f5f5f5;
+    margin-left: 25px;
+    margin-top: 20px;
+    line-height: 30px;
+}
+
+.my_clo1 .my_clo1_middle .my_clo1_middle_bottom .couponItem .coupon, .my_clo1 .my_clo1_middle .my_clo1_middle_bottom_second .couponItem .coupon {
+    width: 42px;
+    height: 30px;
+    background: url("../image/vbg01.png") no-repeat -1298px -971px;
+    float: left;
+}
+
+.my_clo1 .my_clo1_middle .my_clo1_middle_bottom .couponItem span:nth-of-type(2), .my_clo1 .my_clo1_middle .my_clo1_middle_bottom_second .couponItem span:nth-of-type(2) {
+    width: 100px;
+    float: left;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: rgb(153, 153, 153);
+}
+
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-1122px);
+    }
+}
+
+.my_clo1 .my_clo1_right {
+    width: 210px;
+    height: 297px;
+    /*background-color: blue;*/
+    position: absolute;
+    top: 15px;
+    left: 990px;
+    border: 1px solid #eee;
+}
+
+.my_clo1 .my_clo1_right .hotThingsS {
+    width: 210px;
+    height: 50px;
+    border-bottom: 2px solid rgb(153, 153, 153);
+    /*background-color: pink;*/
+    line-height: 50px;
+}
+
+.my_clo1 .my_clo1_right .hotThingsS div {
+    width: 6px;
+    height: 20px;
+    background-color: orange;
+    float: left;
+    margin-top: 16px;
+    margin-left: 6px;
+}
+
+.my_clo1 .my_clo1_right .hotThingsS span {
+    height: 20px;
+    float: left;
+    margin-left: 13px;
+    font-size: 18px;
+    color: rgba(153, 153, 153, 1);
+    font-family: "微软雅黑";
+}
+
+.my_clo1 .my_clo1_right .hotThingsDes {
+    width: 100%;
+    height: 227px;
+    /*background-color: pink;*/
+    overflow: hidden;
+}
+
+.my_clo1 .my_clo1_right .hotThingsDes .clickRolling {
+    width: 160px;
+    height: 200px;
+    margin: 20px auto;
+    /*background-color: yellow;*/
+    display: none;
+}
+
+.my_clo1 .my_clo1_right .hotThingsDes .clickRolling:first-of-type {
+    display: block;
+}
+
+.my_clo1 .my_clo1_right .hotThingsDes .clickRolling div {
+    position: absolute;
+    width: 62px;
+    height: 20px;
+    background: rgb(255, 192, 1);
+    top: 71px;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    font-weight: normal;
+    color: white;
+}
+
+.my_clo1 .my_clo1_right .hotThingsDes .clickRolling .imgItem {
+    border: 1px solid #eee;
+}
+
+.my_clo1 .my_clo1_right .hotThingsDes .clickRolling .couponItem {
+    width: 42px;
+    height: 30px;
+    background: url("../image/vbg01.png") no-repeat -1298px -971px;
+    float: left;
+    margin-top: 13px;
+}
+
+.my_clo1 .my_clo1_right .hotThingsDes .clickRolling .couponDes {
+    width: 100px;
+    float: left;
+    font-size: 14px;
+    font-family: "微软雅黑";
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #666;
+    margin-top: 17px;
+    margin-left: 5px;
+}
+
+.arrow_l:hover, .arrow_r:hover {
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.arrow_l, .arrow_r {
+    font-family: "SimSun", "宋体";
+    width: 30px;
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 50%;
+    margin-top: -30px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 60px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.arrow_l {
+    left: 0;
+}
+
+.arrow_r {
+    right: 0;
+}
+
+/*body模块第一栏结束*/
+/*body模块第二栏开始*/
+.my_clo2, .my_clo3, .my_clo4 {
+    width: 100%;
+    height: 492px;
+    /*background-color: pink;*/
+    position: relative;
+    margin-top: 80px;
+    border-top: 1px solid #222;
+    padding: 15px 0;
+}
+
+.my_clo2 .my_clo2_title, .my_clo3 .my_clo3_title, .my_clo4 .my_clo4_title {
+    width: 100%;
+    height: 48px;
+    position: absolute;
+    top: -33px;
+    left: 0;
+}
+
+.my_clo2 .my_clo2_title div, .my_clo3 .my_clo3_title div, .my_clo4 .my_clo4_title div {
+    width: 6px;
+    height: 20px;
+    background-color: orange;
+    float: left;
+}
+
+.my_clo2 .my_clo2_title span, .my_clo3 .my_clo3_title span, .my_clo4 .my_clo4_title span {
+    color: rgb(53, 53, 53);
+    font-size: 24px;
+    font-family: "微软雅黑";
+    margin-left: 10px;
+    margin-top: -5px;
+}
+
+.my_clo2 .my_clo2_title_bodyL {
+    width: 220px;
+    height: 487px;
+    position: absolute;
+    /*background-color: yellow;*/
+    border: 1px solid #eee;
+}
+
+.my_clo2_title_bodyL > div {
+    width: 100%;
+}
+
+.my_clo2_title_bodyL > div a {
+    display: inline-block;
+    height: 10px;
+    margin: 25px 10px 0 12px;
+    font-size: 13px;
+    font-weight: normal;
+    font-family: "微软雅黑";
+    color: #222;
+}
+
+.my_clo2_title_bodyL span:nth-of-type(1) {
+    margin: 80px 0 0 19px;
+    font-size: 18px;
+    font-family: "微软雅黑";
+}
+
+.my_clo2_title_bodyL span:nth-of-type(2) {
+    margin-left: 33px;
+    margin-top: 8px;
+    font-size: 13px;
+    font-family: "微软雅黑";
+    color: rgb(153, 153, 153);
+}
+
+.my_clo2_title_bodyL > img {
+    margin-left: 18px;
+    margin-top: 25px;
+}
+
+.my_clo2_title_bodyM, .my_clo3_title_bodyL {
+    width: 717px;
+    height: 487px;
+    /*background-color: yellow;*/
+    position: absolute;
+    top: 15px;
+    left: 240px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.my_clo2_title_bodyM > div, .my_clo3_title_bodyL > div {
+    width: 160px;
+    height: 243px;
+    /*border: 1px solid #eee;*/
+    background-color: white;
+}
+
+.my_clo2_title_bodyM > div a div, .my_clo3_title_bodyL > div a div {
+    position: absolute;
+    height: 20px;
+    background: rgb(255, 192, 1);
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    font-weight: normal;
+    color: white;
+}
+
+.my_clo2_title_bodyM > div .imgItem, .my_clo3_title_bodyL > div .imgItem {
+    border: 1px solid #eee;
+}
+
+.my_clo2_title_bodyM > div .couponItem, .my_clo3_title_bodyL > div .couponItem {
+    width: 42px;
+    height: 30px;
+    background: url("../image/vbg01.png") no-repeat -1298px -971px;
+    float: left;
+    margin-top: 8px;
+}
+
+.my_clo2_title_bodyM > div .couponDes, .my_clo3_title_bodyL > div .couponDes {
+    width: 100px;
+    float: left;
+    font-size: 14px;
+    font-family: "微软雅黑";
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #666;
+    margin-top: 12px;
+    margin-left: 5px;
+}
+
+.my_clo2_title_bodyM > div .couponDes:first-of-type, .my_clo3_title_bodyL > div .couponDes:first-of-type {
+    width: 160px;
+}
+
+.my_clo2_title_bodyM .price, .my_clo3_title_bodyL .price {
+    height: 25px;
+    /*background-color: pink;*/
+    margin-top: 45px;
+}
+
+.my_clo2_title_bodyM .price span, .my_clo3_title_bodyL .price span {
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    color: #ffc001;
+    font-size: 12px;
+}
+
+.my_clo2_title_bodyM .price span:nth-of-type(2), .my_clo3_title_bodyL .price span:nth-of-type(2) {
+    font-size: 18px;
+}
+
+.my_clo2_title_bodyM .price span:nth-of-type(4) {
+    color: #999;
+    text-decoration: line-through;
+}
+
+.my_clo2_title_bodyR {
+    width: 223px;
+    height: 487px;
+    position: absolute;
+    /*background-color: yellow;*/
+    /*border: 1px solid #eee;*/
+    right: 0;
+    top: 15px;
+}
+
+.my_clo2_title_bodyR .news {
+    width: 100%;
+    /*background-color: green;*/
+}
+
+.my_clo2_title_bodyR .news:nth-of-type(2) {
+    margin-top: 50px;
+}
+
+.my_clo2_title_bodyR .news img {
+    width: 100%;
+}
+
+.my_clo2_title_bodyR .news span:nth-of-type(1) {
+    font-size: 18px;
+    color: rgb(53, 53, 53);
+    text-align: left;
+    margin-top: 20px;
+}
+
+.my_clo2_title_bodyR .news span:nth-of-type(2) {
+    font-size: 14px;
+    color: #666;
+    text-align: left;
+    margin-top: 20px;
+}
+
+/*body模块第二栏结束*/
+/*body模块第三栏开始*/
+
+.my_clo3_title_bodyL {
+    left: 20px;
+}
+
+.my_clo3_title_bodyR {
+    width: 440px;
+    height: 487px;
+    /*background-color: yellow;*/
+    position: absolute;
+    top: 15px;
+    right: 0;
+    border: 1px solid #eee;
+}
+
+.my_clo3_title_bodyR .my_clo3_title_bodyR_T {
+    width: 420px;
+    /*background-color: pink;*/
+    padding: 10px;
+}
+
+.my_clo3_title_bodyR .my_clo3_title_bodyR_T a {
+    display: inline-block;
+    font-size: 12px;
+    height: 36px;
+    line-height: 36px;
+    margin: -2px 1px 5px 18px;
+    color: #666;
+}
+
+.my_clo3_title_bodyR .my_clo3_title_bodyR_B {
+    width: 100%;
+    margin-top: 40px;
+    float: left;
+}
+
+.my_clo3_title_bodyR .my_clo3_title_bodyR_B img {
+    float: left;
+}
+
+.my_clo3_title_bodyR .my_clo3_title_bodyR_B span {
+    float: left;
+    margin-left: 20px;
+}
+
+.my_clo3_title_bodyR .my_clo3_title_bodyR_B span:nth-of-type(2) {
+    width: 252px;
+    margin-top: 20px;
+    color: #666;
+    font-size: 15px;
+}
+
+/*body模块第三栏结束*/
+/*body模块第四栏开始*/
+.my_clo4 {
+    height: 342px;
+}
+
+.my_clo4 .my_clo4_title_body {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.my_clo4 .my_clo4_title_body .list {
+    width: 268px;
+    height: 130px;
+    /*background-color: gray;*/
+    margin-top: 30px;
+}
+
+.my_clo4 .my_clo4_title_body .list > div {
+    width: 3px;
+    height: 20px;
+    background-color: orange;
+    float: left;
+    margin-left: 10px;
+}
+
+.my_clo4 .my_clo4_title_body .list > span {
+    margin-left: 20px;
+    float: left;
+    font-family: "微软雅黑";
+    font-size: 18px;
+}
+
+.my_clo4 .my_clo4_title_body .list > span:nth-of-type(2) {
+    width: 240px;
+    margin-left: 34px;
+    margin-top: 10px;
+    font-size: 14px;
+    color: rgb(153, 153, 153);
+}
+
+.my_clo4 .my_clo4_title_body .list a {
+    color: rgb(153, 153, 153);
+}
+
+.my_clo4 .my_clo4_title_body .list a span {
+    margin-top: 10px;
+}
+
+/*body模块第四栏结束*/
+/*遮挡层*/
+.barrierBed {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background: #000000;
+    filter: alpha(opacity=30);
+    -moz-opacity: 0.3;
+    -khtml-opacity: 0.3;
+    opacity: 0.3;
+    display: none;
+}
+
+/*微信二维码登录*/
+.wechart {
+    width: 380px;
+    position: fixed;
+    border: #ebebeb solid 1px;
+    height: 450px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    box-shadow: 0 0 20px #ddd;
+    z-index: 9999;
+    display: none;
+}
+
+.wechart .loginTitle {
+    width: 100%;
+    height: 75px;
+    border-bottom: 1px solid #eee;
+    cursor: move;
+}
+
+.wechart .loginTitle span {
+    font-size: 22px;
+    height: 100%;
+    line-height: 75px;
+    text-align: center;
+    font-family: "微软雅黑";
+    margin-left: 50px;
+}
+
+.wechart .loginTitle span:nth-of-type(2) {
+    margin-left: 192px;
+    color: rgb(153, 153, 153);
+    cursor: pointer;
+}
+
+.wechart .loginPic {
+    width: 100%;
+    height: 470px;
+    position: relative;
+}
+
+.wechart .loginPic > img {
+    position: absolute;
+    left: 100px;
+    top: 65px;
+}
+
+.wechart .loginPic > span {
+    position: absolute;
+    left: 108px;
+    top: 270px;
+    font-size: 16px;
+}
+
+/*body模块结束*/

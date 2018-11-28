@@ -1,0 +1,152 @@
+/*注册模块*/
+.main {
+    width: 100%;
+    height: 350px;
+    background: url("../image/bgc.jpg") no-repeat;
+}
+
+.body {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.body .registry {
+    width: 550px;
+    background-color: whitesmoke;
+    margin: 0 auto;
+    border-radius: 20px;
+}
+
+.body .registry > h3 {
+    width: 100%;
+    height: 80px;
+    font-size: 27px;
+    color: #ffda44;
+    text-align: center;
+    /*background-color: pink;*/
+    line-height: 80px;
+    font-weight: bold;
+}
+
+.body .registry > p {
+    width: 100%;
+    height: 50px;
+    margin-top: 5px;
+    margin-left: 75px;
+}
+
+.body .registry > p > .star {
+    line-height: 10px;
+    display: inline-block;
+    margin-left: 10px;
+    text-align: center;
+    color: red;
+}
+
+.body .registry > p > label {
+    font-size: 16px;
+}
+
+.body .registry > p > input {
+    outline: none #dedede;
+    width: 96%;
+    font: 12px "微软雅黑";
+    height: 30px;
+    line-height: 30px;
+    max-width: 246px;
+    border: 1px solid #e9e9e9;
+    margin: 10px auto;
+    text-indent: 10px;
+}
+
+.body .registry > p:nth-of-type(6) > input {
+    max-width: 100px;
+}
+
+.body .registry .registerBtn {
+    width: 50%;
+    border-radius: 20px;
+    font: 14px "微软雅黑";
+    height: 44px;
+    line-height: 44px;
+    color: #fff;
+    text-align: center;
+    margin-left: 150px;
+    margin-top: 20px;
+    display: inline-block;
+    pointer-events: none;
+    background-color: #888;
+}
+
+.body .registry .arguments {
+    width: 100%;
+    color: #00aaee;
+    margin-left: 150px;
+    margin-top: 15px;
+}
+
+.body .registry .arguments input {
+    width: 15px;
+    height: 15px;
+    vertical-align: top;
+    margin-bottom: 10px;
+}
+
+.body .registry > p:nth-of-type(6) > .code {
+    height: 32px;
+    line-height: 32px;
+    font-family: Arial;
+    font-style: italic;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: blue;
+    max-width: 100px;
+    vertical-align: bottom;
+    margin-left: 40px;
+    cursor: pointer;
+}
+
+.body .registry .registerMessage {
+    width: 100%;
+    height: 10px;
+    font-size: 10px;
+    line-height: 10px;
+    color: red;
+    margin-left: 161px;
+    /*display: none;*/
+}
+
+/*密码强度验证*/
+.body .registry .passwordStrength {
+    margin-left: 161px;
+    display: none;
+}
+
+.body .registry .passwordStrength > em {
+    font-size: 14px;
+    font-family: "微软雅黑";
+    font-weight: bold;
+    font-style: normal;
+}
+
+.strengthLv0, .strengthLv1, .strengthLv2, .strengthLv3 {
+    height: 6px;
+    width: 120px;
+    border: 2px solid #ccc;
+    padding: 2px;
+}
+
+.strengthLv1 {
+    background: red;
+    width: 40px;
+}
+
+.strengthLv2 {
+    background: orange;
+    width: 80px;
+}
+
+.strengthLv3 {
+    background: green;
+    width: 120px;
+}
