@@ -10,4 +10,6 @@ public interface CommodityService {
     CommodityDetail getCommodityById(Integer id);
 
     List<CommodityDetail> queryCommodityByTitle(String title);
+
+    List<CommodityDetail> queryAllCommodity();
 }

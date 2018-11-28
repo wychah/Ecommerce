@@ -14,6 +14,11 @@ public class SearchController {
     @Autowired
     private CommodityService commodityService;
 
+    @GetMapping("")
+    public List<CommodityDetail> searchAll() {
+        return commodityService.queryAllCommodity();
+    }
+
     @GetMapping("/{commodityTitle}")
     public List<CommodityDetail> searchCommodity(@PathVariable("commodityTitle") String title) {
         return commodityService.queryCommodityByTitle(title);

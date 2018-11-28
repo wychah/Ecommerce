@@ -24,4 +24,13 @@
         from commodity,attribute,detail
         where attribute.attributeId = detail.attributeId and detail.commodityId = commodity.commodityId and commodity.commodityTitle like CONCAT('%',#{commodityTitle},'%')
     </select>
+
+    <select id="queryAllCommodity" resultMap="commodity">
+        select commodity.commodityId,commodityTitle,commodityPrice,commodityInventory,commodityPicture,attribute.attributeName,detail.attributeValue
+        from commodity,attribute,detail
+        where attribute.attributeId = detail.attributeId and detail.commodityId = commodity.commodityId
+		ORDER BY commodity.commodityId
+		ASC
+		LIMIT 0,12
+    </select>
 </mapper>
