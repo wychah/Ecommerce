@@ -5,5 +5,5 @@ public class User {
     private Integer userId;
     private String userAccount;
     private String userPassword;
-    private String 
+    private String
 }
