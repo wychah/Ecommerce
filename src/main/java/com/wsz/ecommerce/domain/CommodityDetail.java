@@ -1,12 +1,16 @@
 package com.wsz.ecommerce.domain;
 
-public class Commodity {
+/***
+ * 商品详情页面
+ */
+public class CommodityDetail {
     private Integer commodityId;
     private String commodityTitle;
     private int commodityPrice;
     private int commodityInventory;
     private String commodityPicture;
-    private Integer sortId;
+    private String attributeName;
+    private String attributeValue;
 
     public Integer getCommodityId() {
         return commodityId;
@@ -48,11 +52,19 @@ public class Commodity {
         this.commodityPicture = commodityPicture;
     }
 
-    public Integer getSortId() {
-        return sortId;
+    public String getAttributeName() {
+        return attributeName;
     }
 
-    public void setSortId(Integer sortId) {
-        this.sortId = sortId;
+    public void setAttributeName(String attributeName) {
+        this.attributeName = attributeName;
+    }
+
+    public String getAttributeValue() {
+        return attributeValue;
+    }
+
+    public void setAttributeValue(String attributeValue) {
+        this.attributeValue = attributeValue;
     }
 }

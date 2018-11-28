@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wsz.ecommerce.dao.CommodityDao">
+    <resultMap id="commodity" type="com.wsz.ecommerce.domain.CommodityDetail">
+        <result property="commodityId" column="commodityId" />
+        <result property="commodityTitle" column="commodityTitle" />
+        <result property="commodityPrice" column="commodityPrice" />
+        <result property="commodityInventory" column="commodityInventory" />
+        <result property="commodityPicture" column="commodityPicture" />
+        <result property="attributeName" column="attributeName" />
+        <result property="attributeValue" column="attributeValue" />
+    </resultMap>
+    <select id="getCommodityById" resultType="com.wsz.ecommerce.domain.CommodityDetail">
+        select commodity.commodityId,commodityTitle,commodityPrice,commodityInventory,commodityPicture,attribute.attributeName,detail.attributeValue
+        from commodity,attribute,detail
+        where attribute.attributeId = detail.attributeId and detail.commodityId = commodity.commodityId and commodity.commodityId = #{commodityId}
+    </select>
+
+    <select id="queryCommodityByTitle" resultMap="commodity">
+        select commodity.commodityId,commodityTitle,commodityPrice,commodityInventory,commodityPicture,attribute.attributeName,detail.attributeValue
+        from commodity,attribute,detail
+        where attribute.attributeId = detail.attributeId and detail.commodityId = commodity.commodityId and commodity.commodityTitle like CONCAT('%',#{commodityTitle},'%')
+    </select>
+</mapper>

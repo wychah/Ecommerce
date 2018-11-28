@@ -1,7 +1,8 @@
 spring:
   datasource:
     username: root
-    password: Poison0809.
+#    password: Poison0809.
+    password: 123456
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/commerce?characterEncoding=utf-8&serverTimezone=UTC
 
