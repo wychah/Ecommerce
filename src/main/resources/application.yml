@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/commerce?characterEncoding=utf-8
+
+  jackson:
+    date-format: java.text.SimpleDateFormat
+    time-zone: GMT+8
+
