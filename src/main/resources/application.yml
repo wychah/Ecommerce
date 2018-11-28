@@ -1,11 +1,14 @@
 spring:
   datasource:
     username: root
-    password: 123456
+    password: Poison0809.
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/commerce?characterEncoding=utf-8
+    url: jdbc:mysql://127.0.0.1:3306/commerce?characterEncoding=utf-8&serverTimezone=UTC
 
   jackson:
     date-format: java.text.SimpleDateFormat
     time-zone: GMT+8
-
+#公共配置与profiles选择无关
+mybatis:
+  typeAliasesPackage: com.wsz.ecommerce.domain
+  mapperLocations: classpath:mapper/*.xml

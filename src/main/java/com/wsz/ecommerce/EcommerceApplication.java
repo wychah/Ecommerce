@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan(value = "com.wsz.ecommerce.mapper")
+@MapperScan(value = "com.wsz.ecommerce.dao")
 public class EcommerceApplication {
 
 	public static void main(String[] args) {
