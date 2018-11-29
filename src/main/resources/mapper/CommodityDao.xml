@@ -13,29 +13,144 @@
         <result property="attributeName" column="attributeName" />
         <result property="attributeValue" column="attributeValue" />
     </resultMap>
+
+    <resultMap id="brief" type="com.wsz.ecommerce.domain.CommodityBrief">
+        <result property="commodityId" column="commodityId" />
+        <result property="commodityTitle" column="commodityTitle" />
+        <result property="commodityPrice" column="commodityPrice" />
+        <result property="commodityPicture" column="commodityPicture" />
+    </resultMap>
+
     <select id="getCommodityById" resultType="com.wsz.ecommerce.domain.CommodityDetail">
-        select commodity.commodityId,commodityTitle,commodityPrice,commodityInventory,commodityPicture,attribute.attributeName,detail.attributeValue
+        select commodity.commodityId,commodityTitle,commodityPrice,commodityPicture
         from commodity,attribute,detail
         where attribute.attributeId = detail.attributeId and detail.commodityId = commodity.commodityId and commodity.commodityId = #{commodityId}
     </select>
 
-    <select id="queryCommodityByTitle" resultMap="commodity">
-        select commodity.commodityId,commodityTitle,commodityPrice,commodityInventory,commodityPicture,attribute.attributeName,detail.attributeValue
+    <select id="queryCommodityByTitle" resultMap="brief">
+        select commodity.commodityId,commodityTitle,commodityPrice,commodityPicture
         from commodity,attribute,detail
         where attribute.attributeId = detail.attributeId and detail.commodityId = commodity.commodityId and commodity.commodityTitle like CONCAT('%',#{commodityTitle},'%')
+        ORDER BY commodity.commodityTitle
+		ASC
+		LIMIT #{startNum},#{maxSize}
     </select>
 
-    <select id="queryAllCommodity" resultMap="commodity">
-        select commodity.commodityId,commodityTitle,commodityPrice,commodityInventory,commodityPicture,attribute.attributeName,detail.attributeValue
+    <select id="queryAllCommodity" resultMap="brief">
+        select commodity.commodityId,commodityTitle,commodityPrice,commodityPicture
         from commodity,attribute,detail
         where attribute.attributeId = detail.attributeId and detail.commodityId = commodity.commodityId
-		ORDER BY commodity.commodityId
+		ORDER BY commodity.commodityTitle
 		ASC
-		LIMIT 0,12
+		LIMIT #{startNum},#{maxSize}
+    </select>
+
+    <select id="queryAllCommodityDESC" resultMap="brief">
+        select commodity.commodityId,commodityTitle,commodityPrice,commodityPicture
+        from commodity,attribute,detail
+        where attribute.attributeId = detail.attributeId and detail.commodityId = commodity.commodityId
+		ORDER BY commodity.commodityTitle
+		desc
+		LIMIT #{startNum},#{maxSize}
     </select>
 
     <select id="allCommoodityAmount" resultType="double">
         SELECT COUNT(*)
         FROM commodity
+    </select>
+
+    <select id="resultAmount" resultType="double">
+        select COUNT(*)
+        from commodity,attribute,detail
+        where attribute.attributeId = detail.attributeId and detail.commodityId = commodity.commodityId and commodity.commodityTitle like CONCAT('%',#{commodityTitle},'%')
+    </select>
+
+    <select id="queryAllCommodityByPriceASC" resultMap="brief">
+        select commodity.commodityId,commodityTitle,commodityPrice,commodityPicture
+        from commodity,attribute,detail
+        where attribute.attributeId = detail.attributeId and detail.commodityId = commodity.commodityId
+		ORDER BY commodity.commodityPrice
+		ASC
+		LIMIT #{startNum},#{maxSize}
+    </select>
+
+    <select id="queryAllCommodityByPriceDESC" resultMap="brief">
+        select commodity.commodityId,commodityTitle,commodityPrice,commodityPicture
+        from commodity,attribute,detail
+        where attribute.attributeId = detail.attributeId and detail.commodityId = commodity.commodityId
+		ORDER BY commodity.commodityPrice
+		desc
+		LIMIT #{startNum},#{maxSize}
+    </select>
+
+    <select id="searchCommodityByPriceASC" resultMap="brief">
+        select commodity.commodityId,commodityTitle,commodityPrice,commodityPicture
+        from commodity,attribute,detail
+        where attribute.attributeId = detail.attributeId and detail.commodityId = commodity.commodityId and commodity.commodityTitle like CONCAT('%',#{commodityTitle},'%')
+        ORDER BY commodity.commodityPrice
+		ASC
+		LIMIT #{startNum},#{maxSize}
+    </select>
+
+    <select id="searchCommodityByPriceDESC" resultMap="brief">
+        select commodity.commodityId,commodityTitle,commodityPrice,commodityPicture
+        from commodity,attribute,detail
+        where attribute.attributeId = detail.attributeId and detail.commodityId = commodity.commodityId and commodity.commodityTitle like CONCAT('%',#{commodityTitle},'%')
+        ORDER BY commodity.commodityPrice
+		desc
+		LIMIT #{startNum},#{maxSize}
+    </select>
+
+    <select id="searchCommodityByTitleASC" resultMap="brief">
+        select commodity.commodityId,commodityTitle,commodityPrice,commodityPicture
+        from commodity,attribute,detail
+        where attribute.attributeId = detail.attributeId and detail.commodityId = commodity.commodityId and commodity.commodityTitle like CONCAT('%',#{commodityTitle},'%')
+        ORDER BY commodity.commodityTitle
+		asc
+		LIMIT #{startNum},#{maxSize}
+    </select>
+
+    <select id="searchCommodityByTitleDESC" resultMap="brief">
+        select commodity.commodityId,commodityTitle,commodityPrice,commodityPicture
+        from commodity,attribute,detail
+        where attribute.attributeId = detail.attributeId and detail.commodityId = commodity.commodityId and commodity.commodityTitle like CONCAT('%',#{commodityTitle},'%')
+        ORDER BY commodity.commodityTitle
+		desc
+		LIMIT #{startNum},#{maxSize}
+    </select>
+
+    <select id="queryCommodityBySortId" resultMap="brief">
+        SELECT
+            commodity.commodityId,
+            commodityTitle,
+            commodityPrice,
+            commodityPicture
+        FROM
+            commodity,
+            attribute,
+            detail,
+            sort
+        WHERE
+            attribute.attributeId = detail.attributeId
+            AND detail.commodityId = commodity.commodityId
+            AND commodity.sortId = sort.sortId
+            AND commodity.sortId = #{sortId}
+        ORDER BY
+            commodity.commodityTitle ASC
+            LIMIT #{startNum},#{maxSize}
+    </select>
+
+    <select id="sortResultAmount" resultType="double">
+        SELECT count(*)
+        FROM
+            commodity,
+            attribute,
+            detail,
+            sort
+        WHERE
+            attribute.attributeId = detail.attributeId
+            AND detail.commodityId = commodity.commodityId
+            AND commodity.sortId = sort.sortId
+            AND commodity.sortId = #{sortId}
     </select>
 </mapper>

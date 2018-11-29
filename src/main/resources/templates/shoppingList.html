@@ -9,10 +9,11 @@
     <link rel="stylesheet" href="css/normalize.css" type="text/css">
     <!--公共的css:头部和底部-->
     <link rel="stylesheet" href="css/base.css" type="text/css">
+    <!--商品列表页的css-->
+    <link rel="stylesheet" href="css/shoppingList.css" type="text/css">
     <!--字体图标css-->
     <link rel="stylesheet" type="text/css" href="font/download/font_942gj5vp4fp/iconfont.css">
-    <!--注册页的css-->
-    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="font/download/font_90ljwep9b4l/iconfont.css">
 </head>
 <body>
 <!--快捷导航模块开始-->
@@ -91,8 +92,8 @@
         <div class="landingBoox">
             <span class="trangle"></span>
             <div class="logintitle">用户登录</div>
-            <input type="text" name="userName"placeholder="用户名">
-            <input type="text" name="password"placeholder="密码">
+            <input type="text" name="userName" placeholder="用户名">
+            <input type="text" name="password" placeholder="密码">
             <div class="loginBtn">登录</div>
             <div class="registerQuick"><a href="register.html">免费注册></a></div>
         </div>
@@ -104,8 +105,8 @@
         <div class="landingBoox">
             <span class="trangle"></span>
             <div class="logintitle">用户登录</div>
-            <input type="text" name="userName"placeholder="用户名">
-            <input type="text" name="password"placeholder="密码">
+            <input type="text" name="userName" placeholder="用户名">
+            <input type="text" name="password" placeholder="密码">
             <div class="loginBtn">登录</div>
             <div class="registerQuick"><a href="register.html">免费注册></a></div>
         </div>
@@ -117,8 +118,8 @@
         <div class="landingBoox">
             <span class="trangle"></span>
             <div class="logintitle">用户登录</div>
-            <input type="text" name="userName"placeholder="用户名">
-            <input type="text" name="password"placeholder="密码">
+            <input type="text" name="userName" placeholder="用户名">
+            <input type="text" name="password" placeholder="密码">
             <div class="loginBtn">登录</div>
             <div class="registerQuick"><a href="register.html">免费注册></a></div>
         </div>
@@ -142,52 +143,58 @@
 <!--body模块开始-->
 <div class="body">
     <div class="w">
-        <div class="registry">
-            <h3>满&nbsp;&nbsp;&nbsp;意&nbsp;&nbsp;&nbsp;网</h3>
-            <p>
-                <label for="nickname">昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</label>
-                <input type="text" name="username" id="nickname" maxlength="10">
-                <span class="star">*</span>
-            </p>
-            <!--<span class="registerMessage">111</span>-->
-            <p>
-                <label for="password">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
-                <input type="password" name="password" id="password" maxlength="16">
-                <span class="star">*</span>
-            </p>
-            <div class="passwordStrength">
-                <em>密码强度：</em>
-                <div id="strengthLevel" class="strengthLv0"></div>
+        <div class="searchItem">
+            <input type="text" id="searchText" name="searchText" placeholder="当前条件下搜索" maxlength="17">
+            <span class="searchBtn"><i class="iconfont icon-sousuo"></i></span>
+        </div>
+        <div class="chooseItem">
+            <div class="haveChosen">
+                <div class="haveChosen_head">已选择：</div>
             </div>
-            <p>
-                <label for="passwordAgain">确认密码：</label>
-                <input type="password" name="passwordAgain" id="passwordAgain" maxlength="16">
-                <span class="star">*</span>
-            </p>
-            <p>
-                <label for="username">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
-                <input type="text" name="username" id="username">
-                <span class="star">*</span>
-            </p>
-            <p>
-                <label for="phonenumber">手&nbsp;&nbsp;机&nbsp;&nbsp;号：</label>
-                <input type="tel" name="phonenumber" id="phonenumber">
-                <span class="star">*</span>
-            </p>
-            <p>
-                <label for="code">验&nbsp;&nbsp;证&nbsp;&nbsp;码：</label>
-                <input type="text" name="code" id="code">
-                <!--验证码-->
-                <input type="button" id="checkCode" class="code"/>
-            </p>
-            <div class="registerBtn" id="registerBtn">立即注册</div>
-            <div class="arguments">
-                <input type="checkbox" id="checkArgument">我已阅读并同意《满意网注册协议》
+            <div class="chooseList">
+                <div class="chooseOption">
+                    <div class="chooseTitle">价格：</div>
+                    <a href="">0-199</a>
+                    <a href="">200-399</a>
+                    <a href="">400-799</a>
+                    <a href="">1000-1599</a>
+                    <a href="">1800以上</a>
+                </div>
+                <div class="chooseOption">
+                    <div class="chooseTitle">成色：</div>
+                    <a href="">8成新</a>
+                    <a href="">全新</a>
+                    <a href="">9成新</a>
+                </div>
             </div>
+            <div class="filter">
+                <div id="sortByName">名称
+                    <i class="iconfont icon-shangsheng"></i>
+                    <i class="iconfont icon-xiajiang"></i>
+                </div>
+                <!--<div>上架时间-->
+                <!--<i class="iconfont icon-shangsheng"></i>-->
+                <!--<i class="iconfont icon-xiajiang"></i>-->
+                <!--</div>-->
+                <div>价格
+                    <i class="iconfont icon-shangsheng"></i>
+                    <i class="iconfont icon-xiajiang"></i>
+                </div>
+                <div>
+                    <input type="text" class="inputPrice" name="inputPrice" placeholder="￥">
+                    -
+                    <input type="text" class="inputPrice" name="inputPrice" placeholder="￥">
+                    <div class="filterBtn">确定</div>
+                </div>
+            </div>
+        </div>
+        <div class="listItem"></div>
+        <div class="pageNumber">
+
         </div>
     </div>
 </div>
-<!--body模块开始-->
+<!--body模块结束-->
 <!--foot模块开始-->
 <div class="foot">
     <div class="foot_top"><img data-original="image/5XGBR@Z$QVQ4$%5D1K%60HRJ958.png" alt=""></div>
@@ -196,7 +203,55 @@
 <!--foot模块结束-->
 <script src="js/jquery-1.12.4.js"></script>
 <script src="js/jquery.lazyload.js"></script>
+<script src="js/template-web.js"></script>
 <script src="js/base.js"></script>
-<script src="js/register.js"></script>
+<!--<script src="js/shoppingList.js"></script>-->
+<script>
+    var arr = '{{each commodities as value}}' +
+        '<div>' +
+        '<a href="">' +
+        '<div>满100减9</div>' +
+        '<span class="imgItem"><img src="{{value.commodityPicture}}" alt=""/></span>' +
+        '</a>' +
+        '<a href="">' +
+        '<span class="couponDes" title="{{value.commodityTitle}} ">{{value.commodityTitle}}</span>' +
+        '</a>' +
+        '<div class="price">' +
+        '<span>￥</span>' +
+        '<span>{{value.commodityPrice}}</span>' +
+        '<span>.00</span>' +
+        '<div class="buyOnce">立即购买</div>' +
+        '</div>' +
+        '</div>' +
+        '{{/each}}';
+    $.ajax({
+        url: "http://localhost:8080/search/asc",
+        type: "get",
+        success: function (res) {
+            // console.log(res);
+            var data = {commont:res};
+            // console.log(data);
+            var render = template.compile(arr);
+            var html = render(data.commont);
+            $(".listItem").html(html);
+        }
+    });
+    $("#sortByName").on("click",function () {
+        $.ajax({
+            url:"http://localhost:8080/search/desc",
+            type: "get",
+            success: function (res) {
+                // console.log(res);
+                var data = {commont:res};
+                // console.log(data);
+                var render = template.compile(arr);
+                var html = render(data.commont);
+                $(".listItem").html(html);
+            }
+        })
+    });
+
+
+</script>
 </body>
 </html>
