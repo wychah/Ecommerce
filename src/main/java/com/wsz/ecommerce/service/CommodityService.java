@@ -12,4 +12,6 @@ public interface CommodityService {
     List<CommodityDetail> queryCommodityByTitle(String title);
 
     List<CommodityDetail> queryAllCommodity();
+
+    double allCommoodityAmount();
 }

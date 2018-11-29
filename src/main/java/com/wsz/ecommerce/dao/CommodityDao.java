@@ -26,4 +26,10 @@ public interface CommodityDao {
      * @return
      */
     List<CommodityDetail> queryAllCommodity();
+
+    /**
+     * 商品总数
+     * @return
+     */
+    double allCommoodityAmount();
 }

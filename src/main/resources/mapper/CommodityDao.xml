@@ -33,4 +33,9 @@
 		ASC
 		LIMIT 0,12
     </select>
+
+    <select id="allCommoodityAmount" resultType="double">
+        SELECT COUNT(*)
+        FROM commodity
+    </select>
 </mapper>

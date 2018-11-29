@@ -28,4 +28,9 @@ public class CommodityServiceImpl implements CommodityService {
     public List<CommodityDetail> queryAllCommodity() {
         return commodityDao.queryAllCommodity();
     }
+
+    @Override
+    public double allCommoodityAmount() {
+        return commodityDao.allCommoodityAmount();
+    }
 }
