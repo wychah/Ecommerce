@@ -153,4 +153,50 @@
             AND commodity.sortId = sort.sortId
             AND commodity.sortId = #{sortId}
     </select>
+
+    <select id="searchCommodityBetweenPrice" resultMap="brief">
+        SELECT
+            commodity.commodityId,
+            commodityTitle,
+            commodityPrice,
+            commodityPicture
+        FROM
+            commodity
+        WHERE
+            commodityPrice BETWEEN #{minPrice} AND #{maxPrice}
+        ORDER BY
+            commodity.commodityTitle ASC
+            LIMIT #{startNum},#{maxSize}
+    </select>
+
+    <select id="priceMoreThan" resultMap="brief">
+        SELECT
+            commodity.commodityId,
+            commodityTitle,
+            commodityPrice,
+            commodityPicture
+        FROM
+            commodity
+        WHERE
+            commodityPrice >= #{minPrice}
+        ORDER BY
+            commodity.commodityTitle ASC
+            LIMIT #{startNum},#{maxSize}
+    </select>
+
+    <select id="rangeResultAmount" resultType="double">
+        SELECT count(*)
+        FROM
+            commodity
+        WHERE
+            commodityPrice between #{minPrice} and #{maxPrice}
+    </select>
+
+    <select id="priceOverAmount" resultType="double">
+        SELECT count(*)
+        FROM
+            commodity
+        WHERE
+            commodityPrice >= #{minPrice}
+    </select>
 </mapper>

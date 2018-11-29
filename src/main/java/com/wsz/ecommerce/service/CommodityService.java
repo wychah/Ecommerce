@@ -19,6 +19,10 @@ public interface CommodityService {
 
     double sortResultAmount(Integer sortId);
 
+    double rangeResultAmount(int minPrice, int maxPrice);
+
+    double priceOverAmount(int minPrice);
+
     List<CommodityBrief> queryAllCommodityByPriceASC(int startNum, int maxSize);
 
     List<CommodityBrief> queryAllCommodityByPriceDESC(int startNum, int maxSize);
@@ -34,4 +38,8 @@ public interface CommodityService {
     List<CommodityBrief> searchCommodityByTitleDESC(String title, int startNum, int maxSize);
 
     List<CommodityBrief> queryCommodityBySortId(Integer sortId, int startNum, int maxSize);
+
+    List<CommodityBrief> searchCommodityBetweenPrice(int minPrice, int maxPrice, int startNum, int maxSize);
+
+    List<CommodityBrief> priceMoreThan(int minPrice, int startNum, int maxSize);
 }

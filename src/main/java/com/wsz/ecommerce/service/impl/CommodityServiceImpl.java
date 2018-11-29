@@ -46,6 +46,16 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
     @Override
+    public double rangeResultAmount(int minPrice, int maxPrice) {
+        return commodityDao.rangeResultAmount(minPrice, maxPrice);
+    }
+
+    @Override
+    public double priceOverAmount(int minPrice) {
+        return commodityDao.priceOverAmount(minPrice);
+    }
+
+    @Override
     public List<CommodityBrief> queryAllCommodityByPriceASC(int startNum, int maxSize) {
         return commodityDao.queryAllCommodityByPriceASC(startNum,maxSize);
     }
@@ -83,5 +93,15 @@ public class CommodityServiceImpl implements CommodityService {
     @Override
     public List<CommodityBrief> queryCommodityBySortId(Integer sortId, int startNum, int maxSize) {
         return commodityDao.queryCommodityBySortId(sortId, startNum, maxSize);
+    }
+
+    @Override
+    public List<CommodityBrief> searchCommodityBetweenPrice(int minPrice, int maxPrice, int startNum, int maxSize) {
+        return commodityDao.searchCommodityBetweenPrice(minPrice, maxPrice, startNum, maxSize);
+    }
+
+    @Override
+    public List<CommodityBrief> priceMoreThan(int minPrice, int startNum, int maxSize) {
+        return commodityDao.priceMoreThan(minPrice, startNum, maxSize);
     }
 }

@@ -56,6 +56,10 @@ public interface CommodityDao {
      */
     double sortResultAmount(@Param("sortId") Integer sortId);
 
+    double rangeResultAmount(@Param("minPrice") int minPrice, @Param("maxPrice") int maxPrice);
+
+    double priceOverAmount(@Param("minPrice") int minPrice);
+
     /**
      * 按价格从低到高排列所有商品
      * @param startNum
@@ -116,4 +120,23 @@ public interface CommodityDao {
      * @return
      */
     List<CommodityBrief> queryCommodityBySortId(@Param("sortId") Integer sortId, @Param("startNum") int startNum, @Param("maxSize") int maxSize);
+
+    /**
+     * 通过价格区间查询商品
+     * @param minPrice
+     * @param maxPrice
+     * @param startNum
+     * @param maxSize
+     * @return
+     */
+    List<CommodityBrief> searchCommodityBetweenPrice(@Param("minPrice") int minPrice, @Param("maxPrice") int maxPrice, @Param("startNum") int startNum, @Param("maxSize") int maxSize);
+
+    /**
+     * 查询价格大于minPrice的商品
+     * @param minPrice
+     * @param startNum
+     * @param maxSize
+     * @return
+     */
+    List<CommodityBrief> priceMoreThan(@Param("minPrice") int minPrice, @Param("startNum") int startNum, @Param("maxSize") int maxSize);
 }
