@@ -144,8 +144,8 @@
 <div class="body">
     <div class="w">
         <div class="searchItem">
-            <input type="text" id="searchText" name="searchText" placeholder="当前条件下搜索" maxlength="17">
-            <span class="searchBtn"><i class="iconfont icon-sousuo"></i></span>
+            <input type="text" id="searchText" name="searchText" placeholder="当前条件下搜索" maxlength="30">
+            <span class="searchBtn" id="searchBtn"><i class="iconfont icon-sousuo"></i></span>
         </div>
         <div class="chooseItem">
             <div class="haveChosen">
@@ -170,27 +170,37 @@
             <div class="filter">
                 <div id="sortByName">名称
                     <i class="iconfont icon-shangsheng"></i>
-                    <i class="iconfont icon-xiajiang"></i>
+                    <!--<i class="iconfont icon-xiajiang"></i>-->
                 </div>
                 <!--<div>上架时间-->
                 <!--<i class="iconfont icon-shangsheng"></i>-->
                 <!--<i class="iconfont icon-xiajiang"></i>-->
                 <!--</div>-->
-                <div>价格
+                <div id="sortByPrice">价格
                     <i class="iconfont icon-shangsheng"></i>
-                    <i class="iconfont icon-xiajiang"></i>
+                    <!--<i class="iconfont icon-xiajiang"></i>-->
                 </div>
                 <div>
-                    <input type="text" class="inputPrice" name="inputPrice" placeholder="￥">
+                    <input type="text" class="inputPrice" name="inputPrice" placeholder="￥" id="priceFirst">
                     -
-                    <input type="text" class="inputPrice" name="inputPrice" placeholder="￥">
-                    <div class="filterBtn">确定</div>
+                    <input type="text" class="inputPrice" name="inputPrice" placeholder="￥" id="priceLast">
+                    <div class="filterBtn" id="filterBtn">确定</div>
                 </div>
             </div>
         </div>
         <div class="listItem"></div>
-        <div class="pageNumber">
-
+        <div class="page">
+            <div>
+                <div class="prePage prevent" id="prePage">上一页</div>
+                <div class="pageNumber" id="pageNumber">
+                    <ul>
+                        <li class="pageColor prevent">1</li>
+                        <li>2</li>
+                        <li>3</li>
+                    </ul>
+                </div>
+                <div class="nextPage" id="nextPage">下一页</div>
+            </div>
         </div>
     </div>
 </div>
@@ -205,53 +215,176 @@
 <script src="js/jquery.lazyload.js"></script>
 <script src="js/template-web.js"></script>
 <script src="js/base.js"></script>
-<!--<script src="js/shoppingList.js"></script>-->
+<script src="js/shoppingList.js"></script>
 <script>
-    var arr = '{{each commodities as value}}' +
-        '<div>' +
-        '<a href="">' +
-        '<div>满100减9</div>' +
-        '<span class="imgItem"><img src="{{value.commodityPicture}}" alt=""/></span>' +
-        '</a>' +
-        '<a href="">' +
-        '<span class="couponDes" title="{{value.commodityTitle}} ">{{value.commodityTitle}}</span>' +
-        '</a>' +
-        '<div class="price">' +
-        '<span>￥</span>' +
-        '<span>{{value.commodityPrice}}</span>' +
-        '<span>.00</span>' +
-        '<div class="buyOnce">立即购买</div>' +
-        '</div>' +
-        '</div>' +
-        '{{/each}}';
-    $.ajax({
-        url: "http://localhost:8080/search/asc",
-        type: "get",
-        success: function (res) {
-            // console.log(res);
-            var data = {commont:res};
-            // console.log(data);
-            var render = template.compile(arr);
-            var html = render(data.commont);
-            $(".listItem").html(html);
-        }
-    });
-    $("#sortByName").on("click",function () {
+    $(function () {
+        var arr = '{{each commodities as value}}' +
+            '<div>' +
+            '<a href="">' +
+            '<div>满100减9</div>' +
+            '<span class="imgItem"><img src="{{value.commodityPicture}}" alt=""/></span>' +
+            '</a>' +
+            '<a href="">' +
+            '<span class="couponDes" title="{{value.commodityTitle}}">{{value.commodityTitle}}</span>' +
+            '</a>' +
+            '<div class="price">' +
+            '<span>￥</span>' +
+            '<span>{{value.commodityPrice}}</span>' +
+            '<span>.00</span>' +
+            '<div class="buyOnce">立即购买</div>' +
+            '</div>' +
+            '</div>' +
+            '{{/each}}';
         $.ajax({
-            url:"http://localhost:8080/search/desc",
+            url: "http://localhost:8080/search/asc",
             type: "get",
+            data: {"currentPage": 1, "maxSize": 12},
             success: function (res) {
-                // console.log(res);
-                var data = {commont:res};
-                // console.log(data);
+                console.log(res);
+                var data = {commont: res};
                 var render = template.compile(arr);
                 var html = render(data.commont);
                 $(".listItem").html(html);
             }
-        })
+        });
+        $("#sortByName").on("click", function () {
+            var textValue = $("#searchText").val();
+            if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == 1 && $("#searchText").val() == "") {
+                $.ajax({
+                    url: "http://localhost:8080/search/asc",
+                    type: "get",
+                    data: {"currentPage": 1, "maxSize": 12},
+                    success: function (res) {
+                        console.log(res);
+                        var data = {commont: res};
+                        var render = template.compile(arr);
+                        var html = render(data.commont);
+                        $(".listItem").html(html);
+                    }
+                });
+            }
+            if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == -1 && $("#searchText").val() == "") {
+                $.ajax({
+                    url: "http://localhost:8080/search/desc",
+                    type: "get",
+                    data: {"currentPage": 1, "maxSize": 12},
+                    success: function (res) {
+                        console.log(res);
+                        var data = {commont: res};
+                        var render = template.compile(arr);
+                        var html = render(data.commont);
+                        $(".listItem").html(html);
+                    }
+                });
+                // location.href = "http://localhost:8080/search/desc?currentPage=1&maxSize=12";
+            }
+            if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == -1 && $("#searchText").val() != "") {
+                $.ajax({
+                    url: "http://localhost:8080/search/" + textValue + "/titledesc",
+                    type: "get",
+                    data: {"currentPage": 1, "maxSize": 12},
+                    success: function (res) {
+                        // console.log(res);
+                        var data = {commont: res};
+                        var render = template.compile(arr);
+                        var html = render(data.commont);
+                        $(".listItem").html(html);
+                    }
+                });
+            }
+            if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == 1 && $("#searchText").val() != "") {
+                $.ajax({
+                    url: "http://localhost:8080/search/" + textValue + "/titleasc",
+                    type: "get",
+                    data: {"currentPage": 1, "maxSize": 12},
+                    success: function (res) {
+                        // console.log(res);
+                        var data = {commont: res};
+                        var render = template.compile(arr);
+                        var html = render(data.commont);
+                        $(".listItem").html(html);
+                    }
+                });
+            }
+        });
+        $("#sortByPrice").on("click", function () {
+            var textValue = $("#searchText").val();
+            if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == 1 && $("#searchText").val() == "") {
+                $.ajax({
+                    url: "http://localhost:8080/search/priceasc",
+                    type: "get",
+                    data: {"currentPage": 1, "maxSize": 12},
+                    success: function (res) {
+                        // console.log(res);
+                        var data = {commont: res};
+                        var render = template.compile(arr);
+                        var html = render(data.commont);
+                        $(".listItem").html(html);
+                    }
+                });
+            }
+            if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == -1 && $("#searchText").val() == "") {
+                $.ajax({
+                    url: "http://localhost:8080/search/pricedesc",
+                    type: "get",
+                    data: {"currentPage": 1, "maxSize": 12},
+                    success: function (res) {
+                        // console.log(res);
+                        var data = {commont: res};
+                        var render = template.compile(arr);
+                        var html = render(data.commont);
+                        $(".listItem").html(html);
+                    }
+                });
+            }
+            if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == -1 && $("#searchText").val() != "") {
+                $.ajax({
+                    url: "http://localhost:8080/search/" + textValue + "/pricedesc",
+                    type: "get",
+                    data: {"currentPage": 1, "maxSize": 12},
+                    success: function (res) {
+                        // console.log(res);
+                        var data = {commont: res};
+                        var render = template.compile(arr);
+                        var html = render(data.commont);
+                        $(".listItem").html(html);
+                    }
+                });
+            }
+            if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == 1 && $("#searchText").val() != "") {
+                $.ajax({
+                    url: "http://localhost:8080/search/" + textValue + "/priceasc",
+                    type: "get",
+                    data: {"currentPage": 1, "maxSize": 12},
+                    success: function (res) {
+                        // console.log(res);
+                        var data = {commont: res};
+                        var render = template.compile(arr);
+                        var html = render(data.commont);
+                        $(".listItem").html(html);
+                    }
+                });
+            }
+        });
+        $("#searchBtn").on("click", function () {
+            var textValue = $("#searchText").val();
+            $.ajax({
+                url: "http://localhost:8080/search/" + textValue,
+                type: "get",
+                data: {"currentPage": 1, "maxSize": 12},
+                success: function (res) {
+                    // console.log(res);
+                    var data = {commont: res};
+                    var render = template.compile(arr);
+                    var html = render(data.commont);
+                    $(".listItem").html(html);
+                }
+            });
+        });
+        // $("#filterBtn").on("click", function () {
+        //     $("")
+        // });
     });
-
-
 </script>
 </body>
 </html>
