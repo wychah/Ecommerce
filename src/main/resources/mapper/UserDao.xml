@@ -8,4 +8,19 @@
         FROM user
         WHERE userId = #{userId}
     </select>
+    <select id="ifUserExist" resultType="Integer">
+        select count(*)
+        from user
+        where userAccount=#{userAccount} AND userPassword = #{userPassword}
+    </select>
+    <select id="loginFindUserId" resultType="Integer">
+        select userId
+        from user
+        where userAccount=#{userAccount} AND userPassword = #{userPassword}
+    </select>
+    <select id="findUserBasicInfoById" resultType="com.wsz.ecommerce.domain.UserBasicInfo">
+        SELECT userId,userName,userEmail,userEmail,userPhone
+        FROM user
+        WHERE userId=#{userId}
+    </select>
 </mapper>
