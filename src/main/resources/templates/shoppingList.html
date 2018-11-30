@@ -235,12 +235,19 @@
             '</div>' +
             '</div>' +
             '{{/each}}';
+        // var URL = "http://localhost:8080/search/asc?currentPage=1&maxSize=12";
+        if (window.sessionStorage.getItem("url") != null) {
+            URL = window.sessionStorage.getItem("url");
+        } else {
+            URL = "http://localhost:8080/search/asc?currentPage=1&maxSize=12";
+        }
         $.ajax({
-            url: "http://localhost:8080/search/asc",
+            url: URL,
             type: "get",
-            data: {"currentPage": 1, "maxSize": 12},
+            // data: {"currentPage": 1, "maxSize": 12},
             success: function (res) {
-                console.log(res);
+                // console.log(res);
+                console.log(window.sessionStorage.getItem("url"));
                 var data = {commont: res};
                 var render = template.compile(arr);
                 var html = render(data.commont);
@@ -251,58 +258,65 @@
             var textValue = $("#searchText").val();
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == 1 && $("#searchText").val() == "") {
                 $.ajax({
-                    url: "http://localhost:8080/search/asc",
+                    url: "http://localhost:8080/search/asc?currentPage=1&maxSize=12",
                     type: "get",
-                    data: {"currentPage": 1, "maxSize": 12},
+                    // data: {"currentPage": 1, "maxSize": 12},
                     success: function (res) {
                         console.log(res);
                         var data = {commont: res};
                         var render = template.compile(arr);
                         var html = render(data.commont);
                         $(".listItem").html(html);
+                        window.sessionStorage.removeItem("url");
+                        window.sessionStorage.setItem("url",this.url);
                     }
                 });
             }
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == -1 && $("#searchText").val() == "") {
                 $.ajax({
-                    url: "http://localhost:8080/search/desc",
+                    url: "http://localhost:8080/search/desc?currentPage=1&maxSize=12",
                     type: "get",
-                    data: {"currentPage": 1, "maxSize": 12},
+                    // data: {"currentPage": 1, "maxSize": 12},
                     success: function (res) {
                         console.log(res);
                         var data = {commont: res};
                         var render = template.compile(arr);
                         var html = render(data.commont);
                         $(".listItem").html(html);
+                        window.sessionStorage.removeItem("url");
+                        window.sessionStorage.setItem("url",this.url);
                     }
                 });
-                // location.href = "http://localhost:8080/search/desc?currentPage=1&maxSize=12";
             }
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == -1 && $("#searchText").val() != "") {
                 $.ajax({
-                    url: "http://localhost:8080/search/" + textValue + "/titledesc",
+                    url: "http://localhost:8080/search/" + textValue + "/titledesc?currentPage=1&maxSize=12",
                     type: "get",
-                    data: {"currentPage": 1, "maxSize": 12},
+                    // data: {"currentPage": 1, "maxSize": 12},
                     success: function (res) {
                         // console.log(res);
                         var data = {commont: res};
                         var render = template.compile(arr);
                         var html = render(data.commont);
                         $(".listItem").html(html);
+                        window.sessionStorage.removeItem("url");
+                        window.sessionStorage.setItem("url",this.url);
                     }
                 });
             }
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == 1 && $("#searchText").val() != "") {
                 $.ajax({
-                    url: "http://localhost:8080/search/" + textValue + "/titleasc",
+                    url: "http://localhost:8080/search/" + textValue + "/titleasc?currentPage=1&maxSize=12",
                     type: "get",
-                    data: {"currentPage": 1, "maxSize": 12},
+                    // data: {"currentPage": 1, "maxSize": 12},
                     success: function (res) {
                         // console.log(res);
                         var data = {commont: res};
                         var render = template.compile(arr);
                         var html = render(data.commont);
                         $(".listItem").html(html);
+                        window.sessionStorage.removeItem("url");
+                        window.sessionStorage.setItem("url",this.url);
                     }
                 });
             }
@@ -311,57 +325,65 @@
             var textValue = $("#searchText").val();
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == 1 && $("#searchText").val() == "") {
                 $.ajax({
-                    url: "http://localhost:8080/search/priceasc",
+                    url: "http://localhost:8080/search/priceasc?currentPage=1&maxSize=12",
                     type: "get",
-                    data: {"currentPage": 1, "maxSize": 12},
+                    // data: {"currentPage": 1, "maxSize": 12},
                     success: function (res) {
                         // console.log(res);
                         var data = {commont: res};
                         var render = template.compile(arr);
                         var html = render(data.commont);
                         $(".listItem").html(html);
+                        window.sessionStorage.removeItem("url");
+                        window.sessionStorage.setItem("url",this.url);
                     }
                 });
             }
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == -1 && $("#searchText").val() == "") {
                 $.ajax({
-                    url: "http://localhost:8080/search/pricedesc",
+                    url: "http://localhost:8080/search/pricedesc?currentPage=1&maxSize=12",
                     type: "get",
-                    data: {"currentPage": 1, "maxSize": 12},
+                    // data: {"currentPage": 1, "maxSize": 12},
                     success: function (res) {
                         // console.log(res);
                         var data = {commont: res};
                         var render = template.compile(arr);
                         var html = render(data.commont);
                         $(".listItem").html(html);
+                        window.sessionStorage.removeItem("url");
+                        window.sessionStorage.setItem("url",this.url);
                     }
                 });
             }
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == -1 && $("#searchText").val() != "") {
                 $.ajax({
-                    url: "http://localhost:8080/search/" + textValue + "/pricedesc",
+                    url: "http://localhost:8080/search/" + textValue + "/pricedesc?currentPage=1&maxSize=12",
                     type: "get",
-                    data: {"currentPage": 1, "maxSize": 12},
+                    // data: {"currentPage": 1, "maxSize": 12},
                     success: function (res) {
                         // console.log(res);
                         var data = {commont: res};
                         var render = template.compile(arr);
                         var html = render(data.commont);
                         $(".listItem").html(html);
+                        window.sessionStorage.removeItem("url");
+                        window.sessionStorage.setItem("url",this.url);
                     }
                 });
             }
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == 1 && $("#searchText").val() != "") {
                 $.ajax({
-                    url: "http://localhost:8080/search/" + textValue + "/priceasc",
+                    url: "http://localhost:8080/search/" + textValue + "/priceasc?currentPage=1&maxSize=12",
                     type: "get",
-                    data: {"currentPage": 1, "maxSize": 12},
+                    // data: {"currentPage": 1, "maxSize": 12},
                     success: function (res) {
                         // console.log(res);
                         var data = {commont: res};
                         var render = template.compile(arr);
                         var html = render(data.commont);
                         $(".listItem").html(html);
+                        window.sessionStorage.removeItem("url");
+                        window.sessionStorage.setItem("url",this.url);
                     }
                 });
             }
@@ -369,15 +391,17 @@
         $("#searchBtn").on("click", function () {
             var textValue = $("#searchText").val();
             $.ajax({
-                url: "http://localhost:8080/search/" + textValue,
+                url: "http://localhost:8080/search/" + textValue + "?currentPage=1&maxSize=12",
                 type: "get",
-                data: {"currentPage": 1, "maxSize": 12},
+                // data: {"currentPage": 1, "maxSize": 12},
                 success: function (res) {
                     // console.log(res);
                     var data = {commont: res};
                     var render = template.compile(arr);
                     var html = render(data.commont);
                     $(".listItem").html(html);
+                    window.sessionStorage.removeItem("url");
+                    window.sessionStorage.setItem("url",this.url);
                 }
             });
         });
