@@ -2,10 +2,18 @@ package com.wsz.ecommerce.domain;
 
 public class UserBasicInfo {
     private Integer userId;
+    private String userAccount;
     private String userName;
     private String userEmail;
     private String userPhone;
-    private String userAvatar;
+
+    public String getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(String userAccount) {
+        this.userAccount = userAccount;
+    }
 
     public Integer getUserId() {
         return userId;
@@ -39,11 +47,4 @@ public class UserBasicInfo {
         this.userPhone = userPhone;
     }
 
-    public String getUserAvatar() {
-        return userAvatar;
-    }
-
-    public void setUserAvatar(String userAvatar) {
-        this.userAvatar = userAvatar;
-    }
 }
