@@ -123,7 +123,6 @@ function aGet(url, datas, arr) {
 }
 function nextAJAX(url, datas, arr) {
     $.get(url, datas, function (res) {
-        console.log(res);
         var data = {commont: res};
         var render = template.compile(arr);
         var html = render(data.commont);
@@ -166,6 +165,29 @@ function urlGet(currentpage) {
     var restRequest = newUrl.join("&");
     var newURLRequest = urlheadRequest + "?" + "currentPage=" + currentpage + "&" + restRequest;
     return newURLRequest;
+}
+
+function getHead() {
+    var newUrl = window.sessionStorage.getItem("url");
+    newUrl = newUrl.split("&");
+    var urlhead = newUrl.shift().split("?");
+    var urlheadRequest = urlhead[0];
+    return urlheadRequest;
+}
+
+function switchKeywords(keywords) {
+    switch (keywords) {
+        case "手机数码":
+            return parseInt("1");
+        case "母婴玩具":
+            return parseInt("2");
+        case "美妆护肤":
+            return parseInt("3");
+        case "居家日用":
+            return parseInt("4");
+        default:
+            return keywords;
+    }
 }
 
 

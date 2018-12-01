@@ -74,7 +74,7 @@
             <span>Design</span>
         </div>
         <div class="hotwords">
-            <div class="itemCenter"><a href="">首页</a></div>
+            <div class="itemCenter"><a href="http://localhost:8080">首页</a></div>
             <div class="itemCenter"><a href="">优惠抢购</a></div>
             <div class="itemCenter"><a href="">新品二手</a></div>
             <div class="itemCenter"><a href="">二手电器城</a></div>
@@ -259,11 +259,14 @@
         $("#sortByName").on("click", function () {
             var textValue = $("#searchText").val();
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == 1 && $("#searchText").val() == "") {
-                ajaxGet("http://localhost:8080/search/all", {"currentPage": 1, "maxSize": 12, "type": "titleasc"}, arr);
+                var urlheadRequest = getHead();
+                ajaxGet(urlheadRequest, {
+                    "currentPage": 1, "maxSize": 12, "type": "titleasc"}, arr);
                 sessionStorage.setItem("currentPage", ONE);
             }
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == -1 && $("#searchText").val() == "") {
-                ajaxGet("http://localhost:8080/search/all", {
+                var urlheadRequest = getHead();
+                ajaxGet(urlheadRequest, {
                     "currentPage": 1,
                     "maxSize": 12,
                     "type": "titledesc"
@@ -271,32 +274,57 @@
                 sessionStorage.setItem("currentPage", ONE);
             }
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == -1 && $("#searchText").val() != "") {
-                ajaxGet("http://localhost:8080/search/commodity", {
-                    "currentPage": 1,
-                    "maxSize": 12,
-                    "keywords": textValue,
-                    "type": "titledesc"
-                }, arr);
+                if (typeof switchKeywords($("#searchText").val()) != "number") {
+                    var urlheadRequest = getHead();
+                    ajaxGet(urlheadRequest, {
+                        "currentPage": 1,
+                        "maxSize": 12,
+                        "keywords": textValue,
+                        "type": "titledesc"
+                    }, arr);
+                } else {
+                    var urlheadRequest = getHead();
+                    ajaxGet(urlheadRequest, {
+                        "currentPage": 1,
+                        "maxSize": 12,
+                        "sortId": switchKeywords($("#searchText").val()),
+                        "type": "titledesc"
+                    }, arr);
+                }
                 sessionStorage.setItem("currentPage", ONE);
             }
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == 1 && $("#searchText").val() != "") {
-                ajaxGet("http://localhost:8080/search/commodity", {
-                    "currentPage": 1,
-                    "maxSize": 12,
-                    "keywords": textValue,
-                    "type": "titleasc"
-                }, arr);
+                if (typeof switchKeywords($("#searchText").val()) != "number") {
+                    var urlheadRequest = getHead();
+                    ajaxGet(urlheadRequest, {
+                        "currentPage": 1,
+                        "maxSize": 12,
+                        "keywords": textValue,
+                        "type": "titleasc"
+                    }, arr);
+                } else {
+                    var urlheadRequest = getHead();
+                    ajaxGet(urlheadRequest, {
+                        "currentPage": 1,
+                        "maxSize": 12,
+                        "sortId": switchKeywords($("#searchText").val()),
+                        "type": "titleasc"
+                    }, arr);
+                }
                 sessionStorage.setItem("currentPage", ONE);
             }
         });
         $("#sortByPrice").on("click", function () {
             var textValue = $("#searchText").val();
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == 1 && $("#searchText").val() == "") {
-                ajaxGet("http://localhost:8080/search/all", {"currentPage": 1, "maxSize": 12, "type": "priceasc"}, arr);
+                var urlheadRequest = getHead();
+                ajaxGet(urlheadRequest, {
+                    "currentPage": 1, "maxSize": 12, "type": "priceasc"}, arr);
                 sessionStorage.setItem("currentPage", ONE);
             }
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == -1 && $("#searchText").val() == "") {
-                ajaxGet("http://localhost:8080/search/all", {
+                var urlheadRequest = getHead();
+                ajaxGet(urlheadRequest, {
                     "currentPage": 1,
                     "maxSize": 12,
                     "type": "pricedesc"
@@ -304,21 +332,43 @@
                 sessionStorage.setItem("currentPage", ONE);
             }
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == -1 && $("#searchText").val() != "") {
-                ajaxGet("http://localhost:8080/search/commodity", {
-                    "currentPage": 1,
-                    "maxSize": 12,
-                    "keywords": textValue,
-                    "type": "pricedesc"
-                }, arr);
+                if (typeof switchKeywords($("#searchText").val()) != "number") {
+                    var urlheadRequest = getHead();
+                    ajaxGet(urlheadRequest, {
+                        "currentPage": 1,
+                        "maxSize": 12,
+                        "keywords": textValue,
+                        "type": "pricedesc"
+                    }, arr);
+                } else {
+                    var urlheadRequest = getHead();
+                    ajaxGet(urlheadRequest, {
+                        "currentPage": 1,
+                        "maxSize": 12,
+                        "sortId": switchKeywords($("#searchText").val()),
+                        "type": "pricedesc"
+                    }, arr);
+                }
                 sessionStorage.setItem("currentPage", ONE);
             }
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == 1 && $("#searchText").val() != "") {
-                ajaxGet("http://localhost:8080/search/commodity", {
-                    "currentPage": 1,
-                    "maxSize": 12,
-                    "keywords": textValue,
-                    "type": "priceasc"
-                }, arr);
+                if (typeof switchKeywords($("#searchText").val()) != "number") {
+                    var urlheadRequest = getHead();
+                    ajaxGet(urlheadRequest, {
+                        "currentPage": 1,
+                        "maxSize": 12,
+                        "keywords": textValue,
+                        "type": "priceasc"
+                    }, arr);
+                } else {
+                    var urlheadRequest = getHead();
+                    ajaxGet(urlheadRequest, {
+                        "currentPage": 1,
+                        "maxSize": 12,
+                        "sortId": switchKeywords($("#searchText").val()),
+                        "type": "priceasc"
+                    }, arr);
+                }
                 sessionStorage.setItem("currentPage", ONE);
             }
         });

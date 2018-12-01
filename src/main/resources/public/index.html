@@ -73,7 +73,7 @@
             <span>Design</span>
         </div>
         <div class="hotwords">
-            <div class="itemCenter"><a href="">首页</a></div>
+            <div class="itemCenter"><a href="http://localhost:8080">首页</a></div>
             <div class="itemCenter"><a href="">优惠抢购</a></div>
             <div class="itemCenter"><a href="">新品二手</a></div>
             <div class="itemCenter"><a href="">二手电器城</a></div>
@@ -146,7 +146,7 @@
             </div>
             <div class="main_left_bottom">
                 <ul>
-                    <li>
+                    <li id="mobileDigtal">
                         <div class="itemTitle">手机数码</div>
                         <div class="itemList">
                             <span>手机</span>
@@ -156,7 +156,7 @@
                             <span>平板</span>
                         </div>
                     </li>
-                    <li>
+                    <li id="babyProducts">
                         <div class="itemTitle">母婴玩具</div>
                         <div class="itemList">
                             <span>童装</span>
@@ -166,7 +166,7 @@
                             <span>用品</span>
                         </div>
                     </li>
-                    <li>
+                    <li id="skinCare">
                         <div class="itemTitle">美妆护肤</div>
                         <div class="itemList">
                             <span>彩妆</span>
@@ -176,7 +176,7 @@
                             <span>精油</span>
                         </div>
                     </li>
-                    <li>
+                    <li id="homeDaily">
                         <div class="itemTitle">居家日用</div>
                         <div class="itemList">
                             <span>床</span>
@@ -1085,5 +1085,35 @@
 <script src="js/jquery.lazyload.js"></script>
 <script src="js/index.js"></script>
 <script src="js/base.js"></script>
+<script>
+    $("#mobileDigtal").on("click", function () {
+        sessionStorage.setItem("url","http://localhost:8080/search/sort?currentPage=1&maxSize=12&sortId=1&type=titleasc");
+        sessionStorage.setItem("text","手机数码");
+        sessionStorage.setItem("rotateName",1);
+        sessionStorage.setItem("rotatePrice",1);
+        location.href = "http://localhost:8080/search";
+    });
+    $("#babyProducts").on("click", function () {
+        sessionStorage.setItem("url","http://localhost:8080/search/sort?currentPage=1&maxSize=12&sortId=2&type=titleasc");
+        sessionStorage.setItem("text","母婴玩具");
+        sessionStorage.setItem("rotateName",1);
+        sessionStorage.setItem("rotatePrice",1);
+        location.href = "http://localhost:8080/search";
+    });
+    $("#skinCare").on("click", function () {
+        sessionStorage.setItem("url","http://localhost:8080/search/sort?currentPage=1&maxSize=12&sortId=3&type=titleasc");
+        sessionStorage.setItem("text","美妆护肤");
+        sessionStorage.setItem("rotateName",1);
+        sessionStorage.setItem("rotatePrice",1);
+        location.href = "http://localhost:8080/search";
+    });
+    $("#homeDaily").on("click", function () {
+        sessionStorage.setItem("url","http://localhost:8080/search/sort?currentPage=1&maxSize=12&sortId=4&type=titleasc");
+        sessionStorage.setItem("text","居家日用");
+        sessionStorage.setItem("rotateName",1);
+        sessionStorage.setItem("rotatePrice",1);
+        location.href = "http://localhost:8080/search";
+    });
+</script>
 </body>
 </html>

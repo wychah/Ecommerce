@@ -104,4 +104,19 @@ public class CommodityServiceImpl implements CommodityService {
     public List<CommodityBrief> priceMoreThan(int minPrice, int startNum, int maxSize) {
         return commodityDao.priceMoreThan(minPrice, startNum, maxSize);
     }
+
+    @Override
+    public List<CommodityBrief> queryCommodityBySortIdDESC(Integer sortId, int startNum, int maxSize) {
+        return commodityDao.queryCommodityBySortIdDESC(sortId, startNum, maxSize);
+    }
+
+    @Override
+    public List<CommodityBrief> queryCommodityBySortIdPriceASC(Integer sortId, int startNum, int maxSize) {
+        return commodityDao.queryCommodityBySortIdPriceASC(sortId, startNum, maxSize);
+    }
+
+    @Override
+    public List<CommodityBrief> queryCommodityBySortIdPriceDESC(Integer sortId, int startNum, int maxSize) {
+        return commodityDao.queryCommodityBySortIdPriceDESC(sortId, startNum, maxSize);
+    }
 }

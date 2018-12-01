@@ -69,10 +69,22 @@ public class SearchController {
         }
     }
 
-    @GetMapping("/sort/{sortId}")
+    @GetMapping("/sort")
     @ResponseBody
-    public Map queryCommodityBySortId(@PathVariable("sortId") Integer sortId, @RequestParam("currentPage") int currentPage, @RequestParam("maxSize") int maxSize) {
+    public Map queryCommodityBySortId(@RequestParam("sortId") Integer sortId, @RequestParam("currentPage") int currentPage,
+                                      @RequestParam("maxSize") int maxSize, @RequestParam("type") String type) {
         int startNum = (currentPage - 1) * maxSize;
-        return MapUtil.setMap(commodityService.sortResultAmount(sortId), maxSize, currentPage, commodityService.queryCommodityBySortId(sortId,startNum,maxSize));
+        switch (type) {
+            case "titleasc":
+                return MapUtil.setMap(commodityService.sortResultAmount(sortId), maxSize, currentPage, commodityService.queryCommodityBySortId(sortId,startNum,maxSize));
+            case "titledesc":
+                return MapUtil.setMap(commodityService.sortResultAmount(sortId), maxSize, currentPage, commodityService.queryCommodityBySortIdDESC(sortId,startNum,maxSize));
+            case "priceasc":
+                return MapUtil.setMap(commodityService.sortResultAmount(sortId), maxSize, currentPage, commodityService.queryCommodityBySortIdPriceASC(sortId,startNum,maxSize));
+            case "pricedesc":
+                return MapUtil.setMap(commodityService.sortResultAmount(sortId), maxSize, currentPage, commodityService.queryCommodityBySortIdPriceDESC(sortId,startNum,maxSize));
+            default:
+                return MapUtil.setMap(commodityService.sortResultAmount(sortId), maxSize, currentPage, commodityService.queryCommodityBySortId(sortId,startNum,maxSize));
+        }
     }
 }
