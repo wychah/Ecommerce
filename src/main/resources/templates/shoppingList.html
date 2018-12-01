@@ -211,13 +211,13 @@
     $(function () {
         var arr = '{{each commodities as value}}' +
             '<div>' +
-            '<a href="">' +
+            '<s>' +
             '<div>满100减9</div>' +
-            '<span class="imgItem"><img src="{{value.commodityPicture}}" alt=""/></span>' +
-            '</a>' +
-            '<a href="">' +
+            '<span class="imgItem" commodityId = "{{value.commodityId}}"><img src="{{value.commodityPicture}}" alt=""/></span>' +
+            '</s>' +
+            '<s>' +
             '<span class="couponDes" title="{{value.commodityTitle}}">{{value.commodityTitle}}</span>' +
-            '</a>' +
+            '</s>' +
             '<div class="price">' +
             '<span>￥</span>' +
             '<span>{{value.commodityPrice}}</span>' +
@@ -226,7 +226,6 @@
             '</div>' +
             '</div>' +
             '{{/each}}';
-
         var ONE = 1;
         sessionStorage.setItem("currentPage", ONE);
         if (window.sessionStorage.getItem("url") != null) {
@@ -261,7 +260,8 @@
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == 1 && $("#searchText").val() == "") {
                 var urlheadRequest = getHead();
                 ajaxGet(urlheadRequest, {
-                    "currentPage": 1, "maxSize": 12, "type": "titleasc"}, arr);
+                    "currentPage": 1, "maxSize": 12, "type": "titleasc"
+                }, arr);
                 sessionStorage.setItem("currentPage", ONE);
             }
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == -1 && $("#searchText").val() == "") {
@@ -319,7 +319,8 @@
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == 1 && $("#searchText").val() == "") {
                 var urlheadRequest = getHead();
                 ajaxGet(urlheadRequest, {
-                    "currentPage": 1, "maxSize": 12, "type": "priceasc"}, arr);
+                    "currentPage": 1, "maxSize": 12, "type": "priceasc"
+                }, arr);
                 sessionStorage.setItem("currentPage", ONE);
             }
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == -1 && $("#searchText").val() == "") {

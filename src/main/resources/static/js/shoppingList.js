@@ -16,6 +16,7 @@ $("#searchBtn").on("click", function () {
     $(".filter>div").eq(0).css("backgroundColor", "white").siblings("div").css("backgroundColor", "#f5f5f5");
     $(".filter>div").children("i").css("transform", "rotate(0deg)");
 });
+
 // ajax Get封装
 function ajaxGet(url, datas, arr) {
     $.get(url, datas, function (res) {
@@ -72,8 +73,15 @@ function ajaxGet(url, datas, arr) {
             var newURLRequest = urlGet($(this).text());
             nextAJAX(newURLRequest, null, arr);
         });
+        $(".imgItem").on("click", function () {
+            var id = $(this).attr("commodityId");
+            console.log(id);
+            sessionStorage.setItem("commodityId", id);
+            location.href = "http://localhost:8080/commodity";
+        });
     });
 }
+
 function aGet(url, datas, arr) {
     $.get(url, datas, function (res) {
         var data = {commont: res};
@@ -119,8 +127,15 @@ function aGet(url, datas, arr) {
             var newURLRequest = urlGet($(this).text());
             nextAJAX(newURLRequest, null, arr);
         });
+        $(".imgItem").on("click", function () {
+            var id = $(this).attr("commodityId");
+            console.log(id);
+            sessionStorage.setItem("commodityId", id);
+            location.href = "http://localhost:8080/commodity";
+        });
     });
 }
+
 function nextAJAX(url, datas, arr) {
     $.get(url, datas, function (res) {
         var data = {commont: res};
@@ -157,6 +172,7 @@ function nextAJAX(url, datas, arr) {
         });
     });
 }
+
 function urlGet(currentpage) {
     var newUrl = window.sessionStorage.getItem("url");
     newUrl = newUrl.split("&");

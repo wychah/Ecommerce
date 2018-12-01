@@ -22,7 +22,7 @@
     </resultMap>
 
     <select id="getCommodityById" resultType="com.wsz.ecommerce.domain.CommodityDetail">
-        select commodity.commodityId,commodityTitle,commodityPrice,commodityPicture
+        select commodity.commodityId,commodityTitle,commodityPrice,commodityPicture,attributeName,attributeValue,commodityInventory
         from commodity,attribute,detail
         where attribute.attributeId = detail.attributeId and detail.commodityId = commodity.commodityId and commodity.commodityId = #{commodityId}
     </select>
