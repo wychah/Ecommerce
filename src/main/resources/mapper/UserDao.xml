@@ -38,4 +38,8 @@
         FROM user
         WHERE userPhone=#{userPhone}
     </select>
+    <insert id="userRegister">
+        INSERT INTO user(userAccount, userPassword, userName, userEmail, userPhone, userAvatar)
+        VALUES (#{userAccount},#{userPassword},#{userName},#{userEmail},#{userPhone},#{userAvatar})
+    </insert>
 </mapper>

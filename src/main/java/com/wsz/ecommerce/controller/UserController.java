@@ -59,11 +59,54 @@ public class UserController {
         return loginResult;
     }
 
+    //用户注册，注册成功跳转到
+    @PostMapping("/toRegister")
+    public SuccessOrFail userRegister(@RequestBody User user,
+                               HttpServletRequest request){
+        //先注册，再登录,如果注册判断失败就返回失败，若是成功返回成功之后再登录并且将用户基本信息存入session
+        HttpSession session = request.getSession();
+        //此时的结果为注册是否成功的结果，默认登录成功所以直接继承结果，若是登录失败则将结果改为0
+        SuccessOrFail successOrFail = userService.userRegister(user);
+        //如果注册成功则执行登录
+        if(successOrFail.getResult()==1){
+            LoginResult loginResult = userService.userLogin(user.getUserAccount(),user.getUserPassword());
+            if(loginResult.getLoginResult().equals("loginSuccess")){
+                UserBasicInfo userBasicInfo = userService.getUserBasicInfo(loginResult.getUserId());
+                session.setAttribute("user",userBasicInfo);
+            }
+            else{
+                successOrFail.setResult(0);
+            }
+        }
+        //此处返回的是登录结果
+        return successOrFail;
+    }
+
+    //用户注册，注册成功跳转到
+//    @PostMapping("/toRegister")
+//    public String userRegister(@RequestParam("userAccount") String userAccount,
+//                               @RequestParam("userPassword") String userPassword,
+//                               @RequestParam("userName") String userName,
+//                               @RequestParam("userEmail") String userEmail,
+//                               @RequestParam("userPhone") String userPhone,
+//                               @RequestParam("userAvatar") String userAvatar,
+//                               HttpServletRequest request){
+//
+//        return "";
+//    }
+
     //测试用
     @ResponseBody
     @RequestMapping(value = "/hello")
     public String hello(){
         return "Hello World!";
+    }
+
+    //传入json字符串,测试用
+    @ResponseBody
+    @PostMapping("/test")
+    public User test(@RequestBody User user){
+        return user;
     }
 
     @ResponseBody

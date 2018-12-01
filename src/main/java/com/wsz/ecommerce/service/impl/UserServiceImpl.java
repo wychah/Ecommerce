@@ -66,4 +66,20 @@ public class UserServiceImpl implements UserService{
         successOrFail.setResult(userDao.findPhone(userPhone));
         return successOrFail;
     }
+
+    @Override
+    public SuccessOrFail userRegister(User user) {
+        SuccessOrFail successOrFail = new SuccessOrFail();
+        if(userDao.findPhone(user.getUserPhone())==0&&userDao.findEmail(user.getUserEmail())==0&&userDao.findAccount(user.getUserAccount())==0){
+            userDao.userRegister(user);
+            if(userDao.findAccount(user.getUserAccount())==1){
+                successOrFail.setResult(1);
+            }
+        }
+        else{
+            successOrFail.setResult(0);
+        }
+
+        return successOrFail;
+    }
 }

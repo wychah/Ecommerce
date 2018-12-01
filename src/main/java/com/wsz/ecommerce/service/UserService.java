@@ -12,4 +12,5 @@ public interface UserService {
     SuccessOrFail ifUserAccountRepeat(String userAccount);
     SuccessOrFail ifUserEmailRepeat(String userEmail);
     SuccessOrFail ifUserPhoneRepeat(String userPhone);
+    SuccessOrFail userRegister(User user);
 }

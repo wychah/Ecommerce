@@ -18,4 +18,7 @@ public interface UserDao {
     int findEmail(@Param("userEmail") String userEmail);
     //如果有该电话号码，返回count应该等于1，否则等于0
     int findPhone(@Param("userPhone") String userPhone);
+    //将该注册用户注册,返回值为Int
+    int userRegister(User user);
+
 }
