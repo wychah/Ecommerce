@@ -188,10 +188,6 @@
                 <div class="prePage prevent" id="prePage">上一页</div>
                 <div class="pageNumber" id="pageNumber">
                     <ul>
-                        <!--<li class="pageColor prevent">1</li>-->
-                        <!--<li>2</li>-->
-                        <!--<li>3</li>-->
-                        <!--<li>3</li>-->
                     </ul>
                 </div>
                 <div class="nextPage" id="nextPage">下一页</div>
@@ -231,12 +227,14 @@
             '</div>' +
             '{{/each}}';
 
+        var ONE = 1;
+        sessionStorage.setItem("currentPage", ONE);
         if (window.sessionStorage.getItem("url") != null) {
             URL = window.sessionStorage.getItem("url");
         } else {
-            URL = "http://localhost:8080/search/asc";
+            URL = "http://localhost:8080/search/all?currentPage=1&maxSize=12&type=titleasc";
         }
-        aGet(URL, {"currentPage": 1, "maxSize": 12}, arr);
+        aGet(URL, null, arr);
         if (sessionStorage.getItem("text") != null) {
             $("#searchText").val(sessionStorage.getItem("text"));
         }
@@ -261,10 +259,16 @@
         $("#sortByName").on("click", function () {
             var textValue = $("#searchText").val();
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == 1 && $("#searchText").val() == "") {
-                ajaxGet("http://localhost:8080/search/asc", {"currentPage": 1, "maxSize": 12}, arr);
+                ajaxGet("http://localhost:8080/search/all", {"currentPage": 1, "maxSize": 12, "type": "titleasc"}, arr);
+                sessionStorage.setItem("currentPage", ONE);
             }
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == -1 && $("#searchText").val() == "") {
-                ajaxGet("http://localhost:8080/search/desc", {"currentPage": 1, "maxSize": 12}, arr);
+                ajaxGet("http://localhost:8080/search/all", {
+                    "currentPage": 1,
+                    "maxSize": 12,
+                    "type": "titledesc"
+                }, arr);
+                sessionStorage.setItem("currentPage", ONE);
             }
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == -1 && $("#searchText").val() != "") {
                 ajaxGet("http://localhost:8080/search/commodity", {
@@ -273,6 +277,7 @@
                     "keywords": textValue,
                     "type": "titledesc"
                 }, arr);
+                sessionStorage.setItem("currentPage", ONE);
             }
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == 1 && $("#searchText").val() != "") {
                 ajaxGet("http://localhost:8080/search/commodity", {
@@ -281,15 +286,22 @@
                     "keywords": textValue,
                     "type": "titleasc"
                 }, arr);
+                sessionStorage.setItem("currentPage", ONE);
             }
         });
         $("#sortByPrice").on("click", function () {
             var textValue = $("#searchText").val();
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == 1 && $("#searchText").val() == "") {
-                ajaxGet("http://localhost:8080/search/priceasc", {"currentPage": 1, "maxSize": 12}, arr);
+                ajaxGet("http://localhost:8080/search/all", {"currentPage": 1, "maxSize": 12, "type": "priceasc"}, arr);
+                sessionStorage.setItem("currentPage", ONE);
             }
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == -1 && $("#searchText").val() == "") {
-                ajaxGet("http://localhost:8080/search/pricedesc", {"currentPage": 1, "maxSize": 12}, arr);
+                ajaxGet("http://localhost:8080/search/all", {
+                    "currentPage": 1,
+                    "maxSize": 12,
+                    "type": "pricedesc"
+                }, arr);
+                sessionStorage.setItem("currentPage", ONE);
             }
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == -1 && $("#searchText").val() != "") {
                 ajaxGet("http://localhost:8080/search/commodity", {
@@ -298,6 +310,7 @@
                     "keywords": textValue,
                     "type": "pricedesc"
                 }, arr);
+                sessionStorage.setItem("currentPage", ONE);
             }
             if ($(this).children("i").css("transform").replace(/[^0-9\-,]/g, '').split(',')[3] == 1 && $("#searchText").val() != "") {
                 ajaxGet("http://localhost:8080/search/commodity", {
@@ -306,6 +319,7 @@
                     "keywords": textValue,
                     "type": "priceasc"
                 }, arr);
+                sessionStorage.setItem("currentPage", ONE);
             }
         });
         $("#searchBtn").on("click", function () {
@@ -316,6 +330,7 @@
                 "keywords": textValue,
                 "type": "titleasc"
             }, arr);
+            sessionStorage.setItem("currentPage", ONE);
         });
         $("#filterBtn").on("click", function () {
             var textValue = $("#searchText").val();
@@ -331,9 +346,45 @@
                 "minPrice": minPrice,
                 "maxPrice": maxPrice
             }, arr);
+            sessionStorage.setItem("currentPage", ONE);
+        });
+
+        $("#nextPage").on("click", function () {
+            var page = parseInt(sessionStorage.getItem("currentPage"));
+            console.log(page);
+            var currentpage = page + 1;
+            sessionStorage.setItem("currentPage", currentpage);
+            var newURLRequest = urlGet(currentpage);
+            nextAJAX(newURLRequest, null, arr);
+            console.log($("#pageNumber>ul>li").eq(1));
+            $("#pageNumber>ul>li").eq(page).addClass("pageColor").siblings("li").removeClass("pageColor");
+            $("#pageNumber>ul>li").eq(page).addClass("prevent").siblings("li").removeClass("prevent");
+            $("#prePage").removeClass("prevent").css("color", "black");
+            if (currentpage < totallyPages - 1) {
+                $("#nextPage").removeClass("prevent").css("color", "black");
+            } else {
+                $("#nextPage").addClass("prevent").css("color", "gray");
+            }
+        });
+        $("#prePage").on("click", function () {
+            var page = parseInt(sessionStorage.getItem("currentPage"));
+            var currentpage = page - 1;
+            sessionStorage.setItem("currentPage", currentpage);
+            var newURLRequest = urlGet(currentpage);
+            nextAJAX(newURLRequest, null, arr);
+            var b = currentpage - 1;
+            console.log(b);
+            $("#pageNumber>ul>li").eq(b).addClass("pageColor").siblings("li").removeClass("pageColor");
+            $("#pageNumber>ul>li").eq(b).addClass("prevent").siblings("li").removeClass("prevent");
+            $("#nextPage").removeClass("prevent").css("color", "black");
+            if (currentpage == 1) {
+                $("#prePage").addClass("prevent").css("color", "gray");
+            }
+            else {
+                $("#prePage").removeClass("prevent").css("color", "black");
+            }
         });
     });
-
 </script>
 </body>
 </html>
