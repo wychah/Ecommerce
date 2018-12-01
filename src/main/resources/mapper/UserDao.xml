@@ -19,8 +19,23 @@
         where userAccount=#{userAccount} AND userPassword = #{userPassword}
     </select>
     <select id="findUserBasicInfoById" resultType="com.wsz.ecommerce.domain.UserBasicInfo">
-        SELECT userId,userName,userEmail,userEmail,userPhone
+        SELECT userId,userAccount,userName,userEmail,userPhone
         FROM user
         WHERE userId=#{userId}
+    </select>
+    <select id="findAccount" resultType="Integer">
+        SELECT count(*)
+        FROM user
+        WHERE userAccount=#{userAccount}
+    </select>
+    <select id="findEmail" resultType="Integer">
+        SELECT count(*)
+        FROM user
+        WHERE userEmail=#{userEmail}
+    </select>
+    <select id="findPhone" resultType="Integer">
+        SELECT count(*)
+        FROM user
+        WHERE userPhone=#{userPhone}
     </select>
 </mapper>

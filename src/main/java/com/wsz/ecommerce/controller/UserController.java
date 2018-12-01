@@ -4,6 +4,7 @@ import com.wsz.ecommerce.domain.User;
 import com.wsz.ecommerce.domain.UserBasicInfo;
 import com.wsz.ecommerce.service.UserService;
 import com.wsz.ecommerce.util.LoginResult;
+import com.wsz.ecommerce.util.SuccessOrFail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,27 @@ public class UserController {
     @GetMapping("/login")
     public String loginPage(){
         return "login";
+    }
+
+    //返回值为1说明该用户名已经存在
+    @ResponseBody
+    @PostMapping("/ifUserAccountRepeat")
+    public SuccessOrFail ifUserAccountRepeat(@RequestParam("userAccount") String userAccount){
+        return userService.ifUserAccountRepeat(userAccount);
+    }
+
+    //返回值为1说明该用户邮箱已经存在
+    @ResponseBody
+    @PostMapping("/ifUserEmailRepeat")
+    public SuccessOrFail ifUserEmailRepeat(@RequestParam("userEmail") String userEmail){
+        return userService.ifUserEmailRepeat(userEmail);
+    }
+
+    //返回值为1说明该用户联系电话已经存在
+    @ResponseBody
+    @PostMapping("/ifUserPhoneRepeat")
+    public SuccessOrFail ifUserPhoneRepeat(@RequestParam("userPhone") String userPhone){
+        return userService.ifUserPhoneRepeat(userPhone);
     }
 
     @ResponseBody

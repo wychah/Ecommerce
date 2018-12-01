@@ -5,6 +5,7 @@ import com.wsz.ecommerce.domain.User;
 import com.wsz.ecommerce.domain.UserBasicInfo;
 import com.wsz.ecommerce.service.UserService;
 import com.wsz.ecommerce.util.LoginResult;
+import com.wsz.ecommerce.util.SuccessOrFail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,5 +44,26 @@ public class UserServiceImpl implements UserService{
     public UserBasicInfo getUserBasicInfo(int userId) {
         UserBasicInfo userBasicInfo = userDao.findUserBasicInfoById(userId);
         return userBasicInfo;
+    }
+
+    @Override
+    public SuccessOrFail ifUserAccountRepeat(String userAccount) {
+        SuccessOrFail successOrFail = new SuccessOrFail();
+        successOrFail.setResult(userDao.findAccount(userAccount));
+        return successOrFail;
+    }
+
+    @Override
+    public SuccessOrFail ifUserEmailRepeat(String userEmail) {
+        SuccessOrFail successOrFail = new SuccessOrFail();
+        successOrFail.setResult(userDao.findEmail(userEmail));
+        return successOrFail;
+    }
+
+    @Override
+    public SuccessOrFail ifUserPhoneRepeat(String userPhone) {
+        SuccessOrFail successOrFail = new SuccessOrFail();
+        successOrFail.setResult(userDao.findPhone(userPhone));
+        return successOrFail;
     }
 }
