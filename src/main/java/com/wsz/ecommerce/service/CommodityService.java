@@ -42,4 +42,8 @@ public interface CommodityService {
     List<CommodityBrief> searchCommodityBetweenPrice(int minPrice, int maxPrice, int startNum, int maxSize);
 
     List<CommodityBrief> priceMoreThan(int minPrice, int startNum, int maxSize);
+
+    List<CommodityBrief> queryCommodityBySortIdDESC(Integer sortId, int startNum, int maxSize);
+    List<CommodityBrief> queryCommodityBySortIdPriceASC(Integer sortId, int startNum, int maxSize);
+    List<CommodityBrief> queryCommodityBySortIdPriceDESC(Integer sortId, int startNum, int maxSize);
 }

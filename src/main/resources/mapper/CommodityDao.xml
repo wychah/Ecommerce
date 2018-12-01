@@ -22,7 +22,7 @@
     </resultMap>
 
     <select id="getCommodityById" resultType="com.wsz.ecommerce.domain.CommodityDetail">
-        select commodity.commodityId,commodityTitle,commodityPrice,commodityPicture
+        select commodity.commodityId,commodityTitle,commodityPrice,commodityPicture,attributeName,attributeValue,commodityInventory
         from commodity,attribute,detail
         where attribute.attributeId = detail.attributeId and detail.commodityId = commodity.commodityId and commodity.commodityId = #{commodityId}
     </select>
@@ -198,5 +198,68 @@
             commodity
         WHERE
             commodityPrice >= #{minPrice}
+    </select>
+
+    <select id="queryCommodityBySortIdDESC" resultMap="brief">
+        SELECT
+            commodity.commodityId,
+            commodityTitle,
+            commodityPrice,
+            commodityPicture
+        FROM
+            commodity,
+            attribute,
+            detail,
+            sort
+        WHERE
+            attribute.attributeId = detail.attributeId
+            AND detail.commodityId = commodity.commodityId
+            AND commodity.sortId = sort.sortId
+            AND commodity.sortId = #{sortId}
+        ORDER BY
+            commodity.commodityTitle desc
+            LIMIT #{startNum},#{maxSize}
+    </select>
+
+    <select id="queryCommodityBySortIdPriceASC" resultMap="brief">
+        SELECT
+            commodity.commodityId,
+            commodityTitle,
+            commodityPrice,
+            commodityPicture
+        FROM
+            commodity,
+            attribute,
+            detail,
+            sort
+        WHERE
+            attribute.attributeId = detail.attributeId
+            AND detail.commodityId = commodity.commodityId
+            AND commodity.sortId = sort.sortId
+            AND commodity.sortId = #{sortId}
+        ORDER BY
+            commodity.commodityPrice asc
+            LIMIT #{startNum},#{maxSize}
+    </select>
+
+    <select id="queryCommodityBySortIdPriceDESC" resultMap="brief">
+        SELECT
+            commodity.commodityId,
+            commodityTitle,
+            commodityPrice,
+            commodityPicture
+        FROM
+            commodity,
+            attribute,
+            detail,
+            sort
+        WHERE
+            attribute.attributeId = detail.attributeId
+            AND detail.commodityId = commodity.commodityId
+            AND commodity.sortId = sort.sortId
+            AND commodity.sortId = #{sortId}
+        ORDER BY
+            commodity.commodityPrice desc
+            LIMIT #{startNum},#{maxSize}
     </select>
 </mapper>

@@ -113,7 +113,7 @@ public interface CommodityDao {
     List<CommodityBrief> searchCommodityByTitleDESC(@Param("commodityTitle") String title, @Param("startNum") int startNum, @Param("maxSize") int maxSize);
 
     /**
-     * 根据商品种类查询
+     * 根据商品种类查询(名称升序)
      * @param sortId
      * @param startNum
      * @param maxSize
@@ -139,4 +139,8 @@ public interface CommodityDao {
      * @return
      */
     List<CommodityBrief> priceMoreThan(@Param("minPrice") int minPrice, @Param("startNum") int startNum, @Param("maxSize") int maxSize);
+
+    List<CommodityBrief> queryCommodityBySortIdDESC(@Param("sortId") Integer sortId, @Param("startNum") int startNum, @Param("maxSize") int maxSize);
+    List<CommodityBrief> queryCommodityBySortIdPriceASC(@Param("sortId") Integer sortId, @Param("startNum") int startNum, @Param("maxSize") int maxSize);
+    List<CommodityBrief> queryCommodityBySortIdPriceDESC(@Param("sortId") Integer sortId, @Param("startNum") int startNum, @Param("maxSize") int maxSize);
 }
