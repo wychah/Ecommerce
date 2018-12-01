@@ -12,4 +12,10 @@ public interface UserDao {
     int loginFindUserId(@Param("userAccount") String userAccount,@Param("userPassword") String userPassword);
     //利用用户Id查找基本信息，不要返回敏感信息,数据未加密
     UserBasicInfo findUserBasicInfoById(@Param("userId") int userId);
+    //如果有该用户名，返回count应该等于1，否则等于0
+    int findAccount(@Param("userAccount") String userAccount);
+    //如果有邮箱，返回count应该等于1，否则等于0
+    int findEmail(@Param("userEmail") String userEmail);
+    //如果有该电话号码，返回count应该等于1，否则等于0
+    int findPhone(@Param("userPhone") String userPhone);
 }
