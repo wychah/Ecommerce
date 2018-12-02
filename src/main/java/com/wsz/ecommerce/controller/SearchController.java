@@ -20,11 +20,23 @@ public class SearchController {
     @Autowired
     private CommodityService commodityService;
 
+    /**
+     * 跳转到商品页面
+     * @return
+     */
     @GetMapping()
     public String search() {
         return "shoppingList";
     }
 
+    /**
+     * 按价格区间查询商品
+     * @param minPrice
+     * @param maxPrice
+     * @param currentPage
+     * @param maxSize
+     * @return
+     */
     @GetMapping("/pricerange")
     @ResponseBody
     public Map searchCommodityBetweenPrice(@RequestParam("minPrice") int minPrice, @RequestParam("maxPrice") int maxPrice,
@@ -33,6 +45,13 @@ public class SearchController {
         return MapUtil.setMap(commodityService.rangeResultAmount(minPrice, maxPrice), maxSize, currentPage, commodityService.searchCommodityBetweenPrice(minPrice, maxPrice, startNum, maxSize));
     }
 
+    /**
+     * 查询所有商品
+     * @param currentPage
+     * @param maxSize
+     * @param type
+     * @return
+     */
     @GetMapping("/all")
     @ResponseBody
     public Map searchAllCommodity(@RequestParam("currentPage") int currentPage, @RequestParam("maxSize") int maxSize, @RequestParam("type") String type) {
@@ -51,6 +70,14 @@ public class SearchController {
         }
     }
 
+    /**
+     * 按输入查询商品
+     * @param keywords
+     * @param currentPage
+     * @param maxSize
+     * @param type
+     * @return
+     */
     @GetMapping("/commodity")
     @ResponseBody
     public Map searchCommodity(@RequestParam("keywords") String keywords, @RequestParam("currentPage") int currentPage, @RequestParam("maxSize") int maxSize, @RequestParam("type") String type) {
@@ -69,6 +96,14 @@ public class SearchController {
         }
     }
 
+    /**
+     * 按分类查询商品
+     * @param sortId
+     * @param currentPage
+     * @param maxSize
+     * @param type
+     * @return
+     */
     @GetMapping("/sort")
     @ResponseBody
     public Map queryCommodityBySortId(@RequestParam("sortId") Integer sortId, @RequestParam("currentPage") int currentPage,

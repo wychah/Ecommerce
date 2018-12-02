@@ -375,12 +375,22 @@
         });
         $("#searchBtn").on("click", function () {
             var textValue = $("#searchText").val();
-            ajaxGet("http://localhost:8080/search/commodity", {
-                "currentPage": 1,
-                "maxSize": 12,
-                "keywords": textValue,
-                "type": "titleasc"
-            }, arr);
+            if (typeof switchKeywords(textValue) != "number") {
+                ajaxGet("http://localhost:8080/search/commodity", {
+                    "currentPage": 1,
+                    "maxSize": 12,
+                    "keywords": textValue,
+                    "type": "titleasc"
+                }, arr);
+            } else {
+                ajaxGet("http://localhost:8080/search/sort", {
+                    "currentPage": 1,
+                    "maxSize": 12,
+                    "sortId": switchKeywords($("#searchText").val()),
+                    "type": "titleasc"
+                }, arr);
+            }
+
             sessionStorage.setItem("currentPage", ONE);
         });
         $("#filterBtn").on("click", function () {
@@ -402,12 +412,10 @@
 
         $("#nextPage").on("click", function () {
             var page = parseInt(sessionStorage.getItem("currentPage"));
-            console.log(page);
             var currentpage = page + 1;
             sessionStorage.setItem("currentPage", currentpage);
             var newURLRequest = urlGet(currentpage);
             nextAJAX(newURLRequest, null, arr);
-            console.log($("#pageNumber>ul>li").eq(1));
             $("#pageNumber>ul>li").eq(page).addClass("pageColor").siblings("li").removeClass("pageColor");
             $("#pageNumber>ul>li").eq(page).addClass("prevent").siblings("li").removeClass("prevent");
             $("#prePage").removeClass("prevent").css("color", "black");

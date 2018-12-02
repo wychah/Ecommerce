@@ -142,7 +142,8 @@
         <!--main模块左边部分开始-->
         <div class="main_left">
             <div class="main_left_top">
-                <a href="http://localhost:8080/search"><span>商城分类</span></a>
+                <!--<a href="http://localhost:8080/search"><span>商城分类</span></a>-->
+                <span id="searchAll">商城分类</span>
             </div>
             <div class="main_left_bottom">
                 <ul>
@@ -1086,11 +1087,20 @@
 <script src="js/index.js"></script>
 <script src="js/base.js"></script>
 <script>
+    $("#searchAll").on("click", function () {
+        sessionStorage.setItem("url","http://localhost:8080/search/all?currentPage=1&maxSize=12&type=titleasc");
+        sessionStorage.setItem("text","");
+        sessionStorage.setItem("rotateName",1);
+        sessionStorage.setItem("rotatePrice",1);
+        sessionStorage.setItem("backgroundColorName","rgb(245, 245, 245)");
+        location.href = "http://localhost:8080/search";
+    });
     $("#mobileDigtal").on("click", function () {
         sessionStorage.setItem("url","http://localhost:8080/search/sort?currentPage=1&maxSize=12&sortId=1&type=titleasc");
         sessionStorage.setItem("text","手机数码");
         sessionStorage.setItem("rotateName",1);
         sessionStorage.setItem("rotatePrice",1);
+        sessionStorage.setItem("backgroundColorName","rgb(245, 245, 245)");
         location.href = "http://localhost:8080/search";
     });
     $("#babyProducts").on("click", function () {
@@ -1098,6 +1108,7 @@
         sessionStorage.setItem("text","母婴玩具");
         sessionStorage.setItem("rotateName",1);
         sessionStorage.setItem("rotatePrice",1);
+        sessionStorage.setItem("backgroundColorName","rgb(245, 245, 245)");
         location.href = "http://localhost:8080/search";
     });
     $("#skinCare").on("click", function () {
@@ -1105,6 +1116,7 @@
         sessionStorage.setItem("text","美妆护肤");
         sessionStorage.setItem("rotateName",1);
         sessionStorage.setItem("rotatePrice",1);
+        sessionStorage.setItem("backgroundColorName","rgb(245, 245, 245)");
         location.href = "http://localhost:8080/search";
     });
     $("#homeDaily").on("click", function () {
@@ -1112,6 +1124,7 @@
         sessionStorage.setItem("text","居家日用");
         sessionStorage.setItem("rotateName",1);
         sessionStorage.setItem("rotatePrice",1);
+        sessionStorage.setItem("backgroundColorName","rgb(245, 245, 245)");
         location.href = "http://localhost:8080/search";
     });
 </script>
