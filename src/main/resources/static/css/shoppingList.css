@@ -199,6 +199,7 @@
 .body .listItem > div .imgItem {
     height: 278px;
     border: 1px solid #eee;
+    cursor: pointer;
 }
 
 .body .listItem > div .imgItem > img {

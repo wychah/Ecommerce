@@ -27,6 +27,20 @@
         where attribute.attributeId = detail.attributeId and detail.commodityId = commodity.commodityId and commodity.commodityId = #{commodityId}
     </select>
 
+    <select id="getOrderInfo" resultType="com.wsz.ecommerce.domain.OrderInfo">
+        SELECT
+            commodity.commodityId,
+            commodityTitle,
+            commodityPrice,
+            #{amount} AS amount,
+            commodityPrice * #{amount} AS totalPrice,
+            commodityPicture
+        FROM
+            commodity
+        WHERE
+            commodity.commodityId = #{commodityId}
+    </select>
+
     <select id="queryCommodityByTitle" resultMap="brief">
         select commodity.commodityId,commodityTitle,commodityPrice,commodityPicture
         from commodity,attribute,detail

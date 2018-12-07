@@ -3,6 +3,7 @@ package com.wsz.ecommerce.service.impl;
 import com.wsz.ecommerce.dao.CommodityDao;
 import com.wsz.ecommerce.domain.CommodityBrief;
 import com.wsz.ecommerce.domain.CommodityDetail;
+import com.wsz.ecommerce.domain.OrderInfo;
 import com.wsz.ecommerce.service.CommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -118,5 +119,10 @@ public class CommodityServiceImpl implements CommodityService {
     @Override
     public List<CommodityBrief> queryCommodityBySortIdPriceDESC(Integer sortId, int startNum, int maxSize) {
         return commodityDao.queryCommodityBySortIdPriceDESC(sortId, startNum, maxSize);
+    }
+
+    @Override
+    public OrderInfo getOrderInfo(Integer id, int amount) {
+        return commodityDao.getOrderInfo(id, amount);
     }
 }

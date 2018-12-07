@@ -1,0 +1,120 @@
+/*用户资料*/
+.body .body_right > .body_right_t {
+    width: 100%;
+    height: 8%;
+    /*background-color: yellow;*/
+    border-bottom: 1px dotted #e9e9e9;
+    line-height: 50px;
+    font-size: 16px;
+}
+
+.body .body_right > .body_right_m {
+    width: 100%;
+    height: 23%;
+    border-bottom: 1px dotted #e9e9e9;
+    position: relative;
+}
+
+.body .body_right > .body_right_m .writeHead {
+    width: 100%;
+    height: 26px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: white;
+    background-color: black;
+    opacity: 0.3;
+    cursor: pointer;
+    display: none;
+}
+
+.body .body_right > .body_right_m > span {
+    position: absolute;
+    overflow: hidden;
+}
+
+.body .body_right > .body_right_m > span:nth-of-type(1) {
+    width: 14%;
+    height: 80%;
+    left: 0;
+    top: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+.body .body_right > .body_right_m > span:nth-of-type(1):hover >div{
+    display: block;
+}
+
+.body .body_right > .body_right_m > span:nth-of-type(1) > img {
+    width: 100%;
+    height: 100%;
+}
+
+.body .body_right > .body_right_m > span:nth-of-type(2) {
+    left: 146px;
+    top: 26px;
+}
+
+.body .body_right > .body_right_m > span:nth-of-type(3) {
+    left: 146px;
+    top: 56px;
+}
+
+.body .body_right > .body_right_m > span:nth-of-type(4) {
+    background-color: orange;
+    width: 100px;
+    height: 8px;
+    border-radius: 10px;
+    left: 236px;
+    top: 62px;
+}
+
+.body .body_right > .body_right_m > span:nth-of-type(5) {
+    left: 345px;
+    top: 57px;
+}
+
+.body .body_right > .body_right_b {
+    width: 100%;
+    height: 62%;
+}
+
+.body .body_right > .body_right_b > p {
+    width: 100%;
+    height: 50px;
+    margin-top: 5px;
+    margin-left: 50px;
+    text-align: left;
+}
+
+.body .body_right > .body_right_b > p > label {
+    font-size: 16px;
+}
+
+.body .body_right > .body_right_b > p > input {
+    outline: none #dedede;
+    width: 96%;
+    font: 12px "微软雅黑";
+    height: 30px;
+    line-height: 30px;
+    max-width: 246px;
+    border: 1px solid #e9e9e9;
+    margin: 10px auto;
+    text-indent: 10px;
+}
+
+.body .body_right .storeBtn {
+    width: 12%;
+    border-radius: 5px;
+    font: 14px "微软雅黑";
+    height: 40px;
+    line-height: 40px;
+    color: white;
+    text-align: center;
+    margin-left: 116px;
+    margin-top: 20px;
+    background-color: orange;
+    cursor: pointer;
+}

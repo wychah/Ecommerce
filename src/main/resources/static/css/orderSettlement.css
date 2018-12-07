@@ -1,0 +1,462 @@
+/*订单结算页面*/
+.main {
+    width: 100%;
+    height: 350px;
+    background: url("../image/bgc.jpg") no-repeat;
+}
+
+.body span {
+    font-family: "微软雅黑";
+    color: #666666;
+    font-weight: normal;
+}
+
+.body {
+    width: 100%;
+    /*height: 386px;*/
+    background-color: white;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.body .consignee,
+.body .shipping,
+.body .pay,
+.body .shoppingList {
+    width: 100%;
+    margin-top: 40px;
+    /*background-color: pink;*/
+}
+
+.body .consignee > .consigneeTitle,
+.body .shipping > .shippingTitle,
+.body .pay > .payTitle,
+.body .shoppingList > .shoppingListTitle {
+    width: 100%;
+    font-size: 18px;
+    font-family: "微软雅黑";
+    font-weight: normal;
+    text-align: left;
+    color: #333333;
+}
+
+.body .consignee > .addConsignee {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    margin-top: 20px;
+}
+
+.body .consignee > .addConsignee > div {
+    position: relative;
+    width: 332px;
+    height: 212px;
+    border: 1px solid #ddd;
+    margin-left: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.body .consignee > .addConsignee > div:hover {
+    border: 1px solid #ffc001;
+}
+
+/*.body .consignee > .addConsignee > div:first-of-type {*/
+/*margin-left: 0;*/
+/*}*/
+
+.body .consignee > .addConsignee > div:last-of-type {
+    cursor: pointer;
+}
+
+.body .consignee > .addConsignee > .addBorder {
+    border: 1px solid #ffc001;
+}
+
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMPic {
+    width: 100%;
+    height: 10px;
+    background: url(../image/vbg01.png?v=201811211412) -138px 0 no-repeat;
+}
+
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMName,
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMTel,
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMPlace {
+    width: 94%;
+    height: 43px;
+    line-height: 43px;
+    margin: 5px auto;
+    border-bottom: 1px dashed #ebebeb;
+}
+
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMName > i,
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMTel > i,
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMPlace > i,
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMIcon > i {
+    width: 15px;
+    height: 18px;
+    background: url(../image/vbg01.png?v=201811211412) 0 -410px no-repeat;
+    float: left;
+    margin-left: 30px;
+    margin-top: 12px;
+}
+
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMName > span,
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMTel > span,
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMPlace > span {
+    margin-left: 10px;
+    font-size: 14px;
+    font-family: "微软雅黑";
+    color: #333
+}
+
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMTel > i {
+    background-position: 0 -440px;
+}
+
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMPlace > i {
+    background-position: 0 -480px;
+}
+
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMIcon > i {
+    width: 55px;
+    height: 55px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-position: -991px -279px;
+}
+
+.body .consignee > .addConsignee > .showConsigneeM > .dealAddrHandler {
+    width: 190px;
+    height: 39px;
+    position: absolute;
+    right: 0;
+    top: -40px;
+    /*background-color: whitesmoke;*/
+}
+
+.body .consignee > .addConsignee > .showConsigneeM > .dealAddrHandler > div {
+    float: right;
+    width: 20px;
+    height: 25px;
+    padding-top: 9px;
+    margin: 1px 10px 0 10px;
+    background: url(../image/vbg01.png?v=201811211412) -523px -1019px no-repeat;
+    cursor: pointer;
+}
+
+.body .consignee > .addConsignee > .showConsigneeM > .dealAddrHandler > .editAddrBtn {
+    background-position: -523px -990px;
+}
+
+.body .consignee > .addConsignee > .addConsigneeM > .addAddrMsg {
+    width: 50px;
+    height: 50px;
+    margin-left: 144px;
+    margin-top: 61px;
+    background: url(../image/vbg01.png?v=201811211412) -140px -240px no-repeat;
+}
+
+.body .consignee > .addConsignee > .addConsigneeM > .addAddr {
+    font-family: "微软雅黑";
+    font-size: 18px;
+    color: #9a9a9a;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.body .shipping > .shippingHandle,
+.body .pay > .payHandle {
+    width: 100%;
+    height: 90px;
+    border: 1px solid #ebebeb;
+    line-height: 90px;
+    margin-top: 30px;
+}
+
+.body .shipping > .shippingHandle > select {
+    font-family: "微软雅黑";
+    width: 248px;
+    height: 28px;
+    border: 1px solid #d3d3d3;
+    color: #9a9a9a;
+    margin-left: 30px;
+    outline: none;
+}
+
+.body .shipping > .shippingHandle > select > option {
+    font-weight: normal;
+    display: block;
+    white-space: pre;
+    min-height: 1.2em;
+    padding: 0 2px 1px;
+}
+
+.body .shipping > .shippingHandle > span {
+    font-size: 14px;
+    margin-left: 20px;
+    height: 28px;
+    line-height: 28px;
+}
+
+.body .pay > .payHandle > .payHandleImg {
+    width: 123px;
+    height: 40px;
+    background: url(../image/vbg01.png?v=201811211412) -127px -415px no-repeat;
+    margin-top: 21px;
+    margin-left: 30px;
+    border: 2px solid #ffc001;
+    position: relative;
+    cursor: pointer;
+}
+
+.body .pay > .payHandle > .payHandleImg > .payMethod {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 13px;
+    height: 13px;
+    background: url(../image/vbg01.png?v=201811211412) -1180px -203px no-repeat;
+}
+
+.body .shoppingList > .shoppingListHandler {
+    width: 100%;
+    border: 1px solid #ebebeb;
+    margin-top: 30px;
+}
+
+.body .shoppingList > .shoppingListHandler > .shoppingListHandlerTitle {
+    width: 100%;
+    height: 42px;
+    line-height: 42px;
+    background: #f8f8f8;
+    color: #333;
+    font-size: 14px;
+    font-family: "微软雅黑";
+}
+
+.body .shoppingList > .shoppingListHandler > .shoppingListHandlerTitle > table,
+.body .shoppingList > .shoppingListHandler > .shoppingListHandlerDes > .shoppingListHandlerDesList > table {
+    width: 100%;
+    text-align: center;
+}
+
+.body .shoppingList > .shoppingListHandler > .shoppingListHandlerTitle > table tr > td,
+.body .shoppingList > .shoppingListHandler > .shoppingListHandlerDes > .shoppingListHandlerDesList > table tr > td {
+    width: 170px;
+}
+
+.body .shoppingList > .shoppingListHandler > .shoppingListHandlerTitle > table tr > td:first-of-type,
+.body .shoppingList > .shoppingListHandler > .shoppingListHandlerDes > .shoppingListHandlerDesList > table tr > td:first-of-type {
+    width: 494px;
+    text-align: left;
+    padding-left: 100px;
+}
+
+.body .shoppingList > .shoppingListHandler > .shoppingListHandlerTitle > table tr > td:last-of-type,
+.body .shoppingList > .shoppingListHandler > .shoppingListHandlerDes > .shoppingListHandlerDesList > table tr > td:last-of-type {
+    color: #ffc001;
+}
+
+.body .shoppingList > .shoppingListHandler > .shoppingListHandlerDes > .shoppingListHandlerDesList > table tr > td:first-of-type > img {
+    width: 100px;
+    height: 100px;
+    vertical-align: middle;
+    margin-left: -80px;
+}
+
+.body .shoppingList > .shoppingListHandler > .shoppingListHandlerDes > .shoppingListHandlerDesList > table tr > td:first-of-type > span {
+    margin-left: 20px;
+}
+
+.body .shoppingList > .shoppingListHandler > .shoppingListHandlerDes > .shoppingListHandlerDesList {
+    width: 100%;
+    height: 100px;
+    line-height: 100px;
+    background: white;
+    color: #333;
+    font-size: 14px;
+    font-family: "微软雅黑";
+    border-bottom: 1px solid #ebebeb;
+}
+
+.body .shoppingList > .shoppingListHandler > .messageBoard {
+    width: 100%;
+    height: 100px;
+}
+
+.body .shoppingList > .shoppingListHandler > .messageBoard > div {
+    height: 100%;
+    display: inline-block;
+    line-height: 100px;
+    text-align: center;
+    font-family: "微软雅黑";
+    color: #ccc;
+    font-size: 14px;
+}
+
+.body .shoppingList > .shoppingListHandler > .messageBoard > div:first-of-type {
+    width: 20%;
+}
+
+.body .shoppingList > .shoppingListHandler > .messageBoard > div:nth-of-type(2) {
+    width: 55%;
+}
+
+.body .shoppingList > .shoppingListHandler > .messageBoard > div:nth-of-type(2) > input {
+    width: 98%;
+    height: 43px;
+    line-height: 43px;
+    border: 1px solid #eee;
+    text-indent: 15px;
+    background: #f8f8f8;
+}
+
+.body .mstlTotalWarp {
+    width: 100%;
+    height: 200px;
+    margin-top: 20px;
+    position: relative;
+}
+
+.body .mstlTotalWarp > div {
+    width: 95%;
+    height: 40px;
+    line-height: 40px;
+    text-align: right;
+    font-family: "微软雅黑";
+    font-size: 14px;
+    color: #333;
+}
+
+.body .mstlTotalWarp > div:nth-of-type(3) > span {
+    font-size: 30px;
+    color: #ffc001;
+    margin-top: 20px;
+}
+
+.body .mstlTotalWarp > div:nth-of-type(4) {
+    cursor: pointer;
+}
+
+.body .mstlTotalWarp > div:nth-of-type(4) > span {
+    width: 160px;
+    height: 42px;
+    line-height: 42px;
+    background-color: #ffc001;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 40px;
+}
+
+.barrier {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000000;
+    filter: alpha(opacity=30);
+    -moz-opacity: 0.3;
+    -khtml-opacity: 0.3;
+    opacity: 0.3;
+    display: none;
+}
+
+.changeInformation {
+    width: 942px;
+    position: fixed;
+    border: #ebebeb solid 1px;
+    height: 477px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    z-index: 9999;
+    display: none;
+}
+
+.changeInformation > .changeInformationTitle {
+    width: 100%;
+    height: 66px;
+    line-height: 66px;
+    border-bottom: 1px solid #eee;
+    font-size: 18px;
+}
+
+.changeInformation > .changeInformationTitle > span:first-of-type {
+    margin-left: 40px;
+}
+
+.changeInformation > .changeInformationTitle > span:last-of-type {
+    position: absolute;
+    right: 25px;
+    top: 13px;
+    width: 18px;
+    height: 18px;
+    background: url(../image/mbg01.png?v=201812051359) -451px -189px no-repeat;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.changeInformation > .changeInformationDes {
+    width: 100%;
+}
+
+.changeInformation > .changeInformationDes > div {
+    width: 60%;
+    height: 42px;
+    line-height: 42px;
+    margin: 40px auto;
+}
+
+.changeInformation > .changeInformationDes > div > input {
+    text-indent: 8px;
+    font-family: "微软雅黑";
+    color: #333;
+    width: 360px;
+    height: 40px;
+    border: 1px solid #e7e7e7;
+}
+
+.changeInformation > .changeInformationDes > div > i {
+    display: inline-block;
+    width: 35px;
+    text-align: center;
+    color: #ff4654;
+    font-style: normal;
+}
+
+.changeInformation > .changeInformationBtn {
+    width: 100%;
+    height: 37px;
+}
+
+.changeInformation > .changeInformationBtn > div {
+    width: 108px;
+    height: 35px;
+    line-height: 35px;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    background-color: #ffc001;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.changeInformation > .changeInformationBtn > div:first-of-type {
+    margin-left: 298px;
+}
+
+.changeInformation > .changeInformationBtn > div:last-of-type {
+    border: 1px solid #ccc;
+    background: #fff;
+    margin-left: 42px;
+    color: #8c8c8c;
+}

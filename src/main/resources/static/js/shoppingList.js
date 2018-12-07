@@ -73,9 +73,8 @@ function ajaxGet(url, datas, arr) {
             var newURLRequest = urlGet($(this).text());
             nextAJAX(newURLRequest, null, arr);
         });
-        $(".imgItem").on("click", function () {
+        $(".imgItem,.buyOnce").on("click", function () {
             var id = $(this).attr("commodityId");
-            console.log(id);
             sessionStorage.setItem("commodityId", id);
             location.href = "http://localhost:8080/commodity";
         });
@@ -127,7 +126,7 @@ function aGet(url, datas, arr) {
             var newURLRequest = urlGet($(this).text());
             nextAJAX(newURLRequest, null, arr);
         });
-        $(".imgItem").on("click", function () {
+        $(".imgItem,.buyOnce").on("click", function () {
             var id = $(this).attr("commodityId");
             console.log(id);
             sessionStorage.setItem("commodityId", id);

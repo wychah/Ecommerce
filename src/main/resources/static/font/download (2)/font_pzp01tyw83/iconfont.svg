@@ -1,0 +1,29 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<!--
+2013-9-30: Created.
+-->
+<svg>
+<metadata>
+Created by iconfont
+</metadata>
+<defs>
+
+<font id="iconfont" horiz-adv-x="1024" >
+  <font-face
+    font-family="iconfont"
+    font-weight="500"
+    font-stretch="normal"
+    units-per-em="1024"
+    ascent="896"
+    descent="-128"
+  />
+    <missing-glyph />
+    
+    <glyph glyph-name="huiyuan" unicode="&#59555;" d="M66.563 767.91h255.742v-63.871H66.563v63.872zM130.563 709.782h191.742v-710.226H130.563V709.782zM959.014 767.91l-636.71-768.354-186.23 180.286 503.157 588.41z"  horiz-adv-x="1024" />
+
+    
+
+
+  </font>
+</defs></svg>

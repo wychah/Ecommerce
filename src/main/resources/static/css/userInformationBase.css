@@ -1,0 +1,74 @@
+.main {
+    width: 100%;
+    height: 350px;
+    background: url("../image/bgc.jpg") no-repeat;
+}
+
+.body {
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 100%;
+}
+
+.body div {
+    text-align: center;
+    font-family: "微软雅黑";
+    font-weight: normal;
+    color: #333;
+}
+
+.body .body_left {
+    width: 18%;
+    height: 650px;
+    /*background-color: pink;*/
+    border: 1px solid #e9e9e9;
+}
+
+.body .body_left > .body_left_t {
+    width: 100%;
+    height: 7%;
+    line-height: 50px;
+    font-size: 18px;
+    border-bottom: 1px dotted #e9e9e9;
+}
+
+.body .body_left > .body_left_b {
+    width: 100%;
+    height: 90%;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.body .body_left > .body_left_b > span {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.body .body_left > .body_left_b > span a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-family: "微软雅黑";
+    font-weight: normal;
+    color: #333;
+}
+
+.addBlBgc {
+    border-left: 5px solid orange;
+    background: #f8f8f8;
+    color: orange;
+}
+
+.body .body_right {
+    width: 60%;
+    height: 650px;
+    /*background-color: pink;*/
+    position: absolute;
+    top: 0;
+    right: 180px;
+}

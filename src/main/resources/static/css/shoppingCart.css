@@ -1,0 +1,310 @@
+/*购物车页面*/
+.main {
+    width: 100%;
+    height: 350px;
+    background: url("../image/bgc.jpg") no-repeat;
+}
+
+.body {
+    width: 100%;
+    /*height: 386px;*/
+    background-color: white;
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.body .noThings {
+    width: 100%;
+    height: 386px;
+    overflow: hidden;
+    display: none;
+}
+
+.cartImg {
+    width: 180px;
+    height: 170px;
+    background: url("../image/defaultIcon.png") 0 -1780px no-repeat;
+    margin: 50px auto;
+}
+
+.body .noThings > span {
+    position: absolute;
+    top: 240px;
+    left: 635px;
+    color: #b5b5b5;
+}
+
+.body .noThings > a {
+    position: absolute;
+    top: 242px;
+    left: 823px;
+    font-size: 14px;
+    color: #666666;
+}
+
+.body .hasThings {
+    width: 100%;
+    /*overflow: hidden;*/
+}
+
+.body .hasThings > .hasThingsT {
+    width: 100%;
+    /*overflow: hidden;*/
+}
+
+.body .hasThings > .hasThingsT > .hasThingsTTitle {
+    width: 100%;
+    height: 43px;
+    line-height: 43px;
+    background: #f8f8f8;
+    color: #343434;
+    font-size: 14px;
+    font-family: "微软雅黑";
+}
+
+.body .hasThings > .hasThingsT > .hasThingsTTitle > table {
+    width: 100%;
+    border-spacing: 0;
+    text-align: center;
+}
+
+.body .hasThings > .hasThingsT > .hasThingsTTitle .itemName {
+    padding-left: 80px;
+}
+
+.body .hasThings > .hasThingsT > .activity {
+    height: 40px;
+    position: relative;
+    font-size: 14px;
+    font-family: "微软雅黑";
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.body .hasThings > .hasThingsT > .activity > .manjian {
+    position: absolute;
+    left: 18px;
+    bottom: 4px;
+    padding: 3px 10px;
+    text-align: center;
+    background-color: #ff4a00;
+    color: white;
+    font-size: 14px;
+}
+
+.body .hasThings > .hasThingsT > .activity > .manjianTitle {
+    position: absolute;
+    left: 70px;
+    bottom: 5px;
+    padding: 3px;
+    width: 65%;
+    color: #888;
+    text-align: left;
+}
+
+.body .hasThings > .hasThingsT > .activity > .subtotal {
+    position: absolute;
+    right: 185px;
+    bottom: 8px;
+    width: 80px;
+    padding: 0 5px;
+    text-align: center;
+}
+
+.body .hasThings > .hasThingsT > .activity > .subtotal > div:last-of-type {
+    color: #999;
+    text-decoration: line-through;
+}
+
+.body .hasThings > .hasThingsT > .itemList {
+    height: 104px;
+    line-height: 104px;
+    border-bottom: 1px solid #eaeaea;
+    color: #666;
+    font-size: 14px;
+    font-family: "微软雅黑";
+}
+
+.body .hasThings > .hasThingsT > .itemList > table {
+    width: 100%;
+    text-align: center;
+
+}
+
+/*.body .hasThings > .hasThingsT > .itemList > table .itemListCheck > input {*/
+/*vertical-align: -2px;*/
+/*display: none;*/
+/*}*/
+.body .hasThings > .hasThingsT > .itemList > table tr > td {
+    width: 120px;
+}
+
+.body .hasThings > .hasThingsT > .itemList > table .itemListCheck {
+    width: 33px;
+}
+
+.body .hasThings > .hasThingsT > .itemList > table .itemListCheck > label, .body .hasThings > .hasThingsB > .selectAll > label {
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    border: 1px solid #e7e6eb;
+    line-height: 1;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.imgCheck {
+    background: url(../image/vbg01.png?v=201811211412) -1179px -655px no-repeat;
+}
+
+.body .hasThings > .hasThingsT > .itemList > table .itemListTitle {
+    padding-left: 44px;
+    width: 400px;
+}
+
+.body .hasThings > .hasThingsT > .itemList > table .itemListTitle > a {
+    display: inline-block;
+    color: #666;
+    font-size: 14px;
+    font-family: "微软雅黑";
+    text-align: center;
+}
+
+.body .hasThings > .hasThingsT > .itemList > table .itemListPrice {
+
+}
+
+.body .hasThings > .hasThingsT .itemListNumber {
+    position: relative;
+}
+
+.body .hasThings > .hasThingsT .itemListNumber > input {
+    width: 50px;
+    height: 40px;
+    margin-left: -20px;
+}
+
+.body .hasThings > .hasThingsT .itemListNumber > span:nth-of-type(1), .body .hasThings > .hasThingsT .itemListNumber > span:nth-of-type(2) {
+    border: 1px dotted gray;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    position: absolute;
+}
+
+.body .hasThings > .hasThingsT .itemListNumber > span:nth-of-type(1) {
+    background: #fff url(../image/vbg01.png?v=201811211412) -625px -974px no-repeat;
+    top: 30px;
+    right: 35px;
+}
+
+.body .hasThings > .hasThingsT .itemListNumber > span:nth-of-type(2) {
+    background: #fff url(../image/vbg01.png?v=201811211412) -591px -1005px no-repeat;
+    right: 35px;
+    top: 55px;
+}
+
+.body .hasThings > .hasThingsT .itemListTitleSubtotal {
+    color: #ffc001;
+}
+
+.body .hasThings > .hasThingsT .itemListTitleOperation > span {
+    width: 17px;
+    height: 20px;
+    background: url(../image/vbg01.png?v=201811211412) 0 -376px no-repeat;
+    cursor: pointer;
+}
+
+.body .hasThings > .hasThingsB {
+    width: 100%;
+    position: relative;
+}
+
+.body .hasThings > .hasThingsB > .selectAll {
+    width: 100%;
+    margin-top: 20px;
+    padding-left: 10px;
+}
+
+.body .hasThings > .hasThingsB > .selectAll > span {
+    font-size: 14px;
+    color: #333;
+    font-family: "微软雅黑";
+    vertical-align: top;
+}
+
+.body .hasThings > .hasThingsB > .selectAll > span:nth-of-type(2),
+.body .hasThings > .hasThingsB > .selectAll > span:nth-of-type(3),
+.body .hasThings > .hasThingsB > .discountAmount > span,
+.body .hasThings > .hasThingsB > .payMoney > span {
+    position: absolute;
+    font-size: 14px;
+    color: #333333;
+    right: 170px;
+    top: 0;
+}
+
+.body .hasThings > .hasThingsB > .selectAll > span:nth-of-type(3),
+.body .hasThings > .hasThingsB > .discountAmount > span:nth-of-type(2),
+.body .hasThings > .hasThingsB > .payMoney > span:nth-of-type(2) {
+    right: 85px;
+}
+
+.body .hasThings > .hasThingsB > .discountAmount {
+    width: 100%;
+    height: 20px;
+    margin-top: 20px;
+    position: relative;
+}
+
+.body .hasThings > .hasThingsB > .payMoney {
+    width: 100%;
+    height: 40px;
+    margin-top: 20px;
+    position: relative;
+    line-height: 40px;
+}
+
+.body .hasThings > .hasThingsB > .payMoney > span {
+    right: 260px;
+}
+
+.body .hasThings > .hasThingsB > .payMoney > span:nth-of-type(2) {
+    color: #ffc001;
+    font-size: 30px;
+}
+
+.body .hasThings > .hasThingsB > .continueShopping {
+    width: 100%;
+    height: 42px;
+    margin-top: 20px;
+    position: relative;
+    line-height: 42px;
+}
+
+.body .hasThings > .hasThingsB > .continueShopping > a {
+    position: absolute;
+    font-size: 14px;
+    color: #333333;
+    right: 274px;
+    top: 0;
+}
+
+.body .hasThings > .hasThingsB > .continueShopping > .payOrder {
+    position: absolute;
+    top: 0;
+    right: 60px;
+    width: 180px;
+    height: 42px;
+    line-height: 42px;
+    padding: 0;
+    border: 0;
+    border-radius: 2px;
+    background-color: #ffc001;
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}

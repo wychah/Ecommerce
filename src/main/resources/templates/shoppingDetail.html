@@ -144,28 +144,6 @@
 <div class="body">
     <div class="w">
         <div class="body_top">
-            <!--<div class="smallImg">-->
-            <!--<span class="slider"></span>-->
-            <!--<img src="image/detail1.jpg" alt="">-->
-            <!--</div>-->
-            <!--<div class="shoppingDes">-->
-            <!--<div class="shoppingDesName">8成新 灵刃有线游戏机械鼠标 lol电竞电脑绝地求生吃鸡压枪宏cf</div>-->
-            <!--<div class="shoppingDesPrice">-->
-            <!--<span>价格：</span>-->
-            <!--<span>￥</span>-->
-            <!--<span>108.00</span>-->
-            <!--</div>-->
-            <!--<div class="shoppingDesNumber">-->
-            <!--<span>购买数量：</span>-->
-            <!--<input type="text" id="thingsNumber" value="1">-->
-            <!--<span id="up"></span>-->
-            <!--<span id="down"></span>-->
-            <!--<span>库存量:50</span>-->
-            <!--</div>-->
-            <!--<div class="buyThings"><i class="iconfont icon-icon1"></i>加入购物车</div>-->
-            <!--<div class="getInToCart">立即购买</div>-->
-            <!--</div>-->
-            <!--<div class="bigImg"><img src="image/detail1.jpg" alt=""></div>-->
         </div>
         <div class="body_middle">
             <ul>
@@ -188,6 +166,18 @@
     <div class="foot_bottom"><img data-original="image/OP4FMG5S9X_6TVX%6034(PZC2.png" alt=""></div>
 </div>
 <!--foot模块结束-->
+<!--遮挡层-->
+<div class="barrier"></div>
+<!--显示加入购物车成功-->
+<div class="successToAddCart">
+    <div class="successTitle">添加成功</div>
+    <div class="cartDes">购物车共有3件商品。合计：￥57097</div>
+    <div class="successBtn">
+        <div class="gotoCart" id="gotoCart">去购物车结算</div>
+        <a href="#">返回</a>
+    </div>
+    <span></span>
+</div>
 <script src="js/jquery-1.12.4.js"></script>
 <script src="js/jquery.lazyload.js"></script>
 <script src="js/template-web.js"></script>
@@ -206,7 +196,7 @@
             '</table>';
 
         var sdes =
-            ' <div class="smallImg">' +
+            '<div class="smallImg">' +
             '<span class="slider"></span>' +
             '<img src="{{commodityPicture}}" alt="">' +
             '</div>' +
@@ -225,11 +215,10 @@
             '<span>库存量:{{commodityInventory}}</span>' +
             '</div>' +
             '<div class="buyThings"><i class="iconfont icon-icon1"></i>加入购物车</div>' +
-            '<div class="getInToCart">立即购买</div>' +
+            '<div class="getInToCart" id="getInToCart">立即购买</div>' +
             '</div>' +
             '<div class="bigImg"><img src="{{commodityPicture}}" alt=""></div>';
         $.get("http://localhost:8080/commodity/detail", {"commodityId": sessionStorage.getItem("commodityId")}, function (res) {
-            console.log(res);
             var render = template.compile(arr);
             var html = render(res.commodities);
             $(".body_bottom_des").html(html);
@@ -271,34 +260,81 @@
                 bigImg.css("marginTop", -(y / percentY));
             });
             // 增加减少商品数
-
             $("#up").on("click", function () {
-                var thingsNumber = $("#thingsNumber").val();
-                thingsNumber++;
-                if (thingsNumber > 1 && thingsNumber < res.commodities.commodityInventory) {
-                    $("#down").css("backgroundPosition", "-625px -1005px");
-                    $("#up").css("backgroundPosition", "-625px -974px");
-                }
-                else {
-                    thingsNumber = res.commodities.commodityInventory;
-                    $("#up").css("backgroundPosition", "-591px -974px");
-                    $("#down").css("backgroundPosition", "-625px -1005px");
-                }
-                $("#thingsNumber").val(thingsNumber);
+                clickchangeShoppingNumber($("#up"), $("#thingsNumber"), 50);
             });
             $("#down").on("click", function () {
+                clickchangeShoppingNumber($("#down"), $("#thingsNumber"), 50);
+            });
+            $("#thingsNumber").on("keyup", function () {
+                notClickchangeShoppingNumber($(this), 50);
+            });
+            //显示遮挡层和显示成功
+            $(".buyThings").on("click", function () {
+                $(".barrier").stop().show();
+                $(".successToAddCart").stop().show();
+            });
+            //去掉遮挡层和显示成功
+            $(".successBtn>a,.successToAddCart>span").on("click", function () {
+                // console.log(1);
+                $(".barrier").stop().hide();
+                $(".successToAddCart").stop().hide();
+                return false;
+            });
+            //跳转到购物车
+            $("#gotoCart").on("click", function () {
+                location.href = "shoppingCart.html";
+            });
+            //立即购买
+            $("#getInToCart").on("click", function () {
                 var thingsNumber = $("#thingsNumber").val();
-                thingsNumber--;
-                if (thingsNumber > 1 && thingsNumber < res.commodities.commodityInventory) {
-                    $("#up").css("backgroundPosition", "-625px -974px");
-                }
-                else {
-                    thingsNumber = 1;
-                    $("#down").css("backgroundPosition", "-591px -1005px");
-                }
-                $("#thingsNumber").val(thingsNumber);
+                sessionStorage.setItem("thingsNumber", thingsNumber);
+                location.href = "http://localhost:8080/order";
             });
         });
+
+        //按钮点击调节商品数量
+        function clickchangeShoppingNumber(clickElement, changeElement, maxValue) {
+            var thingsNumber = changeElement.val();
+            if (clickElement.attr("id") == "up") {
+                thingsNumber++;
+            }
+            else {
+                thingsNumber--;
+            }
+            if (thingsNumber <= 1) {
+                thingsNumber = 1;
+                $("#up").css("backgroundPosition", "-625px -974px");
+                $("#down").css("backgroundPosition", "-591px -1005px");
+            }
+            else if (thingsNumber >= maxValue) {
+                thingsNumber = maxValue;
+                $("#up").css("backgroundPosition", "-591px -974px");
+                $("#down").css("backgroundPosition", "-625px -1005px");
+            }
+            else {
+                $("#down").css("backgroundPosition", "-625px -1005px");
+                $("#up").css("backgroundPosition", "-625px -974px");
+            }
+            changeElement.val(thingsNumber);
+        }
+
+        // 不是按钮点击操作商品数量
+        function notClickchangeShoppingNumber(changeElement, maxValue) {
+            var thingsNumber = changeElement.val();
+            if (thingsNumber <= 1) {
+                $("#up").css("backgroundPosition", "-625px -974px");
+                $("#down").css("backgroundPosition", "-591px -1005px");
+            }
+            else if (thingsNumber >= maxValue) {
+                $("#up").css("backgroundPosition", "-591px -974px");
+                $("#down").css("backgroundPosition", "-625px -1005px");
+            }
+            else {
+                $("#down").css("backgroundPosition", "-625px -1005px");
+                $("#up").css("backgroundPosition", "-625px -974px");
+            }
+        }
     });
 </script>
 </body>

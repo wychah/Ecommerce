@@ -2,6 +2,7 @@ package com.wsz.ecommerce.service;
 
 import com.wsz.ecommerce.domain.CommodityBrief;
 import com.wsz.ecommerce.domain.CommodityDetail;
+import com.wsz.ecommerce.domain.OrderInfo;
 
 import java.util.List;
 
@@ -46,4 +47,6 @@ public interface CommodityService {
     List<CommodityBrief> queryCommodityBySortIdDESC(Integer sortId, int startNum, int maxSize);
     List<CommodityBrief> queryCommodityBySortIdPriceASC(Integer sortId, int startNum, int maxSize);
     List<CommodityBrief> queryCommodityBySortIdPriceDESC(Integer sortId, int startNum, int maxSize);
+
+    OrderInfo getOrderInfo(Integer id, int amount);
 }

@@ -2,6 +2,7 @@ package com.wsz.ecommerce.dao;
 
 import com.wsz.ecommerce.domain.CommodityBrief;
 import com.wsz.ecommerce.domain.CommodityDetail;
+import com.wsz.ecommerce.domain.OrderInfo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -143,4 +144,12 @@ public interface CommodityDao {
     List<CommodityBrief> queryCommodityBySortIdDESC(@Param("sortId") Integer sortId, @Param("startNum") int startNum, @Param("maxSize") int maxSize);
     List<CommodityBrief> queryCommodityBySortIdPriceASC(@Param("sortId") Integer sortId, @Param("startNum") int startNum, @Param("maxSize") int maxSize);
     List<CommodityBrief> queryCommodityBySortIdPriceDESC(@Param("sortId") Integer sortId, @Param("startNum") int startNum, @Param("maxSize") int maxSize);
+
+    /**
+     * 返回当前订单信息
+     * @param id
+     * @param amount
+     * @return
+     */
+    OrderInfo getOrderInfo(@Param("commodityId") Integer id, @Param("amount") int amount);
 }

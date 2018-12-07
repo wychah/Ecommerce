@@ -92,7 +92,6 @@ div {
 }
 
 .body > .w > .body_top > .shoppingDes > .shoppingDesPrice > span:nth-of-type(2) {
-
     font-size: 25px;
 }
 
@@ -143,7 +142,7 @@ div {
 }
 
 /*.down {*/
-    /*background: #fff url(../image/vbg01.png?v=201811211412) -625px -1005px no-repeat*/
+/*background: #fff url(../image/vbg01.png?v=201811211412) -625px -1005px no-repeat*/
 /*}*/
 
 .body > .w > .body_top > .shoppingDes > .shoppingDesNumber > span:nth-of-type(4) {
@@ -259,4 +258,94 @@ div {
     width: 448px;
     padding-left: 15px;
     color: #666666;
+}
+
+.barrier {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000000;
+    filter: alpha(opacity=30);
+    -moz-opacity: 0.3;
+    -khtml-opacity: 0.3;
+    opacity: 0.3;
+    display: none;
+}
+
+.successToAddCart {
+    width: 380px;
+    position: fixed;
+    border: #ebebeb solid 1px;
+    height: 130px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    z-index: 9999;
+    display: none;
+}
+
+.successToAddCart > .successTitle {
+    position: absolute;
+    top: 22px;
+    left: 51px;
+    width: 268px;
+    height: 25px;
+    padding-left: 35px;
+    line-height: 25px;
+    font-size: 14px;
+    color: #636363;
+    background: url("../image/bg03.png") no-repeat
+}
+
+.successToAddCart > .cartDes {
+    position: absolute;
+    top: 50px;
+    left: 51px;
+    width: 268px;
+    height: 25px;
+    padding-left: 30px;
+    line-height: 25px;
+    font-size: 12px;
+    color: #636363;
+}
+
+.successToAddCart > .successBtn {
+    position: absolute;
+    top: 75px;
+    left: 51px;
+    width: 268px;
+    height: 32px;
+    padding-left: 30px;
+    line-height: 32px;
+}
+
+.successToAddCart > .successBtn > .gotoCart {
+    width: 108px;
+    height: 32px;
+    background: #ff6d00;
+    color: white;
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.successToAddCart > .successBtn > a {
+    position: absolute;
+    top: 0;
+    right: 100px;
+    color: #636363;
+    font-size: 14px;
+}
+
+.successToAddCart > span {
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    width: 18px;
+    height: 18px;
+    background: url(../image/mbg01.png?v=201811211412) -451px -189px no-repeat;
+    cursor: pointer;
 }

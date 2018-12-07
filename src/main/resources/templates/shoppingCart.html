@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>满意网-综合网购首选-正品低价、品质保证、配送即使、轻松购物、包您满意！</title>
+    <!--icon字体图标-->
+    <!--<link rel="shortcut icon" href="image/H6@QR(8]_TR5Z~FGIR$_WI8.png" type="image/x-icon"/>-->
+    <!--初始化css-->
+    <link rel="stylesheet" href="css/normalize.css" type="text/css">
+    <!--公共的css:头部和底部-->
+    <link rel="stylesheet" href="css/base.css" type="text/css">
+    <!--购物车的css-->
+    <link rel="stylesheet" href="css/shoppingCart.css">
+    <!--字体图标css-->
+    <link rel="stylesheet" type="text/css" href="../font/download/font_942gj5vp4fp/iconfont.css">
+    <link rel="stylesheet" href="font/download/font_90ljwep9b4l/iconfont.css">
+</head>
+<body>
+<!--快捷导航模块开始-->
+<div class="shortcut">
+    <div class="w">
+        <ul class="fl">
+            <li><a href="login.html">请登录</a></li>
+            <li class="spacer">|</li>
+            <li><a href="register.html">注册</a></li>
+            <li class="spacer">|</li>
+            <li>
+                <a href="#" id="wechartLogion">
+                    <span></span>
+                    微信登录
+                </a>
+            </li>
+        </ul>
+        <ul class="fr">
+            <li id="phoneApp">
+                <a href="#">
+                    <span></span>
+                    手机版
+                </a>
+                <div class="phoneApp">
+                    <img src="image/shoujierweima.png" alt="">
+                    <h4>查看手机网站</h4>
+                </div>
+                <div class="trangle1"></div>
+            </li>
+            <li class="spacer">|</li>
+            <li>
+                <a href="">
+                    <span></span>
+                    收藏本站
+                </a>
+            </li>
+            <li class="spacer">|</li>
+            <li><a href="">我的资料</a></li>
+            <li class="spacer">|</li>
+            <li><a href="">我的订单</a></li>
+            <li class="spacer">|</li>
+            <li>
+                <a href="">
+                    <span></span>
+                    购物车
+                    <number>(0)</number>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--快捷导航模块结束-->
+<!--顶部模块开始-->
+<div class="header">
+    <div class="w">
+        <div class="text">
+            E-commerce Platform
+            <span>Design</span>
+        </div>
+        <div class="hotwords">
+            <div class="itemCenter"><a href="">首页</a></div>
+            <div class="itemCenter"><a href="">优惠抢购</a></div>
+            <div class="itemCenter"><a href="">新品二手</a></div>
+            <div class="itemCenter"><a href="">二手电器城</a></div>
+            <div class="itemCenter"><a href="">会员购</a></div>
+        </div>
+    </div>
+</div>
+<!--顶部模块结束-->
+<!--右侧工具栏开始-->
+<div class="rightBar">
+    <i class="message iconfont icon-zhanghao">
+        <div class="slogans">我的资料
+            <span class="trangle"></span>
+        </div>
+        <div class="landingBoox">
+            <span class="trangle"></span>
+            <div class="logintitle">用户登录</div>
+            <input type="text" name="userName" placeholder="用户名">
+            <input type="text" name="password" placeholder="密码">
+            <div class="loginBtn">登录</div>
+            <div class="registerQuick"><a href="register.html">免费注册></a></div>
+        </div>
+    </i>
+    <i class="collection iconfont icon-shoucang-copy">
+        <div class="slogans">我的收藏
+            <span class="trangle"></span>
+        </div>
+        <div class="landingBoox">
+            <span class="trangle"></span>
+            <div class="logintitle">用户登录</div>
+            <input type="text" name="userName" placeholder="用户名">
+            <input type="text" name="password" placeholder="密码">
+            <div class="loginBtn">登录</div>
+            <div class="registerQuick"><a href="register.html">免费注册></a></div>
+        </div>
+    </i>
+    <i class="shoppingCar iconfont icon-icon1">
+        <div></div>
+        <h1>购物车</h1>
+        <span>0</span>
+        <div class="landingBoox">
+            <span class="trangle"></span>
+            <div class="logintitle">用户登录</div>
+            <input type="text" name="userName" placeholder="用户名">
+            <input type="text" name="password" placeholder="密码">
+            <div class="loginBtn">登录</div>
+            <div class="registerQuick"><a href="register.html">免费注册></a></div>
+        </div>
+    </i>
+    <i class="leaveMessage iconfont icon-liuyan">
+        <div class="slogans">留言
+            <span class="trangle"></span>
+        </div>
+    </i>
+    <i class="erweima iconfont icon-erweima"></i>
+    <i class="toTop iconfont icon-fanhuidingbu" id="toTop">
+        <div class="slogans">回到顶部
+            <span class="trangle"></span>
+        </div>
+    </i>
+</div>
+<!--右侧导航栏结束-->
+<!--main模块开始-->
+<div class="main"></div>
+<!--main模块结束-->
+<!--body模块开始-->
+<div class="body">
+    <div class="w">
+        <div class="noThings">
+            <div class="cartImg"></div>
+            <span>亲，您的购物车空空的哟~</span>
+            <a href="#">继续购物</a>
+        </div>
+        <div class="hasThings">
+            <div class="hasThingsT">
+                <div class="hasThingsTTitle">
+                    <table>
+                        <tr>
+                            <td class="itemName">名称</td>
+                            <td class="itemPrice">价格</td>
+                            <td class="itemAmount">数量</td>
+                            <td class="itemTotal">小计</td>
+                            <td class="itemOpt">操作</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="activity">
+                    <div class="manjian">满减</div>
+                    <div class="manjianTitle">产品参与单品“满100减9”的促销活动。</div>
+                    <div class="subtotal">
+                        <div>￥11090.00</div>
+                        <div>￥11099.00</div>
+                    </div>
+                </div>
+                <div class="itemList">
+                    <table>
+                        <tr>
+                            <td class="itemListCheck">
+                                <label class="imgCheck"></label>
+                            </td>
+                            <td class="itemListTitle">
+                                <a href="#" title="8成新 新概念摄像机 高清专业数码摄像机">8成新 新概念摄像机 高清专业数码摄像机</a>
+                            </td>
+                            <td class="itemListPrice">￥11099.00</td>
+                            <td class="itemListNumber">
+                                <input type="text" value="1">
+                                <span class="up"></span>
+                                <span class="down"></span>
+                            </td>
+                            <td class="itemListTitleSubtotal">￥11099.00</td>
+                            <td class="itemListTitleOperation">
+                                <span></span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="activity">
+                    <div class="manjian">满减</div>
+                    <div class="manjianTitle">产品参与单品“满100减9”的促销活动。</div>
+                    <div class="subtotal">
+                        <div>￥11090.00</div>
+                        <div>￥11099.00</div>
+                    </div>
+                </div>
+                <div class="itemList">
+                    <table>
+                        <tr>
+                            <td class="itemListCheck">
+                                <!--<input type="checkbox" class="check">-->
+                                <label class="imgCheck"></label>
+                            </td>
+                            <td class="itemListTitle">
+                                <a href="#" title="8成新 新概念摄像机 高清专业数码摄像机">8成新 新概念摄像机 高清专业数码摄像机</a>
+                            </td>
+                            <td class="itemListPrice">￥11099.00</td>
+                            <td class="itemListNumber">
+                                <input type="text" value="1">
+                                <span class="up"></span>
+                                <span class="down"></span>
+                            </td>
+                            <td class="itemListTitleSubtotal">￥11099.00</td>
+                            <td class="itemListTitleOperation">
+                                <span></span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="hasThingsB">
+                <div class="selectAll">
+                    <label class="imgCheck" id="checkAll"></label>
+                    <span>全选</span>
+                    <span>商品总金额：</span>
+                    <span>￥22198.00</span>
+                </div>
+                <div class="discountAmount">
+                    <span>优惠金额：</span>
+                    <span>￥9.00</span>
+                </div>
+                <div class="payMoney">
+                    <span>应付金额：</span>
+                    <span>￥22189.00</span>
+                </div>
+                <div class="continueShopping">
+                    <a href="index.html">继续购物</a>
+                    <div class="payOrder" id="payOrder">结算订单</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--body模块结束-->
+<!--foot模块开始-->
+<div class="foot">
+    <div class="foot_top"><img data-original="image/5XGBR@Z$QVQ4$%5D1K%60HRJ958.png" alt=""></div>
+    <div class="foot_bottom"><img data-original="image/OP4FMG5S9X_6TVX%6034(PZC2.png" alt=""></div>
+</div>
+<!--foot模块结束-->
+<script src="js/jquery-1.12.4.js"></script>
+<script src="js/jquery.lazyload.js"></script>
+<script src="js/MD5.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/template-web.js"></script>
+<script src="js/base.js"></script>
+<script src="js/shoppingCart.js"></script>
+<script>
+    // $(function () {
+    //     var html = '{{each data as value}}' +
+    //         '<div class="hasThingsTTitle">' +
+    //         '<table>' +
+    //         '<tr>' +
+    //         '<td class="itemName">名称</td>' +
+    //         '<td class="itemPrice">价格</td>' +
+    //         '<td class="itemAmount">数量</td>' +
+    //         '<td class="itemTotal">小计</td>' +
+    //         '<td class="itemOpt">操作</td>' +
+    //         '</tr>' +
+    //         '</table>' +
+    //         '</div>' +
+    //         '<div class="activity">' +
+    //         '<div class="manjian">满减</div>' +
+    //         '<div class="manjianTitle">产品参与单品“满100减9”的促销活动。</div>' +
+    //         '<div class="subtotal">' +
+    //         '<div>￥11090.00</div>' +
+    //         '<div>{{price}}</div>' +
+    //         '</div>' +
+    //         '</div>' +
+    //         '<div class="itemList">' +
+    //         '<table>' +
+    //         '<tr>' +
+    //         '<td class="itemListCheck">' +
+    //         '<label class="imgCheck"></label>' +
+    //         '</td>' +
+    //         '<td class="itemListTitle">' +
+    //         '<a href="#" title="{{title}}">{{title}}</a>' +
+    //         '</td>' +
+    //         '<td class="itemListPrice">￥11099.00</td>' +
+    //         '<td class="itemListNumber">' +
+    //         '<input type="text" value="1">' +
+    //         '<span id="up"></span>' +
+    //         '<span id="down"></span>' +
+    //         '</td>' +
+    //         '<td class="itemListTitleSubtotal">￥11099.00</td>' +
+    //         '<td class="itemListTitleOperation">' +
+    //         '<span></span>' +
+    //         '</td>' +
+    //         '</tr>' +
+    //         '</table>' +
+    //         '</div>' +
+    //         '</div>' +
+    //         '<div class="hasThingsB">' +
+    //         'div class="selectAll">' +
+    //         'label class="imgCheck"></label>' +
+    //         'span>全选</span>' +
+    //         'span>商品总金额：</span>' +
+    //         '<span>￥22198.00</span>' +
+    //         '</div>' +
+    //         '<div class="discountAmount">' +
+    //         '<span>优惠金额：</span>' +
+    //         '<span>￥9.00</span>' +
+    //         '</div>' +
+    //         '<div class="payMoney">' +
+    //         '<span>应付金额：</span>' +
+    //         '<span>￥22189.00</span>' +
+    //         '</div>' +
+    //         '<div class="continueShopping">' +
+    //         '<a href="index.html">继续购物</a>' +
+    //         '<div class="payOrder">结算订单</div>' +
+    //         '</div>' +
+    //         '</div>' +
+    //         '{{/each}}';
+    //     var totallPrice = 100;
+    //     var data = {
+    //         price: 11099,
+    //         title: "8成新 新概念摄像机 高清专业数码摄像机",
+    //         value: 10
+    //     };
+    //     var render = template.compile(data);
+    //     var html = render(html);
+    //     $(".hasThings").html(html);
+    // });
+</script>
+</body>
+</html>
