@@ -28,8 +28,10 @@ public class OrderController {
 
     @GetMapping("/buy")
     @ResponseBody
-    public Map payOrder(@RequestParam("id") Integer id, @RequestParam("thingsNumber") int amount) {
+    public Map payOrder(@RequestParam("id") Integer id, @RequestParam("thingsNumber") int amount, HttpServletRequest request) {
         Map map = new HashMap();
+        HttpSession session = request.getSession();
+        session.getAttribute("commodityId");
         map.put("orderInfo",commodityService.getOrderInfo(id, amount));
         return map;
     }

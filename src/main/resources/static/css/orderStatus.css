@@ -1,0 +1,163 @@
+/*订单状态页面*/
+.main {
+    width: 100%;
+    height: 350px;
+    background: url("../image/bgc.jpg") no-repeat;
+}
+
+.body span {
+    font-family: "微软雅黑";
+    color: #666666;
+    font-weight: normal;
+}
+
+.body {
+    width: 100%;
+    /*height: 386px;*/
+    background-color: white;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.body .orderInformation {
+    width: 100%;
+    height: 360px;
+    margin-top: 20px;
+    border: 1px solid #eaeaea;
+}
+
+.body .orderInformation > div {
+    width: 90%;
+    height: 66px;
+    border-bottom: 1px dashed #eaeaea;
+    margin: 0 auto;
+}
+
+.body .orderInformation > div > span {
+    height: 100%;
+    line-height: 66px;
+    text-align: center;
+}
+
+.body .orderInformation > div > span {
+    margin-left: 20px;
+}
+
+.body .orderInformation > div > span:first-of-type {
+    color: #333;
+    margin-left: 30px;
+}
+
+.body .orderInformation > .orderNumber > span:nth-of-type(odd) {
+    color: #333;
+    margin-left: 30px;
+}
+
+.body .orderInformation > .orderNumber > span:nth-of-type(even) {
+    font-size: 14px;
+    margin-left: 20px;
+}
+
+.body .orderInformation > .orderNumber > span:last-of-type {
+    color: #ffc001;
+}
+
+.body .shoppingList {
+    width: 100%;
+    margin-top: 40px;
+    /*background-color: pink;*/
+}
+
+.body .orderInformation > .orderOwnerInformation > span:first-of-type,.body .orderInformation > .giveSellerWords > span:first-of-type  {
+    margin-left: 15px;
+}
+
+.body .shoppingList > .shoppingListTitle {
+    width: 100%;
+    font-size: 18px;
+    font-family: "微软雅黑";
+    font-weight: normal;
+    text-align: left;
+    color: #333333;
+}
+
+.body .shoppingList > .shoppingListHandler {
+    width: 100%;
+    border: 1px solid #ebebeb;
+    margin-top: 30px;
+}
+
+.body .shoppingList > .shoppingListHandler > .shoppingListHandlerTitle {
+    width: 100%;
+    height: 42px;
+    line-height: 42px;
+    background: #f8f8f8;
+    color: #333;
+    font-size: 14px;
+    font-family: "微软雅黑";
+}
+
+.body .shoppingList > .shoppingListHandler > .shoppingListHandlerTitle > table,
+.body .shoppingList > .shoppingListHandler > .shoppingListHandlerDes > .shoppingListHandlerDesList > table {
+    width: 100%;
+    text-align: center;
+}
+
+.body .shoppingList > .shoppingListHandler > .shoppingListHandlerTitle > table tr > td,
+.body .shoppingList > .shoppingListHandler > .shoppingListHandlerDes > .shoppingListHandlerDesList > table tr > td {
+    width: 170px;
+}
+
+.body .shoppingList > .shoppingListHandler > .shoppingListHandlerTitle > table tr > td:first-of-type,
+.body .shoppingList > .shoppingListHandler > .shoppingListHandlerDes > .shoppingListHandlerDesList > table tr > td:first-of-type {
+    width: 494px;
+    text-align: left;
+    padding-left: 100px;
+}
+
+.body .shoppingList > .shoppingListHandler > .shoppingListHandlerDes > .shoppingListHandlerDesList > table tr > td:first-of-type > img {
+    vertical-align: middle;
+    margin-left: -80px;
+}
+
+.body .shoppingList > .shoppingListHandler > .shoppingListHandlerDes > .shoppingListHandlerDesList > table tr > td:first-of-type > span {
+    margin-left: 20px;
+}
+
+.body .shoppingList > .shoppingListHandler > .shoppingListHandlerDes > .shoppingListHandlerDesList {
+    width: 100%;
+    height: 100px;
+    line-height: 100px;
+    background: white;
+    color: #333;
+    font-size: 14px;
+    font-family: "微软雅黑";
+    border-bottom: 1px solid #ebebeb;
+}
+
+.body .mstlTotalWarp {
+    width: 100%;
+    height: 200px;
+    margin-top: 20px;
+    position: relative;
+}
+
+.body .mstlTotalWarp > div {
+    width: 95%;
+    height: 40px;
+    line-height: 40px;
+    text-align: right;
+    font-family: "微软雅黑";
+    font-size: 14px;
+    color: #333;
+}
+
+.body .mstlTotalWarp > div:nth-of-type(4) > span {
+    font-size: 30px;
+    color: #ffc001;
+    margin-top: 20px;
+}
+
+
+
+
