@@ -276,4 +276,41 @@
             commodity.commodityPrice desc
             LIMIT #{startNum},#{maxSize}
     </select>
+
+    <select id="getSecondHand" resultMap="brief">
+        SELECT
+            commodity.commodityId,
+            commodityTitle,
+            commodityPrice,
+            commodityPicture
+        FROM
+            commodity,
+            attribute,
+            detail
+        WHERE
+            attribute.attributeId = detail.attributeId
+            AND detail.commodityId = commodity.commodityId
+            AND detail.attributeValue != "全新"
+		LIMIT #{startNum},#{maxSize}
+    </select>
+
+    <select id="getSecondHandAppliance" resultMap="brief">
+        SELECT
+            commodity.commodityId,
+            commodityTitle,
+            commodityPrice,
+            commodityPicture
+        FROM
+            commodity,
+            attribute,
+            detail,
+            sort
+        WHERE
+            attribute.attributeId = detail.attributeId
+            AND detail.commodityId = commodity.commodityId
+            AND sort.sortId = commodity.sortId
+            AND detail.attributeValue != "全新"
+            AND sort.sortId = 1
+		LIMIT #{startNum},#{maxSize}
+    </select>
 </mapper>

@@ -64,10 +64,6 @@
     border: 1px solid #ffc001;
 }
 
-/*.body .consignee > .addConsignee > div:first-of-type {*/
-/*margin-left: 0;*/
-/*}*/
-
 .body .consignee > .addConsignee > div:last-of-type {
     cursor: pointer;
 }

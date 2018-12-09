@@ -125,4 +125,14 @@ public class CommodityServiceImpl implements CommodityService {
     public OrderInfo getOrderInfo(Integer id, int amount) {
         return commodityDao.getOrderInfo(id, amount);
     }
+
+    @Override
+    public List<CommodityBrief> getSecondHand(int startNum, int maxSize) {
+        return commodityDao.getSecondHand(startNum, maxSize);
+    }
+
+    @Override
+    public List<CommodityBrief> getSecondHandAppliance(int startNum, int maxSize) {
+        return commodityDao.getSecondHandAppliance(startNum, maxSize);
+    }
 }

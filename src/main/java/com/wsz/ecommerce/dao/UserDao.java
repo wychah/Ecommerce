@@ -1,8 +1,11 @@
 package com.wsz.ecommerce.dao;
 
+import com.wsz.ecommerce.domain.ReceiverInfo;
 import com.wsz.ecommerce.domain.User;
 import com.wsz.ecommerce.domain.UserBasicInfo;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface UserDao {
     User getUserById(@Param("userId") int userId);
@@ -20,5 +23,4 @@ public interface UserDao {
     int findPhone(@Param("userPhone") String userPhone);
     //将该注册用户注册,返回值为Int
     int userRegister(User user);
-
 }

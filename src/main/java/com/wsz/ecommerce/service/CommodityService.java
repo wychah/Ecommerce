@@ -49,4 +49,7 @@ public interface CommodityService {
     List<CommodityBrief> queryCommodityBySortIdPriceDESC(Integer sortId, int startNum, int maxSize);
 
     OrderInfo getOrderInfo(Integer id, int amount);
+
+    List<CommodityBrief> getSecondHand(int startNum, int maxSize);
+    List<CommodityBrief> getSecondHandAppliance(int startNum, int maxSize);
 }

@@ -152,4 +152,16 @@ public interface CommodityDao {
      * @return
      */
     OrderInfo getOrderInfo(@Param("commodityId") Integer id, @Param("amount") int amount);
+
+    /**
+     * 查找二手商品（成色不为全新）
+     * @return
+     */
+    List<CommodityBrief> getSecondHand(@Param("startNum") int startNum, @Param("maxSize") int maxSize);
+
+    /**
+     * 查找二手电器
+     * @return
+     */
+    List<CommodityBrief> getSecondHandAppliance(@Param("startNum") int startNum, @Param("maxSize") int maxSize);
 }
