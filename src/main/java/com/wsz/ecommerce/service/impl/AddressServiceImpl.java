@@ -25,8 +25,8 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public void updateReceiverInfoById(int addressId, String userName, String userAddress, String userPhone) {
-        addressDao.updateReceiverInfoById(addressId, userName, userAddress, userPhone);
+    public void updateReceiverInfoById(ReceiverInfo receiverInfo) {
+        addressDao.updateReceiverInfoById(receiverInfo);
     }
 
     @Override

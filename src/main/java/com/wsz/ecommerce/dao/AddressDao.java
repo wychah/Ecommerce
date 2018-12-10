@@ -21,12 +21,8 @@ public interface AddressDao {
 
     /**
      * 根据addressId更新收货信息
-     * @param addressId
-     * @param userName
-     * @param userAddress
-     * @param userPhone
      */
-    void updateReceiverInfoById(@Param("addressId") int addressId, @Param("userName") String userName, @Param("location") String userAddress, @Param("receiverPhone") String userPhone);
+    void updateReceiverInfoById(ReceiverInfo receiverInfo);
 
     /**
      * 新增用户收货地址

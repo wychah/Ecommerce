@@ -19,11 +19,6 @@ public class DiscountController {
     @Autowired
     private CommodityService commodityService;
 
-    @GetMapping("")
-    public String discount() {
-        return "discountRush";
-    }
-
     @GetMapping("/show")
     @ResponseBody
     public Map getDiscount() {

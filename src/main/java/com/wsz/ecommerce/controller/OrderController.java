@@ -26,17 +26,10 @@ public class OrderController {
     @Autowired
     private AddressService addressService;
 
-    @GetMapping()
-    public String order() {
-        return "orderSettlement";
-    }
-
     @GetMapping("/buy")
     @ResponseBody
-    public Map payOrder(@RequestParam("id") Integer id, @RequestParam("thingsNumber") int amount, HttpServletRequest request) {
+    public Map payOrder(@RequestParam("id") Integer id, @RequestParam("thingsNumber") int amount) {
         Map map = new HashMap();
-        HttpSession session = request.getSession();
-        UserBasicInfo userBasicInfo = (UserBasicInfo) session.getAttribute("user");
         // 到时候改成userBasicInfo里的id
         List<ReceiverInfo> receiverInfo = addressService.findReceiverInfoById(1);
         map.put("orderInfo",commodityService.getOrderInfo(id, amount));
@@ -52,16 +45,14 @@ public class OrderController {
 
     @PostMapping("/update")
     @ResponseBody
-    public void update(@RequestParam("addressId") int addressId, @RequestParam("userName") String userName, @RequestParam("userAddress") String userAddress, @RequestParam("userPhone") String userPhone) {
-        addressService.updateReceiverInfoById(addressId, userName, userAddress, userPhone);
+    public void update(@RequestBody ReceiverInfo receiverInfo) {
+        addressService.updateReceiverInfoById(receiverInfo);
     }
 
     @PostMapping("/insert")
     @ResponseBody
-    public Map insert(@RequestParam("userName") String userName, @RequestParam("userAddress") String userAddress, @RequestParam("userPhone") String userPhone, HttpServletRequest request) {
+    public Map insert(@RequestParam("userName") String userName, @RequestParam("userAddress") String userAddress, @RequestParam("userPhone") String userPhone) {
         Map map = new HashMap();
-        HttpSession session = request.getSession();
-        UserBasicInfo userBasicInfo = (UserBasicInfo) session.getAttribute("user");
         addressService.insertReceiverInfo(1,userName,userAddress,userPhone); //gai
         List<ReceiverInfo> receiverInfo = addressService.findReceiverInfoById(1);
         map.put("receiverInfo",receiverInfo);

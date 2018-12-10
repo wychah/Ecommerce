@@ -18,16 +18,9 @@ public class CommoodityController {
     @Autowired
     private CommodityService commodityService;
 
-    @GetMapping()
-    public String commodity() {
-        return "shoppingDetail";
-    }
-
     @GetMapping("/detail")
     @ResponseBody
     public Map getTheCommodity(@RequestParam("commodityId") Integer commodityId) {
-//        session.setAttribute("commodityDetail",commodityService.getCommodityById(commodityId));
-//        return "redirect:/commodity";
         Map map = new HashMap();
         map.put("commodities",commodityService.getCommodityById(commodityId));
         return map;

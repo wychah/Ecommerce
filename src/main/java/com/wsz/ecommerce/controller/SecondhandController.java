@@ -18,16 +18,6 @@ public class SecondhandController {
     @Autowired
     private CommodityService commodityService;
 
-    @GetMapping("/secondhand")
-    public String secondHand() {
-        return "newSecondHand";
-    }
-
-    @GetMapping("/appliance")
-    public String appliance() {
-        return "secondhandApplianceCity";
-    }
-
     @GetMapping("/secondhand/show")
     @ResponseBody
     public Map getSecondHand() {

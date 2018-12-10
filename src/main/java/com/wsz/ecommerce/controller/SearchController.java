@@ -21,15 +21,6 @@ public class SearchController {
     private CommodityService commodityService;
 
     /**
-     * 跳转到商品页面
-     * @return
-     */
-    @GetMapping()
-    public String search() {
-        return "shoppingList";
-    }
-
-    /**
      * 按价格区间查询商品
      * @param minPrice
      * @param maxPrice

@@ -28,7 +28,7 @@
     </insert>
     <update id="updateReceiverInfoById">
         UPDATE address
-        SET receiverName = #{userName}, location = #{location}, receiverPhone = #{receiverPhone}
+        SET receiverName = #{receiverName}, location = #{location}, receiverPhone = #{receiverPhone}
         WHERE addressId = #{addressId}
     </update>
 </mapper>
