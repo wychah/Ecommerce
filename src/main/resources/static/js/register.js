@@ -18,6 +18,24 @@ $(function () {
 });
 //注册验证
 $(function () {
+    // $("#nickname").on("blur", function () {
+    //     var userAccount = $("#nickname").val();
+    //     if (userAccount != "") {
+    //         $.ajax({
+    //             url: "http://localhost:8080/user/ifUserAccountRepeat",
+    //             type: "post",
+    //             data: {userAccount: userAccount},
+    //             success: function (res) {
+    //                 console.log(res);
+    //                 if (res.result == 1) {
+    //                     var reg = /[\u4e00-\u9fa5]/g;
+    //                     var value = $("#nickname").siblings("label").html().match(reg).join("") + "已存在";
+    //                     createSpan($(this), value);
+    //                 }
+    //             }
+    //         });
+    //     }
+    });
     $(".registry input").on("keyup", function () {
 
         $(".passwordStrength").hide();
@@ -81,7 +99,7 @@ $(function () {
             if ($("#password").val() == "") {
                 $(this).siblings("span").html("*");
                 createSpan($(this), "请先输入密码");
-            }else {
+            } else {
                 $(this).siblings("span").html("*");
                 createSpan($(this), "两次密码不一致");
             }
@@ -126,3 +144,4 @@ $(function () {
         span.insertAfter(container.parent());
     };
 });
+

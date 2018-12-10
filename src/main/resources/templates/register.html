@@ -19,7 +19,7 @@
 <div class="shortcut">
     <div class="w">
         <ul class="fl">
-            <li><a href="login.html">请登录</a></li>
+            <li><a href="http://localhost:8080/user/login">请登录</a></li>
             <li class="spacer">|</li>
             <li><a href="register.html">注册</a></li>
             <li class="spacer">|</li>
@@ -91,8 +91,8 @@
         <div class="landingBoox">
             <span class="trangle"></span>
             <div class="logintitle">用户登录</div>
-            <input type="text" name="userName"placeholder="用户名">
-            <input type="text" name="password"placeholder="密码">
+            <input type="text" name="userName" placeholder="用户名">
+            <input type="text" name="password" placeholder="密码">
             <div class="loginBtn">登录</div>
             <div class="registerQuick"><a href="register.html">免费注册></a></div>
         </div>
@@ -104,8 +104,8 @@
         <div class="landingBoox">
             <span class="trangle"></span>
             <div class="logintitle">用户登录</div>
-            <input type="text" name="userName"placeholder="用户名">
-            <input type="text" name="password"placeholder="密码">
+            <input type="text" name="userName" placeholder="用户名">
+            <input type="text" name="password" placeholder="密码">
             <div class="loginBtn">登录</div>
             <div class="registerQuick"><a href="register.html">免费注册></a></div>
         </div>
@@ -117,8 +117,8 @@
         <div class="landingBoox">
             <span class="trangle"></span>
             <div class="logintitle">用户登录</div>
-            <input type="text" name="userName"placeholder="用户名">
-            <input type="text" name="password"placeholder="密码">
+            <input type="text" name="userName" placeholder="用户名">
+            <input type="text" name="password" placeholder="密码">
             <div class="loginBtn">登录</div>
             <div class="registerQuick"><a href="register.html">免费注册></a></div>
         </div>
@@ -198,5 +198,39 @@
 <script src="js/jquery.lazyload.js"></script>
 <script src="js/base.js"></script>
 <script src="js/register.js"></script>
+<script>
+    $(function () {
+        $("#registerBtn").on("click", function () {
+            var userAccount = $("#nickname").val();
+            var userPassword = $("#password").val();
+            var userName = $("#username").val();
+            var userPhone = $("#phonenumber").val();
+            var person = {
+                "userAccount": userAccount,
+                "userPassword": userPassword,
+                "userName": userName,
+                "userPhone": userPhone
+            };
+            $.ajax({
+                url: "http://localhost:8080/user/toRegister",
+                type: "post",
+                contentType: "application/json;charset=UTF-8",
+                data: JSON.stringify(person),
+                success: function (res) {
+                    console.log(res);
+                }
+            });
+            // $.post("http://localhost:8080/user/toRegister", {
+            //     "userAccount": "userAccount",
+            //     "userPassword": "userPassword",
+            //     "userName": "userName",
+            //     "userPhone": "userPhone"
+            // }, function (res) {
+            //     console.log(res);
+            // });
+        });
+    })
+    ;
+</script>
 </body>
 </html>

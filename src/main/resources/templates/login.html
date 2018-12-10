@@ -104,8 +104,8 @@
         <div class="landingBoox">
             <span class="trangle"></span>
             <div class="logintitle">用户登录</div>
-            <input type="text" name="userName"placeholder="用户名">
-            <input type="text" name="password"placeholder="密码">
+            <input type="text" name="userName" placeholder="用户名">
+            <input type="text" name="password" placeholder="密码">
             <div class="loginBtn">登录</div>
             <div class="registerQuick"><a href="register.html">免费注册></a></div>
         </div>
@@ -117,8 +117,8 @@
         <div class="landingBoox">
             <span class="trangle"></span>
             <div class="logintitle">用户登录</div>
-            <input type="text" name="userName"placeholder="用户名">
-            <input type="text" name="password"placeholder="密码">
+            <input type="text" name="userName" placeholder="用户名">
+            <input type="text" name="password" placeholder="密码">
             <div class="loginBtn">登录</div>
             <div class="registerQuick"><a href="register.html">免费注册></a></div>
         </div>
@@ -144,9 +144,9 @@
     <div class="w">
         <div class="loginPage">
             <div class="logintitle">用户登录</div>
-            <input type="text" name="userName" placeholder="用户名">
-            <input type="text" name="password" placeholder="密码">
-            <div class="loginBtn">登录</div>
+            <input type="text" name="userName" placeholder="用户名" id="userName">
+            <input type="password" name="password" placeholder="密码" id="password">
+            <div class="loginBtn" id="loginBtn">登录</div>
             <div class="registerQuick"><a href="">免费注册></a></div>
         </div>
     </div>
@@ -162,5 +162,28 @@
 <script src="js/jquery.lazyload.js"></script>
 <script src="js/base.js"></script>
 <script src="js/login.js"></script>
+<script src="js/MD5.js"></script>
+<script>
+    $(function () {
+        $("#loginBtn").on("click", function () {
+            var userAccount = $("#userName").val();
+            var userPassword = $.md5($("#password").val());
+            console.log(userPassword);
+            $.post("http://localhost:8080/user/toLogin", {
+                userAccount: userAccount,
+                userPassword: userPassword
+            }, function (res) {
+                console.log(res);
+                if (res.loginResult == "loginSuccess") {
+                    location.href = "http://localhost:8080";
+                }
+                else {
+                    alert("登陆失败");
+                    return false;
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>

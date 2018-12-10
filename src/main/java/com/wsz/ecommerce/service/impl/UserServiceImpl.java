@@ -1,16 +1,14 @@
 package com.wsz.ecommerce.service.impl;
 
 import com.wsz.ecommerce.dao.UserDao;
-import com.wsz.ecommerce.domain.ReceiverInfo;
 import com.wsz.ecommerce.domain.User;
 import com.wsz.ecommerce.domain.UserBasicInfo;
+import com.wsz.ecommerce.domain.UserRegister;
 import com.wsz.ecommerce.service.UserService;
 import com.wsz.ecommerce.util.LoginResult;
 import com.wsz.ecommerce.util.SuccessOrFail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -71,11 +69,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public SuccessOrFail userRegister(User user) {
+    public SuccessOrFail userRegister(UserRegister userRegister) {
         SuccessOrFail successOrFail = new SuccessOrFail();
-        if(userDao.findPhone(user.getUserPhone())==0&&userDao.findEmail(user.getUserEmail())==0&&userDao.findAccount(user.getUserAccount())==0){
-            userDao.userRegister(user);
-            if(userDao.findAccount(user.getUserAccount())==1){
+        if(userDao.findPhone(userRegister.getUserPhone())==0&&userDao.findAccount(userRegister.getUserAccount())==0){
+            userDao.userRegister(userRegister);
+            if(userDao.findAccount(userRegister.getUserAccount())==1){
                 successOrFail.setResult(1);
             }
         }

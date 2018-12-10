@@ -39,7 +39,7 @@
         WHERE userPhone=#{userPhone}
     </select>
     <insert id="userRegister">
-        INSERT INTO user(userAccount, userPassword, userName, userEmail, userPhone, userAvatar)
-        VALUES (#{userAccount},#{userPassword},#{userName},#{userEmail},#{userPhone},#{userAvatar})
+        INSERT INTO user(userAccount, userPassword, userName,userPhone)
+        VALUES (#{userAccount},#{userPassword},#{userName},#{userPhone})
     </insert>
 </mapper>

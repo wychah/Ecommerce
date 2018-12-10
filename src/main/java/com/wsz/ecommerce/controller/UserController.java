@@ -2,6 +2,7 @@ package com.wsz.ecommerce.controller;
 
 import com.wsz.ecommerce.domain.User;
 import com.wsz.ecommerce.domain.UserBasicInfo;
+import com.wsz.ecommerce.domain.UserRegister;
 import com.wsz.ecommerce.service.UserService;
 import com.wsz.ecommerce.util.LoginResult;
 import com.wsz.ecommerce.util.SuccessOrFail;
@@ -18,11 +19,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
-    @GetMapping("/login")
-    public String loginPage(){
-        return "login";
-    }
 
     //返回值为1说明该用户名已经存在
     @ResponseBody
@@ -59,17 +55,23 @@ public class UserController {
         return loginResult;
     }
 
+    @ResponseBody
+    @PostMapping("/getUserBasicInfo")
+    public UserBasicInfo getUserBasicInfo(@RequestParam("userId") int userId){
+        return userService.getUserBasicInfo(userId);
+    }
     //用户注册，注册成功跳转到
+    @ResponseBody
     @PostMapping("/toRegister")
-    public SuccessOrFail userRegister(@RequestBody User user,
+    public SuccessOrFail userRegister(@RequestBody UserRegister userRegister,
                                HttpServletRequest request){
         //先注册，再登录,如果注册判断失败就返回失败，若是成功返回成功之后再登录并且将用户基本信息存入session
         HttpSession session = request.getSession();
         //此时的结果为注册是否成功的结果，默认登录成功所以直接继承结果，若是登录失败则将结果改为0
-        SuccessOrFail successOrFail = userService.userRegister(user);
+        SuccessOrFail successOrFail = userService.userRegister(userRegister);
         //如果注册成功则执行登录
         if(successOrFail.getResult()==1){
-            LoginResult loginResult = userService.userLogin(user.getUserAccount(),user.getUserPassword());
+            LoginResult loginResult = userService.userLogin(userRegister.getUserAccount(),userRegister.getUserPassword());
             if(loginResult.getLoginResult().equals("loginSuccess")){
                 UserBasicInfo userBasicInfo = userService.getUserBasicInfo(loginResult.getUserId());
                 session.setAttribute("user",userBasicInfo);
@@ -96,11 +98,11 @@ public class UserController {
 //    }
 
     //测试用
-    @ResponseBody
-    @RequestMapping(value = "/hello")
-    public String hello(){
-        return "Hello World!";
-    }
+//    @ResponseBody
+//    @RequestMapping(value = "/hello")
+//    public String hello(){
+//        return "Hello World!";
+//    }
 
     //传入json字符串,测试用
     @ResponseBody
