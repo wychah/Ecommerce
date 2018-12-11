@@ -220,5 +220,19 @@
 <script src="js/template-web.js"></script>
 <script src="js/base.js"></script>
 <script src="js/ordeStatus.js"></script>
+<script>
+    $(function () {
+        $.ajax({
+            url: "http://localhost:8080/order/status",
+            type: "get",
+            data: {
+                "orderId": sessionStorage.getItem("orderId")
+            },
+            success: function (res) {
+                console.log(res);
+            }
+        });
+    });
+</script>
 </body>
 </html>

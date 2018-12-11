@@ -50,4 +50,15 @@ public class PageController {
     public String member() {
         return "memberPurchase";
     }
+
+    @GetMapping("/userinfo")
+    public String userInfo() {
+        return "userInformation";
+    }
+
+    @GetMapping("/status")
+    public String orderStatus() {
+        return "orderStatus";
+    }
+
 }

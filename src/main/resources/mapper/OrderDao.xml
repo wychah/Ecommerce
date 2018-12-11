@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wsz.ecommerce.dao.OrderDao">
+
+    <resultMap id="orderCommodityInfos" type="com.wsz.ecommerce.domain.OrderCommodityInfo">
+        <result property="commodityPicture" column="commodityPicture" />
+        <result property="commodityTitle" column="commodityTitle" />
+        <result property="commodityPrice" column="commodityPrice" />
+        <result property="amount" column="amount" />
+        <result property="totalPrice" column="totalPrice" />
+        <result property="orderAmount" column="orderAmount" />
+    </resultMap>
+
+    <insert id="insertOrder">
+        INSERT INTO `order` ( orderId, `order`.userId, `order`.addressId, orderStatus, orderAmount )
+        VALUES (#{orderId},#{userId},#{addressId},#{orderStatus},#{orderAmount})
+    </insert>
+
+    <insert id="insertSubOrder">
+        INSERT INTO suborder (orderId,suborder.commodityId,suborder.amount)
+        VALUES (#{orderId},#{commodityId},#{amount})
+    </insert>
+
+    <select id="findOrderCommodityInfo" resultMap="orderCommodityInfos">
+        SELECT
+            commodity.commodityPicture,
+            commodity.commodityTitle,
+            commodity.commodityPrice,
+            suborder.amount,
+            commodity.commodityPrice * suborder.amount AS totalPrice,
+            `order`.orderAmount
+        FROM
+            `order`,
+            suborder,
+            commodity
+        WHERE
+            `order`.orderId = suborder.orderId
+            AND commodity.commodityId = suborder.commodityId
+            AND `order`.orderId = #{orderId}
+    </select>
+
+    <select id="findOrderReceiverInfo" resultType="com.wsz.ecommerce.domain.OrderReceiverInfo">
+        SELECT
+            `order`.orderId,
+            `order`.orderStatus,
+            address.location,
+            address.receiverName,
+            address.receiverPhone
+        FROM
+            `order`,
+            address
+        WHERE
+            `order`.addressId = address.addressId
+            AND `order`.orderId = #{orderId}
+    </select>
+
+</mapper>
