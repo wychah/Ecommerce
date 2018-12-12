@@ -22,9 +22,6 @@ public class DiscountController {
     @GetMapping("/show")
     @ResponseBody
     public Map getDiscount() {
-        Map map = new HashMap();
-        List<CommodityBrief> commodityBriefList = commodityService.queryAllCommodity(1,12);
-        map.put("commodities",commodityBriefList);
-        return map;
+        return commodityService.queryAllCommodity(1,12);
     }
 }

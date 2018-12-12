@@ -129,7 +129,7 @@
         </div>
     </i>
     <i class="erweima iconfont icon-erweima"></i>
-    <i class="toTop iconfont icon-fanhuidingbu" id="toTop">
+    <i class="toTop iconfont icon-fanhuidingbu">
         <div class="slogans">回到顶部
             <span class="trangle"></span>
         </div>
@@ -163,6 +163,7 @@
 <script src="js/base.js"></script>
 <script src="js/login.js"></script>
 <script src="js/MD5.js"></script>
+<script src="js/jquery.cookie.js"></script>
 <script>
     $(function () {
         $("#loginBtn").on("click", function () {
@@ -175,6 +176,7 @@
             }, function (res) {
                 console.log(res);
                 if (res.loginResult == "loginSuccess") {
+                    $.cookie("userId", res.userId, {expires: 1});
                     location.href = "http://localhost:8080";
                 }
                 else {

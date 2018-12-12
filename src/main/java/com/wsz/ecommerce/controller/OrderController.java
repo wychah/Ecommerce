@@ -1,5 +1,6 @@
 package com.wsz.ecommerce.controller;
 
+import com.wsz.ecommerce.domain.NewReceiverInfo;
 import com.wsz.ecommerce.domain.ReceiverInfo;
 import com.wsz.ecommerce.domain.OrderCheck;
 import com.wsz.ecommerce.service.AddressService;
@@ -28,13 +29,8 @@ public class OrderController {
 
     @GetMapping("/buy")
     @ResponseBody
-    public Map payOrder(@RequestParam("id") Integer id, @RequestParam("thingsNumber") int amount) {
-        Map map = new HashMap();
-        // 到时候改成userBasicInfo里的id
-        List<ReceiverInfo> receiverInfo = addressService.findReceiverInfoById(1);
-        map.put("orderInfo",commodityService.getOrderInfo(id, amount));
-        map.put("receiverInfo",receiverInfo);
-        return map;
+    public Map payOrder(@RequestParam("id") Integer commodityId, @RequestParam("thingsNumber") int amount) {
+        return orderService.showOrderInfo(1,commodityId,amount);
     }
 
     @PostMapping("/delete")
@@ -51,12 +47,8 @@ public class OrderController {
 
     @PostMapping("/insert")
     @ResponseBody
-    public Map insert(@RequestParam("userName") String userName, @RequestParam("userAddress") String userAddress, @RequestParam("userPhone") String userPhone) {
-        Map map = new HashMap();
-        addressService.insertReceiverInfo(1,userName,userAddress,userPhone); //gai
-        List<ReceiverInfo> receiverInfo = addressService.findReceiverInfoById(1);
-        map.put("receiverInfo",receiverInfo);
-        return map;
+    public Map insert(@RequestBody NewReceiverInfo newReceiverInfo) {
+        return addressService.insertAndFind(newReceiverInfo);
     }
 
     @PostMapping("/pay")

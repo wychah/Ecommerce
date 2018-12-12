@@ -5,14 +5,17 @@ import com.wsz.ecommerce.domain.CommodityDetail;
 import com.wsz.ecommerce.domain.OrderInfo;
 
 import java.util.List;
+import java.util.Map;
 
 public interface CommodityService {
 
-    CommodityDetail getCommodityById(Integer id);
+    Map getCommodityById(Integer id);
 
     List<CommodityBrief> queryCommodityByTitle(String title, int startNum, int maxSize);
 
-    List<CommodityBrief> queryAllCommodity(int startNum, int maxSize);
+    Map queryAllCommodity(int startNum, int maxSize);
+
+    List<CommodityBrief> findAll(int startNum, int maxSize);
 
     double allCommoodityAmount();
 

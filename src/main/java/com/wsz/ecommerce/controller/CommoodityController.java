@@ -21,8 +21,6 @@ public class CommoodityController {
     @GetMapping("/detail")
     @ResponseBody
     public Map getTheCommodity(@RequestParam("commodityId") Integer commodityId) {
-        Map map = new HashMap();
-        map.put("commodities",commodityService.getCommodityById(commodityId));
-        return map;
+        return commodityService.getCommodityById(commodityId);
     }
 }

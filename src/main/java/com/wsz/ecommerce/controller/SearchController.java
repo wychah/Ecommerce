@@ -49,9 +49,9 @@ public class SearchController {
         int startNum = (currentPage - 1) * maxSize;
         switch (type) {
             default:
-                return MapUtil.setMap(commodityService.allCommoodityAmount(),maxSize,currentPage,commodityService.queryAllCommodity(startNum,maxSize));
+                return MapUtil.setMap(commodityService.allCommoodityAmount(),maxSize,currentPage,commodityService.findAll(startNum,maxSize));
             case "titleasc":
-                return MapUtil.setMap(commodityService.allCommoodityAmount(),maxSize,currentPage,commodityService.queryAllCommodity(startNum,maxSize));
+                return MapUtil.setMap(commodityService.allCommoodityAmount(),maxSize,currentPage,commodityService.findAll(startNum,maxSize));
             case "titledesc":
                 return MapUtil.setMap(commodityService.allCommoodityAmount(),maxSize,currentPage,commodityService.queryAllCommodityDESC(startNum, maxSize));
             case "priceasc":

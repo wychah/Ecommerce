@@ -1,9 +1,12 @@
 package com.wsz.ecommerce.service.impl;
 
+import com.wsz.ecommerce.dao.AddressDao;
 import com.wsz.ecommerce.dao.OrderDao;
 import com.wsz.ecommerce.domain.Order;
 import com.wsz.ecommerce.domain.OrderCheck;
+import com.wsz.ecommerce.domain.ReceiverInfo;
 import com.wsz.ecommerce.domain.SubOrder;
+import com.wsz.ecommerce.service.CommodityService;
 import com.wsz.ecommerce.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +15,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -19,6 +23,12 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderDao orderDao;
+
+    @Autowired
+    private AddressDao addressDao;
+
+    @Autowired
+    private CommodityService commodityService;
 
     /**
      * 生成订单编号
@@ -68,6 +78,15 @@ public class OrderServiceImpl implements OrderService {
         Map map = new HashMap();
         map.put("commodities",orderDao.findOrderCommodityInfo(orderId));
         map.put("orderInfo",orderDao.findOrderReceiverInfo(orderId));
+        return map;
+    }
+
+    @Override
+    public Map showOrderInfo(int userId, int commodityId, int amount) {
+        Map map = new HashMap();
+        List<ReceiverInfo> receiverInfo = addressDao.findReceiverInfoById(userId);
+        map.put("orderInfo",commodityService.getOrderInfo(commodityId, amount));
+        map.put("receiverInfo",receiverInfo);
         return map;
     }
 }

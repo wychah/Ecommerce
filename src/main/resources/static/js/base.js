@@ -56,7 +56,7 @@ $(function () {
     });
     // 小火箭回到顶部
     $(window).scroll(function () {
-        $("#toTop").on("click", function () {
+        $(".toTop").on("click", function () {
             $(window).stop().scrollTop(0);
         });
     });
@@ -66,7 +66,7 @@ $(function () {
         if ($(this).children("div").eq(1).css("display") == "none") {
             // console.log($(this).children("div").eq(1).stop().show().parent().siblings().children("div").eq(1));
             $(this).children("div").eq(1).stop().show();
-            $(this).siblings().children("div").each(function (index,elements) {
+            $(this).siblings().children("div").each(function (index, elements) {
                 // console.log($(elements));
                 if ($(elements).hasClass("landingBoox")) {
                     $(elements).stop().hide();
@@ -81,5 +81,45 @@ $(function () {
     //阻止事件冒泡
     $("i").children("div").on("click", function (e) {
         e.stopPropagation();
+    });
+    //登录后右边菜单栏
+    $(".afterLogin").stop().animate({right: 0}, 1200, "linear");
+    $(".afterLogin").on("click", function (e) {
+        e.stopPropagation();
+    });
+    $(".fk-rbar-tabs>i").on("click", function (e) {
+        var index = $(this).index();
+        console.log($(".afterLogin").css("right"));
+        if ($(".fk-rbar-plugins>div").eq(index).css("opacity") == 1 && $(".afterLogin").css("right") == "0px") {
+            $(".afterLogin").stop().animate({right: -255});
+        }
+        if ($(".afterLogin").css("right") == "-255px") {
+            $(".afterLogin").stop().animate({right: 0});
+        }
+        $(".fk-rbar-plugins>div").eq(index).stop().animate({width: 255, height: 680, opacity: 1}, 400
+        ).siblings().stop().animate({width: 0, height: 0, opacity: 0}, 500);
+    });
+    $(document).on("click", function () {
+        $(".afterLogin").stop().animate({right: -255});
+    });
+    //登录后右边菜单栏
+    $(".afterLogin").stop().animate({right: 0}, 1200, "linear");
+    $(".afterLogin").on("click", function (e) {
+        e.stopPropagation();
+    });
+    $(".fk-rbar-tabs>i").on("click", function (e) {
+        var index = $(this).index();
+        console.log($(".afterLogin").css("right"));
+        if ($(".fk-rbar-plugins>div").eq(index).css("opacity") == 1 && $(".afterLogin").css("right") == "0px") {
+            $(".afterLogin").stop().animate({right: -255});
+        }
+        if ($(".afterLogin").css("right") == "-255px") {
+            $(".afterLogin").stop().animate({right: 0});
+        }
+        $(".fk-rbar-plugins>div").eq(index).stop().animate({width: 255, height: 710, opacity: 1}, 400
+        ).siblings().stop().animate({width: 0, height: 0, opacity: 0}, 500);
+    });
+    $(document).on("click", function () {
+        $(".afterLogin").stop().animate({right: -255});
     });
 });

@@ -8,7 +8,9 @@ import com.wsz.ecommerce.service.CommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CommodityServiceImpl implements CommodityService {
@@ -17,8 +19,10 @@ public class CommodityServiceImpl implements CommodityService {
     private CommodityDao commodityDao;
 
     @Override
-    public CommodityDetail getCommodityById(Integer id) {
-        return commodityDao.getCommodityById(id);
+    public Map getCommodityById(Integer id) {
+        Map map = new HashMap();
+        map.put("commodities",commodityDao.getCommodityById(id));
+        return map;
     }
 
     @Override
@@ -27,8 +31,15 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
     @Override
-    public List<CommodityBrief> queryAllCommodity(int startNum, int maxSize) {
-        return commodityDao.queryAllCommodity(startNum,maxSize);
+    public Map queryAllCommodity(int startNum, int maxSize) {
+        Map map = new HashMap();
+        map.put("commodities",commodityDao.queryAllCommodity(startNum,maxSize));
+        return map;
+    }
+
+    @Override
+    public List<CommodityBrief> findAll(int startNum, int maxSize) {
+        return commodityDao.queryAllCommodity(startNum, maxSize);
     }
 
     @Override

@@ -204,17 +204,19 @@ ol {
 
 /*顶部结束*/
 /*右侧工具栏开始*/
-.rightBar {
+.rightBar,
+.fk-rbar-tabs {
     width: 31px;
-    height: 1000px;
+    height: 710px;
     background-color: black;
     position: fixed;
     right: 0;
-    top: 0;
+    top: 45px;
     z-index: 101;
 }
 
-.rightBar > i {
+.rightBar > i,
+.fk-rbar-tabs > i {
     width: 100%;
     height: 40px;
     cursor: pointer;
@@ -226,11 +228,13 @@ ol {
     text-align: center;
 }
 
-.rightBar > .message {
-    top: 35px;
+.rightBar > .message,
+.fk-rbar-tabs > .message {
+    top: 1px;
 }
 
-.rightBar .slogans {
+.rightBar .slogans,
+.fk-rbar-tabs .slogans {
     position: absolute;
     font-size: 13px;
     width: 90px;
@@ -244,7 +248,8 @@ ol {
     display: none;
 }
 
-.rightBar .trangle {
+.rightBar .trangle,
+.fk-rbar-tabs .trangle {
     display: block;
     position: absolute;
     left: 19px;
@@ -266,7 +271,8 @@ ol {
     cursor: default;
 }
 
-.rightBar div:nth-of-type(2) > .trangle {
+.rightBar div:nth-of-type(2) > .trangle,
+.loginRightBar div:nth-of-type(2) > .trangle {
     border-color: white transparent transparent transparent;
     left: 217px;
     top: 23px;
@@ -326,23 +332,27 @@ ol {
     background: url("../image/icon_pwd.jpg") 0 no-repeat;
 }
 
-.rightBar > .collection {
-    top: 90px;
+.rightBar > .collection,
+.fk-rbar-tabs > .collection {
+    top: 50px;
 }
 
-.rightBar > .shoppingCar {
-    top: 153px;
+.rightBar > .shoppingCar,
+.fk-rbar-tabs > .shoppingCar {
+    top: 103px;
     height: 131px;
     line-height: 22px;
 }
 
-.rightBar > .shoppingCar > h1 {
+.rightBar > .shoppingCar > h1,
+.fk-rbar-tabs > .shoppingCar > h1 {
     margin-top: 10px;
     font-size: 16px;
     font-weight: normal;
 }
 
-.rightBar > .shoppingCar > span {
+.rightBar > .shoppingCar > span,
+.fk-rbar-tabs > .shoppingCar > span {
     width: 20px;
     height: 20px;
     font-size: 16px;
@@ -352,23 +362,246 @@ ol {
     line-height: 20px;
 }
 
-.rightBar > .leaveMessage {
-    top: 530px;
+.rightBar > .leaveMessage,
+.fk-rbar-tabs > .leaveMessage {
+    top: 500px;
 }
 
-.rightBar > .erweima {
+.rightBar > .erweima,
+.fk-rbar-tabs > .erweima {
+    top: 540px;
+}
+
+.rightBar > .toTop,
+.fk-rbar-tabs > .toTop {
     top: 580px;
 }
 
-.rightBar > .toTop {
-    top: 630px;
-}
-
-.rightBar > i:hover {
+.rightBar > i:hover,
+.fk-rbar-tabs > i:hover {
     background-color: rgb(192, 0, 0);
 }
 
 /*右侧工具栏结束*/
+/*登陆后的右侧菜单栏开始*/
+.afterLogin {
+    position: fixed;
+    width: 286px;
+    height: 710px;
+    z-index: 103;
+    right: -255px;
+}
+
+.afterLogin .fk-rbar-tabs {
+    position: absolute;
+    right: 255px;
+    top: -105px;
+}
+
+.afterLogin > .fk-rbar-plugins {
+    position: relative;
+    top: -105px;
+    width: 255px;
+    height: 100%;
+    margin-left: 31px;
+    background-color: rgb(230, 230, 230);
+}
+
+.afterLogin > .fk-rbar-plugins > div {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+}
+
+.afterLogin > .fk-rbar-plugins > .myStuffTab {
+    background-color: rgb(60, 60, 60);
+    opacity: 1;
+}
+
+.afterLogin > .fk-rbar-plugins > .myStuffTab > div {
+    width: 90%;
+    margin: 0 auto;
+    border-bottom: 4px solid #333;
+}
+
+.afterLogin > .fk-rbar-plugins > .myStuffTab > div:last-of-type {
+    border: none;
+}
+
+.afterLogin > .fk-rbar-plugins > .myStuffTab > .myStuffTab_top {
+    height: 116px;
+    cursor: pointer;
+}
+
+.afterLogin > .fk-rbar-plugins > .myStuffTab > .myStuffTab_top > .myStuffTab_top_l {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-color: #fff;
+    border-radius: 50%;
+    left: 26px;
+    top: 18px;
+    overflow: hidden;
+}
+
+.afterLogin > .fk-rbar-plugins > .myStuffTab > .myStuffTab_top > .myStuffTab_top_l > img {
+    width: 100%;
+    height: 100%;
+}
+
+.afterLogin > .fk-rbar-plugins > .myStuffTab > .myStuffTab_top > .myStuffTab_top_r {
+    position: absolute;
+    left: 125px;
+    top: 25px;
+    color: #ddd;
+    font-size: 14px;
+}
+
+.afterLogin > .fk-rbar-plugins > .myStuffTab > .myStuffTab_top > .myStuffTab_top_r > div {
+    margin-top: 10px;
+}
+
+.afterLogin > .fk-rbar-plugins > .myStuffTab > .myStuffTab_top > .myStuffTab_top_r > div:nth-of-type(2) {
+    color: #b3b3b3;
+}
+
+.afterLogin > .fk-rbar-plugins > .myStuffTab > .myStuffTab_middle {
+    height: 80px;
+    color: #fff;
+    font-size: 14px;
+    position: relative;
+    font-family: "微软雅黑";
+}
+
+.afterLogin > .fk-rbar-plugins > .myStuffTab > .myStuffTab_middle > div {
+    position: absolute;
+    left: 15px;
+    top: 10px;
+}
+
+.afterLogin > .fk-rbar-plugins > .myStuffTab > .myStuffTab_middle > div > div {
+    margin-top: 10px;
+}
+
+.afterLogin > .fk-rbar-plugins > .myStuffTab > .myStuffTab_bottom {
+    height: 44px;
+    line-height: 44px;
+    background-color: #e43a3d;
+    text-align: center;
+    color: #fff;
+    border-radius: 3px;
+    position: absolute;
+    bottom: 5px;
+    margin-left: 12px;
+    cursor: pointer;
+}
+
+.afterLogin > .fk-rbar-plugins > .myCollectionTab,
+.afterLogin > .fk-rbar-plugins > .myCartTab {
+    background-color: rgb(230, 230, 230);
+    opacity: 0;
+}
+
+.afterLogin > .fk-rbar-plugins > .myCollectionTab > div:first-of-type,
+.afterLogin > .fk-rbar-plugins > .myCartTab > .hasNoCartThings > div:first-of-type {
+    width: 113px;
+    height: 187px;
+    background: url(../image/defaultIcon.png) 0 -1560px no-repeat;
+    margin: 150px auto 0;
+}
+
+.afterLogin > .fk-rbar-plugins > .myCartTab > .hasNoCartThings > div:first-of-type {
+    height: 170px;
+    background: url("../image/defaultIcon.png") 0 -1780px no-repeat;
+}
+
+.afterLogin > .fk-rbar-plugins > .myCollectionTab > div:last-of-type,
+.afterLogin > .fk-rbar-plugins > .myCartTab > .hasNoCartThings > div:last-of-type {
+    color: #999;
+    text-align: center;
+}
+
+.afterLogin > .fk-rbar-plugins > .myCartTab > .hasCartThings {
+    width: 100%;
+    height: 100%;
+}
+
+.afterLogin > .fk-rbar-plugins > .myCartTab > .hasCartThings > .hasCartThings_top {
+    width: 100%;
+    height: 80%;
+}
+
+.afterLogin > .fk-rbar-plugins > .myCartTab > .hasCartThings > .hasCartThings_top > .cartThing {
+    width: 100%;
+    height: 90px;
+    background-color: #fff;
+}
+
+.afterLogin > .fk-rbar-plugins > .myCartTab > .hasCartThings > .hasCartThings_top > .cartThing > div {
+    position: absolute;
+    color: #7c7c7c;
+    font-size: 12px;
+}
+
+.afterLogin > .fk-rbar-plugins > .myCartTab > .hasCartThings > .hasCartThings_top > .cartThing > .cartThingImg {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    left: 15px;
+    top: 12px;
+}
+
+.afterLogin > .fk-rbar-plugins > .myCartTab > .hasCartThings > .hasCartThings_top > .cartThing > .cartThingTitle {
+    width: 96px;
+    height: 16px;
+    line-height: 16px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    left: 85px;
+    top: 15px;
+}
+
+.afterLogin > .fk-rbar-plugins > .myCartTab > .hasCartThings > .hasCartThings_top > .cartThing > .cartThingPrice {
+    right: 40px;
+    top: 58px;
+    color: #e43a3d;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.afterLogin > .fk-rbar-plugins > .myCartTab > .hasCartThings > .hasCartThings_top > .cartThing > .cartThingNumber {
+    right: 13px;
+    top: 58px;
+}
+
+.afterLogin > .fk-rbar-plugins > .myCartTab > .hasCartThings > .hasCartThings_top > .cartThing > .cartThingDelete {
+    width: 28px;
+    height: 20px;
+    line-height: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    right: 15px;
+    top: 15px;
+}
+
+.afterLogin > .fk-rbar-plugins > .myCartTab > .hasCartThings > .hasCartThings_bottom {
+    width: 251px;
+    height: 44px;
+    line-height: 44px;
+    background-color: #e43a3d;
+    text-align: center;
+    color: #fff;
+    border-radius: 3px;
+    position: absolute;
+    bottom: 5px;
+    margin-left: 1px;
+    cursor: pointer;
+}
+
+/*登陆后的右侧菜单栏结束*/
 /*底部开始*/
 .foot {
     height: 420px;
