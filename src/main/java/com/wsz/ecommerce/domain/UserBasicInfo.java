@@ -6,6 +6,7 @@ public class UserBasicInfo {
     private String userName;
     private String userEmail;
     private String userPhone;
+    private String userAvatar;
 
     public String getUserAccount() {
         return userAccount;
@@ -45,6 +46,14 @@ public class UserBasicInfo {
 
     public void setUserPhone(String userPhone) {
         this.userPhone = userPhone;
+    }
+
+    public String getUserAvatar() {
+        return userAvatar;
+    }
+
+    public void setUserAvatar(String userAvatar) {
+        this.userAvatar = userAvatar;
     }
 
 }

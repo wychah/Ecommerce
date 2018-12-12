@@ -14,25 +14,19 @@
     <!--字体图标css-->
     <link rel="stylesheet" type="text/css" href="font/download/font_942gj5vp4fp/iconfont.css">
     <link rel="stylesheet" href="font/download/font_90ljwep9b4l/iconfont.css">
+    <link rel="stylesheet" href="font/download (2)/font_pzp01tyw83/iconfont.css">
 </head>
 <body>
 <!--快捷导航模块开始-->
 <div class="shortcut">
-    <div class="w">
+    <div class="w" style="display: block;">
         <ul class="fl">
-            <li><a href="http://localhost:8080/login">请登录</a></li>
+            <li><a href="http://localhost:8080/userinfo"><i class="iconfont icon-huiyuan">孙力</i></a></li>
             <li class="spacer">|</li>
-            <li><a href="http://localhost:8080/register">注册</a></li>
-            <li class="spacer">|</li>
-            <li>
-                <a href="#" id="wechartLogion">
-                    <span></span>
-                    微信登录
-                </a>
-            </li>
+            <li><a href="#" class="loginOut">退出</a></li>
         </ul>
         <ul class="fr">
-            <li id="phoneApp">
+            <li id="phoneAppAfter">
                 <a href="#">
                     <span></span>
                     手机版
@@ -51,7 +45,7 @@
                 </a>
             </li>
             <li class="spacer">|</li>
-            <li><a href="">我的资料</a></li>
+            <li><a href="#">我的资料</a></li>
             <li class="spacer">|</li>
             <li><a href="">我的订单</a></li>
             <li class="spacer">|</li>
@@ -59,7 +53,6 @@
                 <a href="">
                     <span></span>
                     购物车
-                    <number>(0)</number>
                 </a>
             </li>
         </ul>
@@ -84,57 +77,87 @@
 </div>
 <!--顶部模块结束-->
 <!--右侧工具栏开始-->
-<div class="rightBar">
-    <i class="message iconfont icon-zhanghao">
-        <div class="slogans">我的资料
-            <span class="trangle"></span>
+<div class="afterLogin" style="display: block;">
+    <div class="fk-rbar-tabs">
+        <i class="message iconfont icon-zhanghao">
+            <div class="slogans">我的资料
+                <span class="trangle"></span>
+            </div>
+        </i>
+        <i class="collection iconfont icon-shoucang-copy">
+            <div class="slogans">我的收藏
+                <span class="trangle"></span>
+            </div>
+        </i>
+        <i class="shoppingCar iconfont icon-icon1">
+            <div></div>
+            <h1>购物车</h1>
+            <span>0</span>
+        </i>
+        <i class="leaveMessage iconfont icon-liuyan">
+            <div class="slogans">留言
+                <span class="trangle"></span>
+            </div>
+        </i>
+        <i class="erweima iconfont icon-erweima"></i>
+        <i class="toTop iconfont icon-fanhuidingbu">
+            <div class="slogans">回到顶部
+                <span class="trangle"></span>
+            </div>
+        </i>
+    </div>
+    <div class="fk-rbar-plugins">
+        <div class="myStuffTab">
+            <div class="myStuffTab_top">
+                <div class="myStuffTab_top_l"><img src="image/secondbrand1.jpg" alt=""></div>
+                <div class="myStuffTab_top_r">
+                    <div>821998295</div>
+                    <div>普通会员</div>
+                </div>
+            </div>
+            <div class="myStuffTab_middle">
+                <div>
+                    <div>姓名</div>
+                    <div>孙力1111</div>
+                </div>
+            </div>
+            <div class="myStuffTab_middle">
+                <div>
+                    <div>邮箱</div>
+                    <div>821992311@qq.com</div>
+                </div>
+            </div>
+            <div class="myStuffTab_middle">
+                <div>
+                    <div>手机</div>
+                    <div>13598745125</div>
+                </div>
+            </div>
+            <div class="myStuffTab_bottom">退出登录</div>
         </div>
-        <div class="landingBoox">
-            <span class="trangle"></span>
-            <div class="logintitle">用户登录</div>
-            <input type="text" name="userName" placeholder="用户名">
-            <input type="text" name="password" placeholder="密码">
-            <div class="loginBtn">登录</div>
-            <div class="registerQuick"><a href="http://localhost:8080/register">免费注册></a></div>
+        <div class="myCollectionTab">
+            <div></div>
+            <div>亲，还没有入您法眼的商品哟~</div>
         </div>
-    </i>
-    <i class="collection iconfont icon-shoucang-copy">
-        <div class="slogans">我的收藏
-            <span class="trangle"></span>
+        <div class="myCartTab">
+            <div class="hasNoCartThings" style="display: none;">
+                <div></div>
+                <div>亲，您的购物车空空的哟~</div>
+            </div>
+            <div class="hasCartThings" style="display: block">
+                <div class="hasCartThings_top">
+                    <div class="cartThing">
+                        <img src="image/111.jpg" class="cartThingImg">
+                        <div class="cartThingTitle">8成新 新概念摄像机 高清专业数码摄像机</div>
+                        <div class="cartThingPrice">￥11099</div>
+                        <div class="cartThingNumber">x1</div>
+                        <div class="cartThingDelete">删除</div>
+                    </div>
+                </div>
+                <div class="hasCartThings_bottom">去购物车结算</div>
+            </div>
         </div>
-        <div class="landingBoox">
-            <span class="trangle"></span>
-            <div class="logintitle">用户登录</div>
-            <input type="text" name="userName" placeholder="用户名">
-            <input type="text" name="password" placeholder="密码">
-            <div class="loginBtn">登录</div>
-            <div class="registerQuick"><a href="register.html">免费注册></a></div>
-        </div>
-    </i>
-    <i class="shoppingCar iconfont icon-icon1">
-        <div></div>
-        <h1>购物车</h1>
-        <span>0</span>
-        <div class="landingBoox">
-            <span class="trangle"></span>
-            <div class="logintitle">用户登录</div>
-            <input type="text" name="userName" placeholder="用户名">
-            <input type="text" name="password" placeholder="密码">
-            <div class="loginBtn">登录</div>
-            <div class="registerQuick"><a href="register.html">免费注册></a></div>
-        </div>
-    </i>
-    <i class="leaveMessage iconfont icon-liuyan">
-        <div class="slogans">留言
-            <span class="trangle"></span>
-        </div>
-    </i>
-    <i class="erweima iconfont icon-erweima"></i>
-    <i class="toTop iconfont icon-fanhuidingbu" id="toTop">
-        <div class="slogans">回到顶部
-            <span class="trangle"></span>
-        </div>
-    </i>
+    </div>
 </div>
 <!--右侧导航栏结束-->
 <!--main模块开始-->
@@ -143,96 +166,105 @@
 <!--body模块开始-->
 <div class="body">
     <div class="w">
-        <div class="orderInformation">
-            <div class="orderNumber">
-                <span>订单编号</span>
-                <span>20181208110</span>
-                <span>订单状态</span>
-                <span>待付款</span>
-            </div>
-            <div class="orderOwnerInformation">
-                <span>收货人信息</span>
-                <span>澳门澳门半岛浙江科技学院</span>
-                <span>zq</span>
-                <span>13265987457</span>
-            </div>
-            <div>
-                <span>支付方式</span>
-                <span>您需要在收货时用现金等方式向送货员支付订单款项。</span>
-            </div>
-            <div>
-                <span>配送方式</span>
-                <span>平邮</span>
-            </div>
-            <div class="giveSellerWords">
-                <span>给卖家留言</span>
-            </div>
-        </div>
-        <div class="shoppingList">
-            <div class="shoppingListTitle">购物清单</div>
-            <div class="shoppingListHandler">
-                <div class="shoppingListHandlerTitle">
-                    <table>
-                        <tr>
-                            <td>名称</td>
-                            <td>价格</td>
-                            <td>数量</td>
-                            <td>小计</td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="shoppingListHandlerDes">
-                    <div class="shoppingListHandlerDesList">
-                        <table>
-                            <tr>
-                                <td>
-                                    <img src="image/lsit1.jpg" alt="">
-                                    <span>自动回弹静音腹肌轮收腹滚轮家用健腹器</span>
-                                </td>
-                                <td>￥68.00</td>
-                                <td>1</td>
-                                <td>￥68.00</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="mstlTotalWarp">
-            <div>商品总额：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;￥68.00</div>
-            <div>优惠金额：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;￥0.00</div>
-            <div>运费：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;￥5.00</div>
-            <div>订单总金额：<span>￥73.00</span></div>
-        </div>
+        <div class="orderInformation"></div>
+        <div class="shoppingList"></div>
     </div>
-</div>
-<!--body模块结束-->
-<!--foot模块开始-->
-<div class="foot">
-    <div class="foot_top"><img data-original="image/5XGBR@Z$QVQ4$%5D1K%60HRJ958.png" alt=""></div>
-    <div class="foot_bottom"><img data-original="image/OP4FMG5S9X_6TVX%6034(PZC2.png" alt=""></div>
-</div>
-<!--foot模块结束-->
-<script src="js/jquery-1.12.4.js"></script>
-<script src="js/jquery.lazyload.js"></script>
-<script src="js/MD5.js"></script>
-<script src="js/jquery.cookie.js"></script>
-<script src="js/template-web.js"></script>
-<script src="js/base.js"></script>
-<script src="js/ordeStatus.js"></script>
-<script>
-    $(function () {
-        $.ajax({
-            url: "http://localhost:8080/order/status",
-            type: "get",
-            data: {
-                "orderId": sessionStorage.getItem("orderId")
-            },
-            success: function (res) {
-                console.log(res);
-            }
+    <!--body模块结束-->
+    <!--foot模块开始-->
+    <div class="foot">
+        <div class="foot_top"><img src="image/5XGBR@Z$QVQ4$%5D1K%60HRJ958.png" alt=""></div>
+        <div class="foot_bottom"><img src="image/OP4FMG5S9X_6TVX%6034(PZC2.png" alt=""></div>
+    </div>
+    <!--foot模块结束-->
+    <script src="js/jquery-1.12.4.js"></script>
+    <script src="js/jquery.lazyload.js"></script>
+    <script src="js/MD5.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/template-web.js"></script>
+    <script src="js/base.js"></script>
+    <script src="js/ordeStatus.js"></script>
+    <script>
+        $(function () {
+            $.ajax({
+                url: "http://localhost:8080/order/status",
+                type: "get",
+                data: {
+                    "orderId": sessionStorage.getItem("orderId")
+                },
+                success: function (res) {
+                    console.log(res);
+                    var order =
+                        '<div class="orderNumber">' +
+                        '<span>订单编号</span>' +
+                        '<span>{{orderId}}</span>' +
+                        '<span>订单状态</span>' +
+                        '<span>{{orderStatus}}</span>' +
+                        '</div>' +
+                        '<div class="orderOwnerInformation">' +
+                        '<span>收货人信息</span>' +
+                        '<span>{{location}}</span>' +
+                        '<span>{{receiverName}}</span>' +
+                        '<span>{{receiverPhone}}</span>' +
+                        '</div>' +
+                        '<div>' +
+                        '<span>支付方式</span>' +
+                        '<span>您需要在收货时用现金等方式向送货员支付订单款项。</span>' +
+                        '</div>' +
+                        '<div>' +
+                        '<span>配送方式</span>' +
+                        '<span>平邮</span>' +
+                        '</div>' +
+                        '<div class="giveSellerWords">' +
+                        '<span>给卖家留言</span>' +
+                        '</div>';
+                    var render = template.compile(order);
+                    var html = render(res.orderInfo);
+                    $(".orderInformation").html(html);
+                    var orderPrice =
+                        '{{each commodities as value}}' +
+                        '<div class="shoppingListTitle">购物清单</div>' +
+                        '<div class="shoppingListHandler">' +
+                        '<div class="shoppingListHandlerTitle">' +
+                        '<table>' +
+                        '<tr>' +
+                        '<td>名称</td>' +
+                        '<td>价格</td>' +
+                        '<td>数量</td>' +
+                        '<td>小计</td>' +
+                        '</tr>' +
+                        '</table>' +
+                        '</div>' +
+                        '<div class="shoppingListHandlerDes">' +
+                        '<div class="shoppingListHandlerDesList">' +
+                        '<table>' +
+                        '<tr>' +
+                        '<td>' +
+                        '<img src="{{value.commodityPicture}}" alt="">' +
+                        '<span>{{value.commodityTitle}}</span>' +
+                        '</td>' +
+                        '<td>￥{{value.commodityPrice}}.00</td>' +
+                        '<td>{{value.amount}}</td>' +
+                        '<td>￥{{value.totalPrice}}.00</td>' +
+                        '</tr>' +
+                        '</table>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="mstlTotalWarp">' +
+                        '<div>商品总额：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;￥68.00' +
+                        '</div>' +
+                        '<div>优惠金额：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;￥0.00</div>' +
+                        '<div>运费：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;￥5.00</div>' +
+                        '<div>订单总金额：<span>￥{{value.orderAmount}}.00</span></div>' +
+                        '</div>' +
+                        '{{/each}}';
+                    var renderPrice = template.compile(orderPrice);
+                    var html = renderPrice(res);
+                    $(".shoppingList").html(html);
+                }
+            });
         });
-    });
-</script>
+    </script>
 </body>
 </html>

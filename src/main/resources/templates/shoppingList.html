@@ -14,11 +14,12 @@
     <!--字体图标css-->
     <link rel="stylesheet" type="text/css" href="font/download/font_942gj5vp4fp/iconfont.css">
     <link rel="stylesheet" href="font/download/font_90ljwep9b4l/iconfont.css">
+    <link rel="stylesheet" href="font/download (2)/font_pzp01tyw83/iconfont.css">
 </head>
 <body>
 <!--快捷导航模块开始-->
 <div class="shortcut">
-    <div class="w">
+    <div class="w" style="display: none;">
         <ul class="fl">
             <li><a href="http://localhost:8080/login">请登录</a></li>
             <li class="spacer">|</li>
@@ -64,6 +65,44 @@
             </li>
         </ul>
     </div>
+    <div class="w" style="display: block;">
+        <ul class="fl">
+            <li><a href="http://localhost:8080/userinfo"><i class="iconfont icon-huiyuan">孙力</i></a></li>
+            <li class="spacer">|</li>
+            <li><a href="#" class="loginOut">退出</a></li>
+        </ul>
+        <ul class="fr">
+            <li id="phoneAppAfter">
+                <a href="#">
+                    <span></span>
+                    手机版
+                </a>
+                <div class="phoneApp">
+                    <img src="image/shoujierweima.png" alt="">
+                    <h4>查看手机网站</h4>
+                </div>
+                <div class="trangle1"></div>
+            </li>
+            <li class="spacer">|</li>
+            <li>
+                <a href="">
+                    <span></span>
+                    收藏本站
+                </a>
+            </li>
+            <li class="spacer">|</li>
+            <li><a href="#">我的资料</a></li>
+            <li class="spacer">|</li>
+            <li><a href="">我的订单</a></li>
+            <li class="spacer">|</li>
+            <li>
+                <a href="">
+                    <span></span>
+                    购物车
+                </a>
+            </li>
+        </ul>
+    </div>
 </div>
 <!--快捷导航模块结束-->
 <!--顶部模块开始-->
@@ -84,7 +123,7 @@
 </div>
 <!--顶部模块结束-->
 <!--右侧工具栏开始-->
-<div class="rightBar">
+<div class="rightBar" style="display: none;">
     <i class="message iconfont icon-zhanghao">
         <div class="slogans">我的资料
             <span class="trangle"></span>
@@ -135,6 +174,88 @@
             <span class="trangle"></span>
         </div>
     </i>
+</div>
+<div class="afterLogin" style="display: block;">
+    <div class="fk-rbar-tabs">
+        <i class="message iconfont icon-zhanghao">
+            <div class="slogans">我的资料
+                <span class="trangle"></span>
+            </div>
+        </i>
+        <i class="collection iconfont icon-shoucang-copy">
+            <div class="slogans">我的收藏
+                <span class="trangle"></span>
+            </div>
+        </i>
+        <i class="shoppingCar iconfont icon-icon1">
+            <div></div>
+            <h1>购物车</h1>
+            <span>0</span>
+        </i>
+        <i class="leaveMessage iconfont icon-liuyan">
+            <div class="slogans">留言
+                <span class="trangle"></span>
+            </div>
+        </i>
+        <i class="erweima iconfont icon-erweima"></i>
+        <i class="toTop iconfont icon-fanhuidingbu">
+            <div class="slogans">回到顶部
+                <span class="trangle"></span>
+            </div>
+        </i>
+    </div>
+    <div class="fk-rbar-plugins">
+        <div class="myStuffTab">
+            <div class="myStuffTab_top">
+                <div class="myStuffTab_top_l"><img src="image/secondbrand1.jpg" alt=""></div>
+                <div class="myStuffTab_top_r">
+                    <div>821998295</div>
+                    <div>普通会员</div>
+                </div>
+            </div>
+            <div class="myStuffTab_middle">
+                <div>
+                    <div>姓名</div>
+                    <div>孙力1111</div>
+                </div>
+            </div>
+            <div class="myStuffTab_middle">
+                <div>
+                    <div>邮箱</div>
+                    <div>821992311@qq.com</div>
+                </div>
+            </div>
+            <div class="myStuffTab_middle">
+                <div>
+                    <div>手机</div>
+                    <div>13598745125</div>
+                </div>
+            </div>
+            <div class="myStuffTab_bottom">退出登录</div>
+        </div>
+        <div class="myCollectionTab">
+            <div></div>
+            <div>亲，还没有入您法眼的商品哟~</div>
+        </div>
+        <div class="myCartTab">
+            <div class="hasNoCartThings" style="display: none;">
+                <div></div>
+                <div>亲，您的购物车空空的哟~</div>
+            </div>
+            <div class="hasCartThings" style="display: block">
+                <div class="hasCartThings_top">
+                    <div class="cartThing">
+                        <img src="image/111.jpg" class="cartThingImg">
+                        <div class="cartThingTitle">8成新 新概念摄像机 高清专业数码摄像机</div>
+                        <div class="cartThingPrice">￥11099</div>
+                        <div class="cartThingNumber">x1</div>
+                        <div class="cartThingDelete">删除</div>
+                    </div>
+                </div>
+                <div class="hasCartThings_bottom">去购物车结算</div>
+            </div>
+        </div>
+    </div>
 </div>
 <!--右侧导航栏结束-->
 <!--main模块开始-->
@@ -198,8 +319,8 @@
 <!--body模块结束-->
 <!--foot模块开始-->
 <div class="foot">
-    <div class="foot_top"><img data-original="image/5XGBR@Z$QVQ4$%5D1K%60HRJ958.png" alt=""></div>
-    <div class="foot_bottom"><img data-original="image/OP4FMG5S9X_6TVX%6034(PZC2.png" alt=""></div>
+    <div class="foot_top"><img src="image/5XGBR@Z$QVQ4$%5D1K%60HRJ958.png" alt=""></div>
+    <div class="foot_bottom"><img src="image/OP4FMG5S9X_6TVX%6034(PZC2.png" alt=""></div>
 </div>
 <!--foot模块结束-->
 <script src="js/jquery-1.12.4.js"></script>

@@ -19,7 +19,7 @@
         where userAccount=#{userAccount} AND userPassword = #{userPassword}
     </select>
     <select id="findUserBasicInfoById" resultType="com.wsz.ecommerce.domain.UserBasicInfo">
-        SELECT userId,userAccount,userName,userEmail,userPhone
+        SELECT userId,userAccount,userName,userEmail,userPhone,userAvatar
         FROM user
         WHERE userId=#{userId}
     </select>

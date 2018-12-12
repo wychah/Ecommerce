@@ -61,4 +61,28 @@ public class PageController {
         return "orderStatus";
     }
 
+    @GetMapping("/shoppingcart")
+    public  String shoppingcart(){
+        return "shoppingCart";
+    }
+
+    @GetMapping("/userinformationorder")
+    public String userInformationOrder(){
+        return "userinformation_order";
+    }
+
+    @GetMapping("/userInformation")
+    public String userInformation(){
+        return "userInformation";
+    }
+
+    @GetMapping("/userInformationaddress")
+    public String userInformationAddress(){
+        return "userInformation_address";
+    }
+
+    @GetMapping("/userInformationcollection")
+    public String userInformationCollection(){
+        return "userInformation_collection";
+    }
 }

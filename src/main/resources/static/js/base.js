@@ -134,4 +134,48 @@ $(function () {
         location.href = "http://localhost:8080";
         return false;
     });
+    // 渲染头部和右侧导航栏
+    var myStuff =
+        '<div class="myStuffTab_top">' +
+        '<div class="myStuffTab_top_l"><img src="{{userAvatar}}" alt=""></div>' +
+        '<div class="myStuffTab_top_r">' +
+        '<div>{{userAccount}}</div>' +
+        '<div>普通会员</div>' +
+        '</div>' +
+        '</div>' +
+        '<div class="myStuffTab_middle">' +
+        '<div>' +
+        '<div>姓名</div>' +
+        '<div>{{userName}}</div>' +
+        '</div>' +
+        '</div>' +
+        '<div class="myStuffTab_middle">' +
+        '<div>' +
+        '<div>邮箱</div>' +
+        '<div>{{userEmail}}</div>' +
+        '</div>' +
+        '</div>' +
+        '<div class="myStuffTab_middle">' +
+        '<div>' +
+        '<div>手机</div>' +
+        '<div>{{userPhone}}</div>' +
+        '</div>' +
+        '</div>' +
+        '<div class="myStuffTab_bottom">退出登录</div>';
+
+    var userAccoutData =
+        '<a href="http://localhost:8080/userinfo"><i class="iconfont icon-huiyuan">{{userAccount}}</i></a>';
+    $.post("http://localhost:8080/user/getUserBasicInfo", {userId: $.cookie("userId")}, function (res) {
+        console.log(res);
+        var render = template.compile(myStuff);
+        var html = render(res);
+        $(".myStuffTab").html(html);
+        var userAccountRender = template.compile(userAccoutData);
+        var userAccountHtml = userAccountRender(res);
+        $(".userAccount").html(userAccountHtml);
+        $.cookie("userAccount",res.userAccount);
+        $.cookie("userName",res.userName);
+        $.cookie("userPhone",res.userPhone);
+        $.cookie("userEmail",res.userEmail);
+    });
 });

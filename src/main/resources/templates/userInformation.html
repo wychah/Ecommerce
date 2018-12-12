@@ -23,21 +23,14 @@
 <body>
 <!--快捷导航模块开始-->
 <div class="shortcut">
-    <div class="w">
+    <div class="w" style="display: block;">
         <ul class="fl">
-            <li><a href="login.html">请登录</a></li>
+            <li class="userAccount"></li>
             <li class="spacer">|</li>
-            <li><a href="register.html">注册</a></li>
-            <li class="spacer">|</li>
-            <li>
-                <a href="#" id="wechartLogion">
-                    <span></span>
-                    微信登录
-                </a>
-            </li>
+            <li><a href="#" class="loginOut">退出</a></li>
         </ul>
         <ul class="fr">
-            <li id="phoneApp">
+            <li id="phoneAppAfter">
                 <a href="#">
                     <span></span>
                     手机版
@@ -56,7 +49,7 @@
                 </a>
             </li>
             <li class="spacer">|</li>
-            <li><a href="">我的资料</a></li>
+            <li><a href="#">我的资料</a></li>
             <li class="spacer">|</li>
             <li><a href="">我的订单</a></li>
             <li class="spacer">|</li>
@@ -64,7 +57,6 @@
                 <a href="">
                     <span></span>
                     购物车
-                    <number>(0)</number>
                 </a>
             </li>
         </ul>
@@ -89,57 +81,60 @@
 </div>
 <!--顶部模块结束-->
 <!--右侧工具栏开始-->
-<div class="rightBar">
-    <i class="message iconfont icon-zhanghao">
-        <div class="slogans">我的资料
-            <span class="trangle"></span>
+<div class="afterLogin" style="display: block;">
+    <div class="fk-rbar-tabs">
+        <i class="message iconfont icon-zhanghao">
+            <div class="slogans">我的资料
+                <span class="trangle"></span>
+            </div>
+        </i>
+        <i class="collection iconfont icon-shoucang-copy">
+            <div class="slogans">我的收藏
+                <span class="trangle"></span>
+            </div>
+        </i>
+        <i class="shoppingCar iconfont icon-icon1">
+            <div></div>
+            <h1>购物车</h1>
+            <span>0</span>
+        </i>
+        <i class="leaveMessage iconfont icon-liuyan">
+            <div class="slogans">留言
+                <span class="trangle"></span>
+            </div>
+        </i>
+        <i class="erweima iconfont icon-erweima"></i>
+        <i class="toTop iconfont icon-fanhuidingbu">
+            <div class="slogans">回到顶部
+                <span class="trangle"></span>
+            </div>
+        </i>
+    </div>
+    <div class="fk-rbar-plugins">
+        <div class="myStuffTab"></div>
+        <div class="myCollectionTab">
+            <div></div>
+            <div>亲，还没有入您法眼的商品哟~</div>
         </div>
-        <div class="landingBoox">
-            <span class="trangle"></span>
-            <div class="logintitle">用户登录</div>
-            <input type="text" name="userName" placeholder="用户名">
-            <input type="text" name="password" placeholder="密码">
-            <div class="loginBtn">登录</div>
-            <div class="registerQuick"><a href="register.html">免费注册></a></div>
+        <div class="myCartTab">
+            <div class="hasNoCartThings" style="display: none;">
+                <div></div>
+                <div>亲，您的购物车空空的哟~</div>
+            </div>
+            <div class="hasCartThings" style="display: block">
+                <div class="hasCartThings_top">
+                    <div class="cartThing">
+                        <img src="image/111.jpg" class="cartThingImg">
+                        <div class="cartThingTitle">8成新 新概念摄像机 高清专业数码摄像机</div>
+                        <div class="cartThingPrice">￥11099</div>
+                        <div class="cartThingNumber">x1</div>
+                        <div class="cartThingDelete">删除</div>
+                    </div>
+                </div>
+                <div class="hasCartThings_bottom">去购物车结算</div>
+            </div>
         </div>
-    </i>
-    <i class="collection iconfont icon-shoucang-copy">
-        <div class="slogans">我的收藏
-            <span class="trangle"></span>
-        </div>
-        <div class="landingBoox">
-            <span class="trangle"></span>
-            <div class="logintitle">用户登录</div>
-            <input type="text" name="userName" placeholder="用户名">
-            <input type="text" name="password" placeholder="密码">
-            <div class="loginBtn">登录</div>
-            <div class="registerQuick"><a href="register.html">免费注册></a></div>
-        </div>
-    </i>
-    <i class="shoppingCar iconfont icon-icon1">
-        <div></div>
-        <h1>购物车</h1>
-        <span>0</span>
-        <div class="landingBoox">
-            <span class="trangle"></span>
-            <div class="logintitle">用户登录</div>
-            <input type="text" name="userName" placeholder="用户名">
-            <input type="text" name="password" placeholder="密码">
-            <div class="loginBtn">登录</div>
-            <div class="registerQuick"><a href="register.html">免费注册></a></div>
-        </div>
-    </i>
-    <i class="leaveMessage iconfont icon-liuyan">
-        <div class="slogans">留言
-            <span class="trangle"></span>
-        </div>
-    </i>
-    <i class="erweima iconfont icon-erweima"></i>
-    <i class="toTop iconfont icon-fanhuidingbu" id="toTop">
-        <div class="slogans">回到顶部
-            <span class="trangle"></span>
-        </div>
-    </i>
+    </div>
 </div>
 <!--右侧导航栏结束-->
 <!--main模块开始-->
@@ -151,10 +146,10 @@
         <div class="body_left">
             <div class="body_left_t">会员中心</div>
             <div class="body_left_b">
-                <span class="addBlBgc"><a href="userInformation.html" class="list-group-item">我的资料</a></span>
-                <span><a href="userInformation_order.html" class="list-group-item">我的订单</a></span>
-                <span><a href="userInformation_address.html" class="list-group-item">收货人信息</a></span>
-                <span><a href="userInformation_collection.html" class="list-group-item">我的收藏</a></span>
+                <span class="addBlBgc"><a href="http://localhost:8080/userInformation" class="list-group-item">我的资料</a></span>
+                <span><a href="http://localhost:8080/userinformationorder" class="list-group-item">我的订单</a></span>
+                <span><a href="http://localhost:8080/userInformationaddress" class="list-group-item">收货人信息</a></span>
+                <span><a href="http://localhost:8080/userInformationcollection" class="list-group-item">我的收藏</a></span>
             </div>
         </div>
         <div class="body_right">
@@ -165,7 +160,7 @@
                     <div class="writeHead">编辑头像</div>
                     <input type="file" multiple accept="image/*" style="display: none;" class="file">
                 </span>
-                <span>孙力(<i class="iconfont icon-huiyuan">普通会员</i>)</span>
+                <span><span></span>(<i class="iconfont icon-huiyuan">普通会员</i>)</span>
                 <span>资料完整度：</span>
                 <span></span>
                 <span>100%</span>
@@ -204,6 +199,7 @@
 <script src="js/jquery-1.12.4.js"></script>
 <script src="js/jquery.lazyload.js"></script>
 <script src="js/MD5.js"></script>
+<script src="js/template-web.js"></script>
 <script src="js/jquery.cookie.js"></script>
 <script src="js/base.js"></script>
 <script src="js/userInformation.js"></script>
@@ -220,6 +216,16 @@
             });
             this.val("");
         });
+        $(".body_right_m").children("span").eq(1).children("span").text($.cookie("userAccount"));
+        $("#accountname").val($.cookie("userAccount"));
+        $("#name").val($.cookie("userName"));
+        if ($.cookie("userEmail") == "null") {
+            $("#userEmail").val("");
+        }
+        else {
+            $("#userEmail").val($.cookie("userEmail"));
+        }
+        $("#telphone").val($.cookie("userPhone"));
     });
 </script>
 </body>

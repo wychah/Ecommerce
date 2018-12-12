@@ -116,6 +116,8 @@
 }
 
 .body .shoppingList > .shoppingListHandler > .shoppingListHandlerDes > .shoppingListHandlerDesList > table tr > td:first-of-type > img {
+    width: 90px;
+    height: 85px;
     vertical-align: middle;
     margin-left: -80px;
 }
