@@ -164,4 +164,8 @@ public interface CommodityDao {
      * @return
      */
     List<CommodityBrief> getSecondHandAppliance(@Param("startNum") int startNum, @Param("maxSize") int maxSize);
+
+    int getCommodityInventory(@Param("commodityId") int commodityId);
+
+    void commoditySold(@Param("commodityId") int commodityId, @Param("commodityInventory") int commodityInventory);
 }

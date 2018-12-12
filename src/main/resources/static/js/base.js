@@ -96,6 +96,7 @@ $(function () {
         if ($(".afterLogin").css("right") == "-255px") {
             $(".afterLogin").stop().animate({right: 0});
         }
+        $(".fk-rbar-plugins>div").eq(index).css("zIndex", "200").siblings().css("zIndex", "199");
         $(".fk-rbar-plugins>div").eq(index).stop().animate({width: 255, height: 680, opacity: 1}, 400
         ).siblings().stop().animate({width: 0, height: 0, opacity: 0}, 500);
     });
@@ -120,6 +121,17 @@ $(function () {
         ).siblings().stop().animate({width: 0, height: 0, opacity: 0}, 500);
     });
     $(document).on("click", function () {
-        $(".afterLogin").stop().animate({right: -255});
+        if ($(".afterLogin").css("right") == "0px") {
+            $(".afterLogin").stop().animate({right: -255});
+            return false;
+        }
+    });
+    // 退出清楚数据
+    $(".myStuffTab_bottom,.loginOut").on("click", function () {
+        console.log("11");
+        $.removeCookie("userId");
+        sessionStorage.clear();
+        location.href = "http://localhost:8080";
+        return false;
     });
 });

@@ -177,7 +177,12 @@
                 console.log(res);
                 if (res.loginResult == "loginSuccess") {
                     $.cookie("userId", res.userId, {expires: 1});
-                    location.href = "http://localhost:8080";
+                    if (sessionStorage.getItem("lastPage") != undefined) {
+                        location.href = sessionStorage.getItem("lastPage");
+                    }
+                    else {
+                        location.href = "http://localhost:8080";
+                    }
                 }
                 else {
                     alert("登陆失败");

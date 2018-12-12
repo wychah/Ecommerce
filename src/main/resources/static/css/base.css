@@ -417,6 +417,7 @@ ol {
 .afterLogin > .fk-rbar-plugins > .myStuffTab {
     background-color: rgb(60, 60, 60);
     opacity: 1;
+    z-index: 200;
 }
 
 .afterLogin > .fk-rbar-plugins > .myStuffTab > div {
@@ -501,6 +502,7 @@ ol {
 .afterLogin > .fk-rbar-plugins > .myCartTab {
     background-color: rgb(230, 230, 230);
     opacity: 0;
+    z-index: 199;
 }
 
 .afterLogin > .fk-rbar-plugins > .myCollectionTab > div:first-of-type,

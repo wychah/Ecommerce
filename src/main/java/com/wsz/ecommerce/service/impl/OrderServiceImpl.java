@@ -1,6 +1,7 @@
 package com.wsz.ecommerce.service.impl;
 
 import com.wsz.ecommerce.dao.AddressDao;
+import com.wsz.ecommerce.dao.CommodityDao;
 import com.wsz.ecommerce.dao.OrderDao;
 import com.wsz.ecommerce.domain.Order;
 import com.wsz.ecommerce.domain.OrderCheck;
@@ -28,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
     private AddressDao addressDao;
 
     @Autowired
-    private CommodityService commodityService;
+    private CommodityDao commodityDao;
 
     /**
      * 生成订单编号
@@ -57,20 +58,29 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void orderGenerate(String orderId, OrderCheck orderCheck) {
-        Order order = new Order();
-        order.setOrderId(orderId);
-        order.setUserId(orderCheck.getUserId());
-        order.setAddressId(orderCheck.getAddressId());
-        order.setOrderAmount(orderCheck.getOrderAmount());
-        order.setOrderStatus("待发货");
-        orderDao.insertOrder(order);
+    public String orderGenerate(String orderId, OrderCheck orderCheck) {
+        int inventory = commodityDao.getCommodityInventory(orderCheck.getCommodityId());
+        if (inventory > 0) {
+            commodityDao.commoditySold(orderCheck.getCommodityId(), inventory - 1);
 
-        SubOrder subOrder = new SubOrder();
-        subOrder.setOrderId(orderId);
-        subOrder.setCommodityId(orderCheck.getCommodityId());
-        subOrder.setAmount(orderCheck.getAmount());
-        orderDao.insertSubOrder(subOrder);
+            Order order = new Order();
+            order.setOrderId(orderId);
+            order.setUserId(orderCheck.getUserId());
+            order.setAddressId(orderCheck.getAddressId());
+            order.setOrderAmount(orderCheck.getOrderAmount());
+            order.setOrderStatus("待发货");
+            orderDao.insertOrder(order);
+
+            SubOrder subOrder = new SubOrder();
+            subOrder.setOrderId(orderId);
+            subOrder.setCommodityId(orderCheck.getCommodityId());
+            subOrder.setAmount(orderCheck.getAmount());
+            orderDao.insertSubOrder(subOrder);
+
+            return "订单提交成功";
+        } else {
+            return "库存不足";
+        }
     }
 
     @Override
@@ -85,7 +95,7 @@ public class OrderServiceImpl implements OrderService {
     public Map showOrderInfo(int userId, int commodityId, int amount) {
         Map map = new HashMap();
         List<ReceiverInfo> receiverInfo = addressDao.findReceiverInfoById(userId);
-        map.put("orderInfo",commodityService.getOrderInfo(commodityId, amount));
+        map.put("orderInfo",commodityDao.getOrderInfo(commodityId, amount));
         map.put("receiverInfo",receiverInfo);
         return map;
     }

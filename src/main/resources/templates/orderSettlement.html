@@ -416,7 +416,7 @@
                             var address = $("#changeInformationDes_address").val();
                             var tel = $("#changeInformationDes_tel").val();
                             var newReceiverInfo = {
-                                "userId": 1,
+                                "userId": $.cookie("userId"),
                                 "receiverName": name,
                                 "location": address,
                                 "receiverPhone": tel
@@ -457,7 +457,6 @@
 
                 $("#submitOrder").on("click", function () {
                     var addressId = $(".addConsignee").children(".addBorder").attr("addressid");
-                    console.log($(".addConsignee").children(".addBorder"));
                     if ($(".addConsignee").children(".addBorder").length != 0) {
                         var orderCheck = {
                             "userId": $.cookie("userId"),
@@ -473,8 +472,13 @@
                             contentType: "application/json;charset=UTF-8",
                             data: JSON.stringify(orderCheck),
                             success: function (res) {
-                                sessionStorage.setItem("orderId", res);
-                                location.href = "http://localhost:8080/status";
+                                console.log(res);
+                                if (res == "订单提交失败") {
+                                    alert("订单提交失败");
+                                } else {
+                                    sessionStorage.setItem("orderId", res);
+                                    location.href = "http://localhost:8080/status";
+                                }
                             }
                         });
                     }

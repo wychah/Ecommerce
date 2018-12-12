@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface OrderService {
     String setOrderId(int userId);
-    void orderGenerate(String orderId, OrderCheck orderCheck);
+    String orderGenerate(String orderId, OrderCheck orderCheck);
     Map getFinalOrderInfo(String orderId);
     Map showOrderInfo(int userId, int commodityId, int amount);
 }

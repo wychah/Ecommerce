@@ -181,6 +181,7 @@
 <script src="js/jquery-1.12.4.js"></script>
 <script src="js/jquery.lazyload.js"></script>
 <script src="js/template-web.js"></script>
+<script src="js/jquery.cookie.js"></script>
 <script src="js/base.js"></script>
 <script src="js/shoppingDetail.js"></script>
 <script>
@@ -271,8 +272,15 @@
             });
             //显示遮挡层和显示成功
             $(".buyThings").on("click", function () {
-                $(".barrier").stop().show();
-                $(".successToAddCart").stop().show();
+                if ($.cookie("userId") == undefined) {
+                    sessionStorage.setItem("lastPage", "http://localhost:8080/commodity");
+                    alert("请登录");
+                    location.href = "http://localhost:8080/login";
+                }
+                else {
+                    $(".barrier").stop().show();
+                    $(".successToAddCart").stop().show();
+                }
             });
             //去掉遮挡层和显示成功
             $(".successBtn>a,.successToAddCart>span").on("click", function () {
@@ -287,9 +295,16 @@
             });
             //立即购买
             $("#getInToCart").on("click", function () {
-                var thingsNumber = $("#thingsNumber").val();
-                sessionStorage.setItem("thingsNumber", thingsNumber);
-                location.href = "http://localhost:8080/order";
+                if ($.cookie("userId") == undefined) {
+                    sessionStorage.setItem("lastPage", "http://localhost:8080/commodity");
+                    alert("请登录");
+                    location.href = "http://localhost:8080/login";
+                }
+                else {
+                    var thingsNumber = $("#thingsNumber").val();
+                    sessionStorage.setItem("thingsNumber", thingsNumber);
+                    location.href = "http://localhost:8080/order";
+                }
             });
         });
 

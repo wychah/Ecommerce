@@ -73,6 +73,15 @@
         FROM commodity
     </select>
 
+    <select id="getCommodityInventory" resultType="int">
+        SELECT
+            commodity.commodityInventory
+        FROM
+            commodity
+        WHERE
+            commodity.commodityId = #{commodityId}
+    </select>
+
     <select id="resultAmount" resultType="double">
         select COUNT(*)
         from commodity,attribute,detail
@@ -313,4 +322,10 @@
             AND sort.sortId = 1
 		LIMIT #{startNum},#{maxSize}
     </select>
+
+    <update id="commoditySold">
+        UPDATE commodity
+        SET commodityInventory = #{commodityInventory}
+        WHERE commodityId = #{commodityId}
+    </update>
 </mapper>

@@ -18,26 +18,30 @@ $(function () {
 });
 //注册验证
 $(function () {
-    // $("#nickname").on("blur", function () {
-    //     var userAccount = $("#nickname").val();
-    //     if (userAccount != "") {
-    //         $.ajax({
-    //             url: "http://localhost:8080/user/ifUserAccountRepeat",
-    //             type: "post",
-    //             data: {userAccount: userAccount},
-    //             success: function (res) {
-    //                 console.log(res);
-    //                 if (res.result == 1) {
-    //                     var reg = /[\u4e00-\u9fa5]/g;
-    //                     var value = $("#nickname").siblings("label").html().match(reg).join("") + "已存在";
-    //                     createSpan($(this), value);
-    //                 }
-    //             }
-    //         });
-    //     }
-    });
     $(".registry input").on("keyup", function () {
-
+        var that = this;
+        $("#nickname").off("blur");
+        $("#nickname").on("blur", function () {
+            if ($(this).parent().next("span")) {
+                $(this).parent().next("span").remove();
+            }
+            var userAccount = $("#nickname").val();
+            $.post("http://localhost:8080/user/ifUserAccountRepeat", {"userAccount": userAccount}, function (res) {
+                if (res.result == 1) {
+                    var reg = /[\u4e00-\u9fa5]/g;
+                    $(this).siblings("span").html("*");
+                    var value = $("#nickname").siblings("label").html().match(reg).join("") + "已存在";
+                    createSpan($("#nickname"), value);
+                    $("#nickname").off("blur");
+                }
+                else {
+                    var img = $("<img src='image/ok.png'>");
+                    $(this).siblings("span").html("");
+                    img.css({"width": "10", "height": "10"});
+                    img.appendTo($(this).siblings("span"));
+                }
+            }.bind(that));
+        });
         $(".passwordStrength").hide();
         if ($(this).parent().next("span")) {
             $(this).parent().next("span").remove();

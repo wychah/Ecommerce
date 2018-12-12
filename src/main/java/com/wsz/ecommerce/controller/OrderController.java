@@ -55,8 +55,12 @@ public class OrderController {
     @ResponseBody
     public String payment(@RequestBody OrderCheck orderCheck) {
         String orderId = orderService.setOrderId(orderCheck.getUserId());
-        orderService.orderGenerate(orderId, orderCheck);
-        return orderId;
+        String status = orderService.orderGenerate(orderId, orderCheck);
+        if (status == "订单提交成功") {
+            return orderId;
+        } else {
+            return "订单提交失败";
+        }
     }
 
     @GetMapping("/status")
