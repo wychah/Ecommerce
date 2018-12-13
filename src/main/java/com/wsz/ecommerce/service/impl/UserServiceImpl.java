@@ -1,6 +1,7 @@
 package com.wsz.ecommerce.service.impl;
 
 import com.wsz.ecommerce.dao.UserDao;
+import com.wsz.ecommerce.domain.CommodityCart;
 import com.wsz.ecommerce.domain.User;
 import com.wsz.ecommerce.domain.UserBasicInfo;
 import com.wsz.ecommerce.domain.UserRegister;
@@ -9,6 +10,8 @@ import com.wsz.ecommerce.util.LoginResult;
 import com.wsz.ecommerce.util.SuccessOrFail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -82,5 +85,11 @@ public class UserServiceImpl implements UserService{
         }
 
         return successOrFail;
+    }
+
+    @Override
+    public List<CommodityCart> getShoppingCart(int userId) {
+        List<CommodityCart> commodityCarts = userDao.getShoppingCart(userId);
+        return commodityCarts;
     }
 }

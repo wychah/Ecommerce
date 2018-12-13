@@ -1,5 +1,6 @@
 package com.wsz.ecommerce.controller;
 
+import com.wsz.ecommerce.domain.CommodityCart;
 import com.wsz.ecommerce.domain.User;
 import com.wsz.ecommerce.domain.UserBasicInfo;
 import com.wsz.ecommerce.domain.UserRegister;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -84,6 +86,13 @@ public class UserController {
         return successOrFail;
     }
 
+    //这个是返回购物车Map,Map在Service封装
+    @ResponseBody
+    @PostMapping("/getShoppingCart")
+    public List<CommodityCart> getShoppingCart(@RequestParam("userId") int userId){
+        List<CommodityCart> commodityCarts = userService.getShoppingCart(userId);
+        return commodityCarts;
+    }
     //用户注册，注册成功跳转到
 //    @PostMapping("/toRegister")
 //    public String userRegister(@RequestParam("userAccount") String userAccount,

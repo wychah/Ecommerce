@@ -42,4 +42,11 @@
         INSERT INTO user(userAccount, userPassword, userName,userPhone)
         VALUES (#{userAccount},#{userPassword},#{userName},#{userPhone})
     </insert>
+    <select id="getShoppingCart" resultType="com.wsz.ecommerce.domain.CommodityCart">
+        SELECT cart.commodityId,commodityTitle,commodityPrice,commodityPicture,amount
+        FROM commodity,cart
+        WHERE cart.userId = #{userId} AND
+            commodity.commodityId = cart.commodityId
+        ORDER BY addTIme DESC
+    </select>
 </mapper>
