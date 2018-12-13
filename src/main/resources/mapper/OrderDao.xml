@@ -72,4 +72,22 @@
             `order`.orderId = #{orderId}
     </update>
 
+    <insert id="backToCart">
+        INSERT INTO cart ( cart.userId, cart.commodityId, cart.amount )
+        VALUES
+            ( #{userId}, #{commodityId}, #{amount} )
+    </insert>
+
+    <delete id="deleteFakeOrder">
+        DELETE
+            `order`,
+            suborder
+        FROM
+            `order`,
+            suborder
+        WHERE
+            `order`.orderId = suborder.orderId
+            AND `order`.orderId = #{orderId}
+    </delete>
+
 </mapper>

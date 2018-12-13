@@ -60,8 +60,14 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public String orderGenerate(OrderCheck orderCheck) {
         if (orderDao.getOrderStatus(orderCheck.getOrderId()).equals("待提交")) {
-            orderDao.updateOrder(orderCheck.getOrderId(),orderCheck.getAddressId(),"待发货",orderCheck.getOrderAmount());
-            return "订单提交成功";
+            try {
+                orderDao.updateOrder(orderCheck.getOrderId(),orderCheck.getAddressId(),"待发货",orderCheck.getOrderAmount());
+                return "订单提交成功";
+            } catch (Exception e) {
+                orderDao.backToCart(orderCheck.getUserId(),orderCheck.getCommodityId(),orderCheck.getAmount());
+                orderDao.deleteFakeOrder(orderCheck.getOrderId());
+                return "订单提交失败";
+            }
         } else {
             return "订单已提交,请勿重复提交订单";
         }
@@ -109,5 +115,14 @@ public class OrderServiceImpl implements OrderService {
         map.put("orderId",orderId);
         fakeOrderGenerate(orderId,userId,commodityId,amount);
         return map;
+    }
+
+    @Override
+    public String checkCommodityInventory(int commodityId, int amount) {
+        if (commodityDao.getCommodityInventory(commodityId) < amount) {
+            return "库存不足";
+        } else {
+            return "可以购买";
+        }
     }
 }

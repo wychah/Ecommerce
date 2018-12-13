@@ -398,13 +398,24 @@
                     sessionStorage.setItem("lastPage", "http://localhost:8080/commodity");
                     alert("请登录");
                     location.href = "http://localhost:8080/login";
-                }
-                if (res.commodities.commodityInventory == 0) {
-                    alert("库存不足");
-                }
-                else {
-                    $(".barrier").stop().show();
-                    $(".successToAddCart").stop().show();
+                } else {
+                    var thingsNumber = $("#thingsNumber").val();
+                    $.ajax({
+                        url: "http://localhost:8080/commodity/check",
+                        type: "post",
+                        data: {
+                            "commodityId": sessionStorage.getItem("commodityId"),
+                            "amount": thingsNumber
+                        },
+                        success: function (res) {
+                            if (res == "库存不足") {
+                                alert("库存不足");
+                            } else {
+                                $(".barrier").stop().show();
+                                $(".successToAddCart").stop().show();
+                            }
+                        }
+                    });
                 }
             });
             //去掉遮挡层和显示成功
@@ -423,12 +434,24 @@
                     sessionStorage.setItem("lastPage", "http://localhost:8080/commodity");
                     alert("请登录");
                     location.href = "http://localhost:8080/login";
-                } else if (res.commodities.commodityInventory == 0) {
-                    alert("库存不足");
                 } else {
                     var thingsNumber = $("#thingsNumber").val();
-                    sessionStorage.setItem("thingsNumber", thingsNumber);
-                    location.href = "http://localhost:8080/order";
+                    $.ajax({
+                        url: "http://localhost:8080/commodity/check",
+                        type: "post",
+                        data: {
+                            "commodityId": sessionStorage.getItem("commodityId"),
+                            "amount": thingsNumber
+                        },
+                        success: function (res) {
+                            if (res == "库存不足") {
+                                alert("库存不足");
+                            } else {
+                                sessionStorage.setItem("thingsNumber", thingsNumber);
+                                location.href = "http://localhost:8080/order";
+                            }
+                        }
+                    });
                 }
             });
         });

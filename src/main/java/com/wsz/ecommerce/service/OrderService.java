@@ -12,4 +12,5 @@ public interface OrderService {
     String fakeOrderGenerate(String orderId,int userId, int commodityId, int amount);
     Map getFinalOrderInfo(String orderId);
     Map showOrderInfo(int userId, int commodityId, int amount);
+    String checkCommodityInventory(int commodityId, int amount);
 }

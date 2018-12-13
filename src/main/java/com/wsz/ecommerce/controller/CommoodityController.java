@@ -2,6 +2,7 @@ package com.wsz.ecommerce.controller;
 
 import com.wsz.ecommerce.domain.CommodityDetail;
 import com.wsz.ecommerce.service.CommodityService;
+import com.wsz.ecommerce.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -18,9 +19,18 @@ public class CommoodityController {
     @Autowired
     private CommodityService commodityService;
 
+    @Autowired
+    private OrderService orderService;
+
     @GetMapping("/detail")
     @ResponseBody
     public Map getTheCommodity(@RequestParam("commodityId") Integer commodityId) {
         return commodityService.getCommodityById(commodityId);
+    }
+
+    @PostMapping("/check")
+    @ResponseBody
+    public String checkCommodityInventory(@RequestParam("commodityId") int commodityId, @RequestParam("amount") int amount) {
+        return orderService.checkCommodityInventory(commodityId,amount);
     }
 }

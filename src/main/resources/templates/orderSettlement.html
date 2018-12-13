@@ -500,6 +500,9 @@
                                 if (res == "订单已提交,请勿重复提交订单") {
                                     alert("订单已提交,请勿重复提交订单");
                                     location.href = "http://localhost:8080/commodity";
+                                } else if (res == "订单提交失败") {
+                                    alert("订单提交失败，已退回购物车");
+                                    location.href = "http://localhost:8080/shoppingcart";
                                 } else {
                                     sessionStorage.setItem("orderId", fakeOrderId);
                                     location.href = "http://localhost:8080/status";
