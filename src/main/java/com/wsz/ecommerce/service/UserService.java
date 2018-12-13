@@ -8,6 +8,7 @@ import com.wsz.ecommerce.util.LoginResult;
 import com.wsz.ecommerce.util.SuccessOrFail;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserService {
     User getUserById(int userId);
@@ -18,4 +19,5 @@ public interface UserService {
     SuccessOrFail ifUserPhoneRepeat(String userPhone);
     SuccessOrFail userRegister(UserRegister userRegister);
     List<CommodityCart> getShoppingCart(int userId);
+    Map getUserOrder(int userId);
 }

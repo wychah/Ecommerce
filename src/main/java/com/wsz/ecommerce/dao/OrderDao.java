@@ -1,9 +1,6 @@
 package com.wsz.ecommerce.dao;
 
-import com.wsz.ecommerce.domain.Order;
-import com.wsz.ecommerce.domain.OrderCommodityInfo;
-import com.wsz.ecommerce.domain.OrderReceiverInfo;
-import com.wsz.ecommerce.domain.SubOrder;
+import com.wsz.ecommerce.domain.*;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -64,4 +61,17 @@ public interface OrderDao {
      * @param orderId
      */
     void deleteFakeOrder(@Param("orderId") String orderId);
+
+    /**
+     * @param userId 用户Id
+     * @return 用户的待提交的订单
+     */
+    List<UserOrderInfo> getWaitPush(@Param("userId") int userId);
+
+    /**
+     *
+     * @param userId 用户Id
+     * @return 用户待发货的订单
+     */
+    List<UserOrderInfo> getWaitSend(@Param("userId") int userId);
 }

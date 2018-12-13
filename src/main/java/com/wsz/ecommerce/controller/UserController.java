@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
@@ -93,6 +94,14 @@ public class UserController {
         List<CommodityCart> commodityCarts = userService.getShoppingCart(userId);
         return commodityCarts;
     }
+
+    @ResponseBody
+    @PostMapping("/getUserOrders")
+    public Map getUserOrder(@RequestParam("userId") int userId){
+        Map map = userService.getUserOrder(userId);
+        return map;
+    }
+
     //用户注册，注册成功跳转到
 //    @PostMapping("/toRegister")
 //    public String userRegister(@RequestParam("userAccount") String userAccount,

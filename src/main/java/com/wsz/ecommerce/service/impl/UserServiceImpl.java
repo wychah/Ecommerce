@@ -1,23 +1,26 @@
 package com.wsz.ecommerce.service.impl;
 
+import com.wsz.ecommerce.dao.OrderDao;
 import com.wsz.ecommerce.dao.UserDao;
-import com.wsz.ecommerce.domain.CommodityCart;
-import com.wsz.ecommerce.domain.User;
-import com.wsz.ecommerce.domain.UserBasicInfo;
-import com.wsz.ecommerce.domain.UserRegister;
+import com.wsz.ecommerce.domain.*;
 import com.wsz.ecommerce.service.UserService;
 import com.wsz.ecommerce.util.LoginResult;
 import com.wsz.ecommerce.util.SuccessOrFail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService{
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private OrderDao orderDao;
 
     @Override
     public User getUserById(int userId) {
@@ -91,5 +94,15 @@ public class UserServiceImpl implements UserService{
     public List<CommodityCart> getShoppingCart(int userId) {
         List<CommodityCart> commodityCarts = userDao.getShoppingCart(userId);
         return commodityCarts;
+    }
+
+    @Override
+    public Map getUserOrder(int userId) {
+        List<UserOrderInfo> userOrderInfosWaitPush = orderDao.getWaitPush(userId);
+        List<UserOrderInfo> userOrderInfosWaitSend = orderDao.getWaitSend(userId);
+        Map map = new HashMap();
+        map.put("waitPush",userOrderInfosWaitPush);
+        map.put("waitSend",userOrderInfosWaitSend);
+        return map;
     }
 }
