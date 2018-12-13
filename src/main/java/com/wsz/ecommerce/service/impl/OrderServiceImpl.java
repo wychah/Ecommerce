@@ -58,26 +58,34 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public String orderGenerate(String orderId, OrderCheck orderCheck) {
-        int inventory = commodityDao.getCommodityInventory(orderCheck.getCommodityId());
+    public String orderGenerate(OrderCheck orderCheck) {
+        if (orderDao.getOrderStatus(orderCheck.getOrderId()).equals("待提交")) {
+            orderDao.updateOrder(orderCheck.getOrderId(),orderCheck.getAddressId(),"待发货",orderCheck.getOrderAmount());
+            return "订单提交成功";
+        } else {
+            return "订单已提交,请勿重复提交订单";
+        }
+    }
+
+    @Override
+    public String fakeOrderGenerate(String orderId, int userId, int commodityId, int amount) {
+        int inventory = commodityDao.getCommodityInventory(commodityId);
         if (inventory > 0) {
-            commodityDao.commoditySold(orderCheck.getCommodityId(), inventory - 1);
+            commodityDao.commoditySold(commodityId, inventory - amount);
 
             Order order = new Order();
             order.setOrderId(orderId);
-            order.setUserId(orderCheck.getUserId());
-            order.setAddressId(orderCheck.getAddressId());
-            order.setOrderAmount(orderCheck.getOrderAmount());
-            order.setOrderStatus("待发货");
+            order.setUserId(userId);
+            order.setOrderStatus("待提交");
             orderDao.insertOrder(order);
 
             SubOrder subOrder = new SubOrder();
             subOrder.setOrderId(orderId);
-            subOrder.setCommodityId(orderCheck.getCommodityId());
-            subOrder.setAmount(orderCheck.getAmount());
+            subOrder.setCommodityId(commodityId);
+            subOrder.setAmount(amount);
             orderDao.insertSubOrder(subOrder);
 
-            return "订单提交成功";
+            return "订单生成成功";
         } else {
             return "库存不足";
         }
@@ -94,9 +102,12 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Map showOrderInfo(int userId, int commodityId, int amount) {
         Map map = new HashMap();
+        String orderId = setOrderId(userId);
         List<ReceiverInfo> receiverInfo = addressDao.findReceiverInfoById(userId);
         map.put("orderInfo",commodityDao.getOrderInfo(commodityId, amount));
         map.put("receiverInfo",receiverInfo);
+        map.put("orderId",orderId);
+        fakeOrderGenerate(orderId,userId,commodityId,amount);
         return map;
     }
 }

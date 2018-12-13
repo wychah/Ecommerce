@@ -13,4 +13,6 @@ public interface OrderDao {
     void insertSubOrder(SubOrder subOrder);
     List<OrderCommodityInfo> findOrderCommodityInfo(@Param("orderId") String orderId);
     OrderReceiverInfo findOrderReceiverInfo(@Param("orderId") String orderId);
+    void updateOrder(@Param("orderId") String orderId, @Param("addressId") int addressId, @Param("orderStatus") String orderStatus, @Param("orderAmount") int orderAmount);
+    String getOrderStatus(@Param("orderId") String orderId);
 }

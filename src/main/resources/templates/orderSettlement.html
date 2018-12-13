@@ -21,7 +21,7 @@
 <div class="shortcut">
     <div class="w" style="display: block;">
         <ul class="fl">
-            <li><a href="http://localhost:8080/userinfo"><i class="iconfont icon-huiyuan">孙力</i></a></li>
+            <li class="userAccount"></li>
             <li class="spacer">|</li>
             <li><a href="#" class="loginOut">退出</a></li>
         </ul>
@@ -341,9 +341,10 @@
             data: {
                 "userId": $.cookie("userId"),
                 "commodityId": sessionStorage.getItem("commodityId"),
-                "thingsNumber": sessionStorage.getItem("thingsNumber")
+                "amount": sessionStorage.getItem("thingsNumber")
             },
             success: function (res) {
+                var fakeOrderId = res.orderId;
                 res.orderInfo.finalPrice = res.orderInfo.totalPrice + 5;
                 var orderAmount = res.orderInfo.finalPrice;
                 var render = template.compile(data);
@@ -483,24 +484,24 @@
                     var addressId = $(".addConsignee").children(".addBorder").attr("addressid");
                     if ($(".addConsignee").children(".addBorder").length != 0) {
                         var orderCheck = {
+                            "orderId": fakeOrderId,
                             "userId": $.cookie("userId"),
                             "addressId": addressId,
                             "commodityId": sessionStorage.getItem("commodityId"),
                             "amount": sessionStorage.getItem("thingsNumber"),
                             "orderAmount": orderAmount
                         };
-                        console.log(orderCheck.userId);
                         $.ajax({
                             url: "http://localhost:8080/order/pay",
                             type: "post",
                             contentType: "application/json;charset=UTF-8",
                             data: JSON.stringify(orderCheck),
                             success: function (res) {
-                                console.log(res);
-                                if (res == "订单提交失败") {
-                                    alert("订单提交失败");
+                                if (res == "订单已提交,请勿重复提交订单") {
+                                    alert("订单已提交,请勿重复提交订单");
+                                    location.href = "http://localhost:8080/commodity";
                                 } else {
-                                    sessionStorage.setItem("orderId", res);
+                                    sessionStorage.setItem("orderId", fakeOrderId);
                                     location.href = "http://localhost:8080/status";
                                 }
                             }

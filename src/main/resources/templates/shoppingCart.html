@@ -18,21 +18,14 @@
 <body>
 <!--快捷导航模块开始-->
 <div class="shortcut">
-    <div class="w">
+    <div class="w" style="display: block;">
         <ul class="fl">
-            <li><a href="login.html">请登录</a></li>
+            <li class="userAccount"></li>
             <li class="spacer">|</li>
-            <li><a href="http://localhost:8080/register">注册</a></li>
-            <li class="spacer">|</li>
-            <li>
-                <a href="#" id="wechartLogion">
-                    <span></span>
-                    微信登录
-                </a>
-            </li>
+            <li><a href="#" class="loginOut">退出</a></li>
         </ul>
         <ul class="fr">
-            <li id="phoneApp">
+            <li id="phoneAppAfter">
                 <a href="#">
                     <span></span>
                     手机版
@@ -51,7 +44,7 @@
                 </a>
             </li>
             <li class="spacer">|</li>
-            <li><a href="">我的资料</a></li>
+            <li><a href="#">我的资料</a></li>
             <li class="spacer">|</li>
             <li><a href="">我的订单</a></li>
             <li class="spacer">|</li>
@@ -59,7 +52,6 @@
                 <a href="">
                     <span></span>
                     购物车
-                    <number>(0)</number>
                 </a>
             </li>
         </ul>

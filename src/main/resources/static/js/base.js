@@ -83,28 +83,6 @@ $(function () {
         e.stopPropagation();
     });
     //登录后右边菜单栏
-    $(".afterLogin").stop().animate({right: 0}, 1200, "linear");
-    $(".afterLogin").on("click", function (e) {
-        e.stopPropagation();
-    });
-    $(".fk-rbar-tabs>i").on("click", function (e) {
-        var index = $(this).index();
-        console.log($(".afterLogin").css("right"));
-        if ($(".fk-rbar-plugins>div").eq(index).css("opacity") == 1 && $(".afterLogin").css("right") == "0px") {
-            $(".afterLogin").stop().animate({right: -255});
-        }
-        if ($(".afterLogin").css("right") == "-255px") {
-            $(".afterLogin").stop().animate({right: 0});
-        }
-        $(".fk-rbar-plugins>div").eq(index).css("zIndex", "200").siblings().css("zIndex", "199");
-        $(".fk-rbar-plugins>div").eq(index).stop().animate({width: 255, height: 680, opacity: 1}, 400
-        ).siblings().stop().animate({width: 0, height: 0, opacity: 0}, 500);
-    });
-    $(document).on("click", function () {
-        $(".afterLogin").stop().animate({right: -255});
-    });
-    //登录后右边菜单栏
-    $(".afterLogin").stop().animate({right: 0}, 1200, "linear");
     $(".afterLogin").on("click", function (e) {
         e.stopPropagation();
     });
@@ -128,7 +106,6 @@ $(function () {
     });
     // 退出清楚数据
     $(".myStuffTab_bottom,.loginOut").on("click", function () {
-        console.log("11");
         $.removeCookie("userId");
         sessionStorage.clear();
         location.href = "http://localhost:8080";
@@ -165,17 +142,26 @@ $(function () {
 
     var userAccoutData =
         '<a href="http://localhost:8080/userinfo"><i class="iconfont icon-huiyuan">{{userAccount}}</i></a>';
-    $.post("http://localhost:8080/user/getUserBasicInfo", {userId: $.cookie("userId")}, function (res) {
-        console.log(res);
-        var render = template.compile(myStuff);
-        var html = render(res);
-        $(".myStuffTab").html(html);
-        var userAccountRender = template.compile(userAccoutData);
-        var userAccountHtml = userAccountRender(res);
-        $(".userAccount").html(userAccountHtml);
-        $.cookie("userAccount",res.userAccount);
-        $.cookie("userName",res.userName);
-        $.cookie("userPhone",res.userPhone);
-        $.cookie("userEmail",res.userEmail);
-    });
+    if ($.cookie("userId") != undefined) {
+        $.post("http://localhost:8080/user/getUserBasicInfo", {userId: $.cookie("userId")}, function (res) {
+            var render = template.compile(myStuff);
+            var html = render(res);
+            $(".myStuffTab").html(html);
+            var userAccountRender = template.compile(userAccoutData);
+            var userAccountHtml = userAccountRender(res);
+            $(".userAccount").html(userAccountHtml);
+            $.cookie("userAccount", res.userAccount);
+            $.cookie("userName", res.userName);
+            $.cookie("userPhone", res.userPhone);
+            $.cookie("userEmail", res.userEmail);
+        });
+    }
+    if ($.cookie("userId") != undefined) {
+        $(".shortcut").children().eq(1).css("display", "block").siblings().css("display", "none");
+        $(".afterLogin").css("display", "block").siblings(".rightBar").css("display", "none");
+    }
+    else {
+        $(".shortcut").children().eq(0).css("display", "block").siblings().css("display", "none");
+        $(".rightBar").css("display", "block").siblings(".afterLogin").css("display", "none");
+    }
 });

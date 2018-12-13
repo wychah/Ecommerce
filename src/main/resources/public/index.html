@@ -1183,14 +1183,7 @@
 <script src="js/base.js"></script>
 <script>
     $(function () {
-        if ($.cookie("userId") != undefined) {
-            $(".shortcut").children().eq(1).css("display", "block").siblings().css("display", "none");
-            $(".afterLogin").css("display", "block").siblings(".rightBar").css("display", "none");
-        }
-        else {
-            $(".shortcut").children().eq(0).css("display", "block").siblings().css("display", "none");
-            $(".rightBar").css("display", "block").siblings(".afterLogin").css("display", "none");
-        }
+        $(".afterLogin").stop().animate({right: 0}, 1200, "linear");
         $("#searchAll").on("click", function () {
             sessionStorage.setItem("url", "http://localhost:8080/search/all?currentPage=1&maxSize=12&type=titleasc");
             sessionStorage.setItem("text", "");

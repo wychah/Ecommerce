@@ -56,4 +56,20 @@
             AND `order`.orderId = #{orderId}
     </select>
 
+    <select id="getOrderStatus" resultType="String">
+        SELECT `order`.orderStatus
+        FROM `order`
+        WHERE `order`.orderId = #{orderId}
+    </select>
+
+    <update id="updateOrder">
+        UPDATE `order`
+        SET
+            `order`.addressId = #{addressId},
+            `order`.orderStatus = #{orderStatus},
+            `order`.orderAmount = #{orderAmount}
+        WHERE
+            `order`.orderId = #{orderId}
+    </update>
+
 </mapper>

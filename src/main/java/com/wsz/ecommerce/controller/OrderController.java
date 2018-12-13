@@ -19,9 +19,6 @@ import java.util.Map;
 public class OrderController {
 
     @Autowired
-    private CommodityService commodityService;
-
-    @Autowired
     private AddressService addressService;
 
     @Autowired
@@ -29,7 +26,7 @@ public class OrderController {
 
     @GetMapping("/buy")
     @ResponseBody
-    public Map payOrder(@RequestParam("userId") int userId, @RequestParam("commodityId") Integer commodityId, @RequestParam("thingsNumber") int amount) {
+    public Map payOrder(@RequestParam("userId") int userId, @RequestParam("commodityId") Integer commodityId, @RequestParam("amount") int amount) {
         return orderService.showOrderInfo(userId,commodityId,amount);
     }
 
@@ -54,13 +51,7 @@ public class OrderController {
     @PostMapping("/pay")
     @ResponseBody
     public String payment(@RequestBody OrderCheck orderCheck) {
-        String orderId = orderService.setOrderId(orderCheck.getUserId());
-        String status = orderService.orderGenerate(orderId, orderCheck);
-        if (status == "订单提交成功") {
-            return orderId;
-        } else {
-            return "订单提交失败";
-        }
+        return orderService.orderGenerate(orderCheck);
     }
 
     @GetMapping("/status")

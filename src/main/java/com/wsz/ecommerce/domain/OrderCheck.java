@@ -1,11 +1,20 @@
 package com.wsz.ecommerce.domain;
 
 public class OrderCheck {
+    private String orderId;
     private int userId;
     private int addressId;
     private int commodityId;
     private int amount;
     private int orderAmount;
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
 
     public int getUserId() {
         return userId;

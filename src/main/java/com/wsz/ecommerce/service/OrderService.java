@@ -8,7 +8,8 @@ import java.util.Map;
 
 public interface OrderService {
     String setOrderId(int userId);
-    String orderGenerate(String orderId, OrderCheck orderCheck);
+    String orderGenerate(OrderCheck orderCheck);
+    String fakeOrderGenerate(String orderId,int userId, int commodityId, int amount);
     Map getFinalOrderInfo(String orderId);
     Map showOrderInfo(int userId, int commodityId, int amount);
 }
