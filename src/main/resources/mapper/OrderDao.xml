@@ -67,15 +67,16 @@
         SET
             `order`.addressId = #{addressId},
             `order`.orderStatus = #{orderStatus},
-            `order`.orderAmount = #{orderAmount}
+            `order`.orderAmount = #{orderAmount},
+            `order`.orderDate = #{orderDate}
         WHERE
             `order`.orderId = #{orderId}
     </update>
 
     <insert id="backToCart">
-        INSERT INTO cart ( cart.userId, cart.commodityId, cart.amount )
+        INSERT INTO cart ( cart.userId, cart.commodityId, cart.amount, cart.addTime )
         VALUES
-            ( #{userId}, #{commodityId}, #{amount} )
+            ( #{userId}, #{commodityId}, #{amount}, #{addTime} )
     </insert>
 
     <delete id="deleteFakeOrder">

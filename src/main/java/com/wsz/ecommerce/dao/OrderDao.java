@@ -3,6 +3,7 @@ package com.wsz.ecommerce.dao;
 import com.wsz.ecommerce.domain.*;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 public interface OrderDao {
@@ -39,7 +40,7 @@ public interface OrderDao {
      * @param orderStatus
      * @param orderAmount
      */
-    void updateOrder(@Param("orderId") String orderId, @Param("addressId") int addressId, @Param("orderStatus") String orderStatus, @Param("orderAmount") int orderAmount);
+    void updateOrder(@Param("orderId") String orderId, @Param("addressId") int addressId, @Param("orderStatus") String orderStatus, @Param("orderAmount") int orderAmount, @Param("orderDate") Date orderDate);
 
     /**
      * 查看指定订单状态
@@ -54,13 +55,13 @@ public interface OrderDao {
      * @param commodityId
      * @param amount
      */
-    void backToCart(@Param("userId") int userId, @Param("commodityId") int commodityId, @Param("amount") int amount);
+    int backToCart(@Param("userId") int userId, @Param("commodityId") int commodityId, @Param("amount") int amount, @Param("addTime") Date addTime);
 
     /**
      * 删除无效订单
      * @param orderId
      */
-    void deleteFakeOrder(@Param("orderId") String orderId);
+    int deleteFakeOrder(@Param("orderId") String orderId);
 
     /**
      * @param userId 用户Id

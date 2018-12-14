@@ -9,6 +9,8 @@ import com.wsz.ecommerce.domain.ReceiverInfo;
 import com.wsz.ecommerce.domain.SubOrder;
 import com.wsz.ecommerce.service.CommodityService;
 import com.wsz.ecommerce.service.OrderService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,8 @@ import java.util.Map;
 
 @Service
 public class OrderServiceImpl implements OrderService {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private OrderDao orderDao;
@@ -61,11 +65,20 @@ public class OrderServiceImpl implements OrderService {
     public String orderGenerate(OrderCheck orderCheck) {
         if (orderDao.getOrderStatus(orderCheck.getOrderId()).equals("待提交")) {
             try {
-                orderDao.updateOrder(orderCheck.getOrderId(),orderCheck.getAddressId(),"待发货",orderCheck.getOrderAmount());
+                orderDao.updateOrder(orderCheck.getOrderId(),orderCheck.getAddressId(),"待发货",orderCheck.getOrderAmount(),new Date());
+                logger.info("订单号:" + orderCheck.getOrderId() + "提交成功");
                 return "订单提交成功";
             } catch (Exception e) {
-                orderDao.backToCart(orderCheck.getUserId(),orderCheck.getCommodityId(),orderCheck.getAmount());
-                orderDao.deleteFakeOrder(orderCheck.getOrderId());
+                int backToCart = orderDao.backToCart(orderCheck.getUserId(),orderCheck.getCommodityId(),orderCheck.getAmount(),new Date());
+                int deleteFakeOrder = orderDao.deleteFakeOrder(orderCheck.getOrderId());
+                if (backToCart == 0) {
+                    orderDao.backToCart(orderCheck.getUserId(),orderCheck.getCommodityId(),orderCheck.getAmount(),new Date());
+                    logger.info("订单号:" + orderCheck.getOrderId() + "退回购物车异常，已重试");
+                }
+                if (deleteFakeOrder == 0) {
+                    orderDao.deleteFakeOrder(orderCheck.getOrderId());
+                    logger.info("订单号:" + orderCheck.getOrderId() + "删除无效订单异常，已重试");
+                }
                 return "订单提交失败";
             }
         } else {
