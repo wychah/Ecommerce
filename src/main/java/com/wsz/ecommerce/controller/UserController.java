@@ -1,9 +1,7 @@
 package com.wsz.ecommerce.controller;
 
-import com.wsz.ecommerce.domain.CommodityCart;
-import com.wsz.ecommerce.domain.User;
-import com.wsz.ecommerce.domain.UserBasicInfo;
-import com.wsz.ecommerce.domain.UserRegister;
+import com.wsz.ecommerce.domain.*;
+import com.wsz.ecommerce.service.AddressService;
 import com.wsz.ecommerce.service.UserService;
 import com.wsz.ecommerce.util.LoginResult;
 import com.wsz.ecommerce.util.SuccessOrFail;
@@ -22,6 +20,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private AddressService addressService;
 
     //返回值为1说明该用户名已经存在
     @ResponseBody
@@ -135,5 +136,10 @@ public class UserController {
         return userService.getUserById(1);
     }
 
-
+    //获取用户收货地址信息
+    @PostMapping("/getUserAddress")
+    @ResponseBody
+    public List<ReceiverInfo> getUserAddress(@RequestParam("userId") int userId) {
+        return addressService.findReceiverInfoById(userId);
+    }
 }

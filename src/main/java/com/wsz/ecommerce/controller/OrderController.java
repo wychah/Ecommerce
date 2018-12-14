@@ -27,7 +27,7 @@ public class OrderController {
     @GetMapping("/buy")
     @ResponseBody
     public Map payOrder(@RequestParam("userId") int userId, @RequestParam("commodityId") Integer commodityId, @RequestParam("amount") int amount) {
-        return orderService.showOrderInfo(userId,commodityId,amount);
+        return orderService.showOrderInfo(userId, commodityId, amount);
     }
 
     @PostMapping("/delete")
