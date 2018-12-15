@@ -9,6 +9,7 @@
     margin-top: 10px;
     margin-bottom: 10px;
     height: 100%;
+    background-color: pink;
 }
 
 .body div {
@@ -19,6 +20,7 @@
 }
 
 .body .body_left {
+    float: left;
     width: 18%;
     height: 650px;
     /*background-color: pink;*/
@@ -65,10 +67,10 @@
 }
 
 .body .body_right {
-    width: 60%;
-    height: 650px;
-    /*background-color: pink;*/
-    position: absolute;
+    position: relative;
+    float: right;
+    height: 100%;
+    width: 75%;
     top: 0;
-    right: 180px;
+    right: 50px;
 }

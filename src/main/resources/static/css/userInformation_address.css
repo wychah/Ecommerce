@@ -1,8 +1,8 @@
 ﻿/*用户资料*/
 .body .consignee {
+    margin-bottom: 25px;
     width: 100%;
-    margin-top: 40px;
-    /*background-color: pink;*/
+    margin-top: 10px
 }
 
 .body .consignee > .consigneeTitle {
@@ -10,12 +10,12 @@
     font-size: 18px;
     font-family: "微软雅黑";
     font-weight: normal;
-    text-align: left;
+    text-align: center;
     color: #333333;
 }
 
 .body .consignee > .addConsignee {
-    width: 120%;
+    width: 150%;
     display: flex;
     flex-wrap: wrap;
     justify-content: left;

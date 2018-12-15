@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -62,7 +64,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public String orderGenerate(OrderCheck orderCheck) {
+    public String orderGenerate(OrderCheck orderCheck, HttpServletRequest request) {
         if (orderDao.getOrderStatus(orderCheck.getOrderId()).equals("待提交")) {
             try {
                 orderDao.updateOrder(orderCheck.getOrderId(),orderCheck.getAddressId(),"待发货",orderCheck.getOrderAmount(),new Date());
@@ -70,13 +72,13 @@ public class OrderServiceImpl implements OrderService {
                 return "订单提交成功";
             } catch (Exception e) {
                 int backToCart = orderDao.backToCart(orderCheck.getUserId(),orderCheck.getCommodityId(),orderCheck.getAmount(),new Date());
-                int deleteFakeOrder = orderDao.deleteFakeOrder(orderCheck.getOrderId());
+                int deleteFakeOrder = orderDao.deleteFakeOrder(orderCheck.getUserId());
                 if (backToCart == 0) {
                     orderDao.backToCart(orderCheck.getUserId(),orderCheck.getCommodityId(),orderCheck.getAmount(),new Date());
                     logger.info("订单号:" + orderCheck.getOrderId() + "退回购物车异常，已重试");
                 }
                 if (deleteFakeOrder == 0) {
-                    orderDao.deleteFakeOrder(orderCheck.getOrderId());
+                    orderDao.deleteFakeOrder(orderCheck.getUserId());
                     logger.info("订单号:" + orderCheck.getOrderId() + "删除无效订单异常，已重试");
                 }
                 return "订单提交失败";
@@ -87,7 +89,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public String fakeOrderGenerate(String orderId, int userId, int commodityId, int amount) {
+    public String fakeOrderGenerate(String orderId, int userId, int commodityId, int amount,HttpServletRequest request) {
         int inventory = commodityDao.getCommodityInventory(commodityId);
         if (inventory > 0) {
             commodityDao.commoditySold(commodityId, inventory - amount);
@@ -104,6 +106,8 @@ public class OrderServiceImpl implements OrderService {
             subOrder.setAmount(amount);
             orderDao.insertSubOrder(subOrder);
 
+            HttpSession session = request.getSession();
+            session.setAttribute("orderId",orderId);
             return "订单生成成功";
         } else {
             return "库存不足";
@@ -119,14 +123,23 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Map showOrderInfo(int userId, int commodityId, int amount) {
+    public Map showOrderInfo(int userId, int commodityId, int amount, HttpServletRequest request) {
         Map map = new HashMap();
-        String orderId = setOrderId(userId);
-        List<ReceiverInfo> receiverInfo = addressDao.findReceiverInfoById(userId);
-        map.put("orderInfo",commodityDao.getOrderInfo(commodityId, amount));
-        map.put("receiverInfo",receiverInfo);
-        map.put("orderId",orderId);
-        fakeOrderGenerate(orderId,userId,commodityId,amount);
+        HttpSession session = request.getSession();
+        if (session.getAttribute("orderId") == null) {
+            String orderId = setOrderId(userId);
+            List<ReceiverInfo> receiverInfo = addressDao.findReceiverInfoById(userId);
+            map.put("orderInfo",commodityDao.getOrderInfo(commodityId, amount));
+            map.put("receiverInfo",receiverInfo);
+            map.put("orderId",orderId);
+            fakeOrderGenerate(orderId,userId,commodityId,amount,request);
+        } else {
+            String lastOrder = (String) session.getAttribute("orderId");
+            List<ReceiverInfo> receiverInfo = addressDao.findReceiverInfoById(userId);
+            map.put("orderInfo",commodityDao.getOrderInfo(commodityId, amount));
+            map.put("receiverInfo",receiverInfo);
+            map.put("orderId",lastOrder);
+        }
         return map;
     }
 

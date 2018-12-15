@@ -59,9 +59,9 @@ public interface OrderDao {
 
     /**
      * 删除无效订单
-     * @param orderId
+     * @param userId
      */
-    int deleteFakeOrder(@Param("orderId") String orderId);
+    int deleteFakeOrder(@Param("userId") int userId);
 
     /**
      * @param userId 用户Id

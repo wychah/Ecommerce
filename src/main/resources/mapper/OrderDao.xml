@@ -88,7 +88,8 @@
             suborder
         WHERE
             `order`.orderId = suborder.orderId
-            AND `order`.orderId = #{orderId}
+            AND `order`.userId = #{userId}
+            and `order`.orderStatus = '待提交'
     </delete>
     <select id="getWaitPush" resultType="com.wsz.ecommerce.domain.UserOrderInfo">
         SELECT `order`.orderId,commodityTitle,commodityPrice,suborder.amount,commodityPicture,`order`.orderStatus
@@ -96,7 +97,7 @@
         WHERE `order`.userId = #{userId} AND
               `order`.orderId = suborder.orderId AND
               suborder.commodityId = commodity.commodityId AND
-            `order`.orderStatus = '代提交'
+            `order`.orderStatus = '待提交'
     </select>
     <select id="getWaitSend" resultType="com.wsz.ecommerce.domain.UserOrderInfo">
         SELECT `order`.orderId,commodityTitle,commodityPrice,suborder.amount,commodityPicture,`order`.orderStatus
@@ -104,6 +105,6 @@
         WHERE `order`.userId = #{userId} AND
               `order`.orderId = suborder.orderId AND
               suborder.commodityId = commodity.commodityId AND
-              `order`.orderStatus = '代发货'
+              `order`.orderStatus = '待发货'
     </select>
 </mapper>

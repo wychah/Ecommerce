@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,8 +27,8 @@ public class OrderController {
 
     @GetMapping("/buy")
     @ResponseBody
-    public Map payOrder(@RequestParam("userId") int userId, @RequestParam("commodityId") Integer commodityId, @RequestParam("amount") int amount) {
-        return orderService.showOrderInfo(userId, commodityId, amount);
+    public Map payOrder(@RequestParam("userId") int userId, @RequestParam("commodityId") Integer commodityId, @RequestParam("amount") int amount, HttpServletRequest request) {
+        return orderService.showOrderInfo(userId, commodityId, amount,request);
     }
 
     @PostMapping("/delete")
@@ -50,8 +51,8 @@ public class OrderController {
 
     @PostMapping("/pay")
     @ResponseBody
-    public String payment(@RequestBody OrderCheck orderCheck) {
-        return orderService.orderGenerate(orderCheck);
+    public String payment(@RequestBody OrderCheck orderCheck,HttpServletRequest request) {
+        return orderService.orderGenerate(orderCheck,request);
     }
 
     @GetMapping("/status")

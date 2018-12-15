@@ -606,6 +606,7 @@ ol {
 /*登陆后的右侧菜单栏结束*/
 /*底部开始*/
 .foot {
+    clear: both;
     height: 420px;
     background-color: #ffda44;
 }

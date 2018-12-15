@@ -24,7 +24,8 @@ public class CommoodityController {
 
     @GetMapping("/detail")
     @ResponseBody
-    public Map getTheCommodity(@RequestParam("commodityId") Integer commodityId) {
+    public Map getTheCommodity(@RequestParam("commodityId") Integer commodityId, HttpServletRequest request) {
+        request.getSession().invalidate();
         return commodityService.getCommodityById(commodityId);
     }
 
