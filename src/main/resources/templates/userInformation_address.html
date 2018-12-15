@@ -134,14 +134,36 @@
         </div>
 
         <div class="body_right">
-            <div class="body_right_tA">收货人信息</div>
-            <div class="body_right_mA">
-                <!--<div class="addrMsgNewList">-->
-                    <!--<div class="addAddrMsgPanel">-->
-                        <!--<div class="addAddr"></div>-->
-                        <!--<div class="addAddrMsg">添加信息</div>-->
-                    <!--</div>-->
-                <!--</div>-->
+            <div class="consignee">
+                <div class="consigneeTitle">收货人信息</div>
+                <div class="addConsignee">
+                    <div class="showConsigneeM" style="display: none;">
+                        <div class="showConsigneeMPic"></div>
+                        <div class="showConsigneeMName">
+                            <i></i>
+                            <span></span>
+                        </div>
+                        <div class="showConsigneeMTel">
+                            <i></i>
+                            <span></span>
+                        </div>
+                        <div class="showConsigneeMPlace">
+                            <i></i>
+                            <span></span>
+                        </div>
+                        <div class="showConsigneeMIcon">
+                            <i></i>
+                        </div>
+                        <div class="dealAddrHandler">
+                            <div class="delAddrBtn" id="delAddrBtn"></div>
+                            <div class="editAddrBtn" id="editAddrBtn"></div>
+                        </div>
+                    </div>
+                    <div class="addConsigneeM" id="addConsigneeM" style="display: none;">
+                        <div class="addAddrMsg"></div>
+                        <div class="addAddr">添加信息</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -157,11 +179,73 @@
     </div>
 </div>
 <!-- foot模块结束 -->
+<!--遮挡层-->
+<div class="barrier"></div>
+<!--更改信息-->
+<div class="changeInformation">
+    <div class="changeInformationTitle">
+        <span>收货人信息</span>
+        <span id="closeChangeInformation"></span>
+    </div>
+    <div class="changeInformationDes">
+        <div class="changeInformationDes_name">
+            <label for="changeInformationDes_name_t">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</label>
+            <i>*</i>
+            <input type="text" id="changeInformationDes_name_t">
+        </div>
+        <div class="changeInformationDes_address">
+            <label for="changeInformationDes_address">详细地址</label>
+            <i>*</i>
+            <input type="text" id="changeInformationDes_address">
+        </div>
+        <div class="changeInformationDes_tel">
+            <label for="changeInformationDes_tel">手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机</label>
+            <i>*</i>
+            <input type="text" id="changeInformationDes_tel">
+        </div>
+    </div>
+    <div class="changeInformationBtn">
+        <div class="changeInformationBtnOk" id="changeInformationBtnOk">确定</div>
+        <div class="changeInformationBtnCancle" id="changeInformationBtnCancle">取消</div>
+    </div>
+</div>
 <script src="js/jquery-1.12.4.js"></script>
 <script src="js/jquery.lazyload.js"></script>
 <!-- <script src="js/MD5.js"></script> -->
- <script src="js/jquery.cookie.js"></script>
+<script src="js/jquery.cookie.js"></script>
 <script src="js/userInformation.js"></script>
 <script src="js/base.js"></script>
+<script>
+    $(function () {
+        var data3 = '{{each receiverInfo as value}}' +
+            '<div class="showConsigneeM" addressId = "{{value.addressId}}">' +
+            '<div class="showConsigneeMPic"></div>' +
+            '<div class="showConsigneeMName">' +
+            '<i></i>' +
+            '<span>{{value.receiverName}}</span>' +
+            '</div>' +
+            '<div class="showConsigneeMTel">' +
+            '<i></i>' +
+            '<span>{{value.receiverPhone}}</span>' +
+            '</div>' +
+            '<div class="showConsigneeMPlace">' +
+            '<i></i>' +
+            '<span>{{value.location}}</span>' +
+            '</div>' +
+            '<div class="showConsigneeMIcon">' +
+            '<i></i>' +
+            '</div>' +
+            '<div class="dealAddrHandler">' +
+            '<div class="delAddrBtn"></div>' +
+            '<div class="editAddrBtn"></div>' +
+            '</div>' +
+            '</div>' +
+            '{{/each}}' +
+            '<div class="addConsigneeM" id="addConsigneeM">' +
+            '<div class="addAddrMsg"></div>' +
+            '<div class="addAddr">添加信息</div>' +
+            '</div>';
+    });
+</script>
 </body>
 </html>

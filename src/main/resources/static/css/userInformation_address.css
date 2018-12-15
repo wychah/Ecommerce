@@ -1,57 +1,250 @@
 ﻿/*用户资料*/
-.body .body_right > .body_right_tA {
+.body .consignee {
     width: 100%;
-    height: 7%;
-    /*background-color: yellow;*/
-    border-bottom: 1px dotted #e9e9e9;
-    line-height: 50px;
-    font-size: 16px;
+    margin-top: 40px;
+    /*background-color: pink;*/
 }
 
-.body .body_right > .body_right_mA {
+.body .consignee > .consigneeTitle {
     width: 100%;
-    height: 90%;
-    position: relative;
+    font-size: 18px;
+    font-family: "微软雅黑";
+    font-weight: normal;
+    text-align: left;
+    color: #333333;
 }
 
-.body .body_right > .body_right_mA > .addrMsgNewList {
-    position: relative;
-    font-size: 14px;
+.body .consignee > .addConsignee {
+    width: 120%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: left;
+    margin-top: 20px;
 }
 
-.body .body_right > .body_right_mA > .addrMsgNewList > .addAddrMsgPanel {
+.body .consignee > .addConsignee > div {
     position: relative;
-    display: block;
-    overflow: hidden;
-    width: 342px;
-    height: 208px;
-    padding: 0;
-    border-radius: 8px;
+    width: 331px;
+    height: 211px;
     border: 1px solid #ddd;
-    margin: 25px;
-}
-
-.body .body_right > .body_right_mA > .addrMsgNewList:nth-child(1),
-.body .body_right > .body_right_mA > .addrMsgNewList:nth-child(2) {
-    margin-top: 20px
-}
-
-.addAddrMsgPanel .addAddr {
-    background: url("../image/vbg01.png") -140px -240px no-repeat;
-    width: 50px;
-    height: 50px;
-    margin-left: 148px;
-    margin-top: 61px;
+    margin-left: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 10px;
     cursor: pointer;
 }
 
-.addAddrMsgPanel .addAddrMsg {
+.body .consignee > .addConsignee > div:nth-of-type(3n-2) {
+    margin-left: 0;
+}
+
+.body .consignee > .addConsignee > div:hover {
+    border: 1px solid #ffc001;
+}
+
+.body .consignee > .addConsignee > div:last-of-type {
+    cursor: pointer;
+}
+
+.body .consignee > .addConsignee > .addBorder {
+    border: 1px solid #ffc001;
+}
+
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMPic {
+    width: 100%;
+    height: 10px;
+    background: url(../image/vbg01.png?v=201811211412) -138px 0 no-repeat;
+}
+
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMName,
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMTel,
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMPlace {
+    width: 94%;
+    height: 43px;
+    line-height: 43px;
+    margin: 5px auto;
+    border-bottom: 1px dashed #ebebeb;
+}
+
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMName > i,
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMTel > i,
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMPlace > i,
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMIcon > i {
+    width: 15px;
+    height: 18px;
+    background: url(../image/vbg01.png?v=201811211412) 0 -410px no-repeat;
+    float: left;
+    margin-left: 30px;
+    margin-top: 12px;
+}
+
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMName > span,
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMTel > span,
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMPlace > span {
+    margin-left: -35px;
+    font-size: 14px;
+    font-family: "微软雅黑";
+    color: #333
+}
+
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMTel > i {
+    background-position: 0 -440px;
+}
+
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMPlace > i {
+    background-position: 0 -480px;
+}
+
+.body .consignee > .addConsignee > .showConsigneeM > .showConsigneeMIcon > i {
+    width: 55px;
+    height: 55px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-position: -991px -279px;
+}
+
+.body .consignee > .addConsignee > .showConsigneeM > .dealAddrHandler {
+    width: 190px;
+    height: 39px;
+    position: absolute;
+    right: 0;
+    top: -40px;
+    /*background-color: whitesmoke;*/
+}
+
+.body .consignee > .addConsignee > .showConsigneeM > .dealAddrHandler > div {
+    float: right;
+    width: 20px;
+    height: 25px;
+    padding-top: 9px;
+    margin: 1px 10px 0 10px;
+    background: url(../image/vbg01.png?v=201811211412) -523px -1019px no-repeat;
+    cursor: pointer;
+}
+
+.body .consignee > .addConsignee > .showConsigneeM > .dealAddrHandler > .editAddrBtn {
+    background-position: -523px -990px;
+}
+
+.body .consignee > .addConsignee > .addConsigneeM > .addAddrMsg {
+    width: 50px;
+    height: 50px;
+    margin-left: 144px;
+    margin-top: 61px;
+    background: url(../image/vbg01.png?v=201811211412) -140px -240px no-repeat;
+}
+
+.body .consignee > .addConsignee > .addConsigneeM > .addAddr {
     font-family: "微软雅黑";
     font-size: 18px;
     color: #9a9a9a;
     margin-top: 5px;
     text-align: center;
+}
+
+.barrier {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000000;
+    filter: alpha(opacity=30);
+    -moz-opacity: 0.3;
+    -khtml-opacity: 0.3;
+    opacity: 0.3;
+    display: none;
+}
+
+.changeInformation {
+    width: 942px;
+    position: fixed;
+    border: #ebebeb solid 1px;
+    height: 477px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    z-index: 9999;
+    display: none;
+}
+
+.changeInformation > .changeInformationTitle {
+    width: 100%;
+    height: 66px;
+    line-height: 66px;
+    border-bottom: 1px solid #eee;
+    font-size: 18px;
+}
+
+.changeInformation > .changeInformationTitle > span:first-of-type {
+    margin-left: 40px;
+}
+
+.changeInformation > .changeInformationTitle > span:last-of-type {
+    position: absolute;
+    right: 25px;
+    top: 13px;
+    width: 18px;
+    height: 18px;
+    background: url(../image/mbg01.png?v=201812051359) -451px -189px no-repeat;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.changeInformation > .changeInformationDes {
+    width: 100%;
+}
+
+.changeInformation > .changeInformationDes > div {
+    width: 60%;
+    height: 42px;
+    line-height: 42px;
+    margin: 40px auto;
+}
+
+.changeInformation > .changeInformationDes > div > input {
+    text-indent: 8px;
+    font-family: "微软雅黑";
+    color: #333;
+    width: 360px;
+    height: 40px;
+    border: 1px solid #e7e7e7;
+}
+
+.changeInformation > .changeInformationDes > div > i {
+    display: inline-block;
+    width: 35px;
+    text-align: center;
+    color: #ff4654;
+    font-style: normal;
+}
+
+.changeInformation > .changeInformationBtn {
+    width: 100%;
+    height: 37px;
+}
+
+.changeInformation > .changeInformationBtn > div {
+    width: 108px;
+    height: 35px;
+    line-height: 35px;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    background-color: #ffc001;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.changeInformation > .changeInformationBtn > div:first-of-type {
+    margin-left: 298px;
+}
+
+.changeInformation > .changeInformationBtn > div:last-of-type {
+    border: 1px solid #ccc;
+    background: #fff;
+    margin-left: 42px;
+    color: #8c8c8c;
 }

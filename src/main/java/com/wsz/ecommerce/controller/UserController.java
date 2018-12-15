@@ -139,7 +139,14 @@ public class UserController {
     //获取用户收货地址信息
     @PostMapping("/getUserAddress")
     @ResponseBody
-    public List<ReceiverInfo> getUserAddress(@RequestParam("userId") int userId) {
-        return addressService.findReceiverInfoById(userId);
+    public Map getUserAddress(@RequestParam("userId") int userId) {
+        return addressService.findUserAddress(userId);
+    }
+
+    //用户添加新地址
+    @PostMapping("/insertNewAddress")
+    @ResponseBody
+    public Map insertNewAddress(@RequestBody NewReceiverInfo newReceiverInfo) {
+        return addressService.insertAndFind(newReceiverInfo);
     }
 }

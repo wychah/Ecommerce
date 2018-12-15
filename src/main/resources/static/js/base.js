@@ -164,4 +164,12 @@ $(function () {
         $(".shortcut").children().eq(0).css("display", "block").siblings().css("display", "none");
         $(".rightBar").css("display", "block").siblings(".afterLogin").css("display", "none");
     }
+
+    $(".shortcut>div").eq(0).children(".fr").children("li").eq(4).on("click", function () {
+        if ($.cookie("userId") === undefined) {
+            alert("请先登录");
+            location.href = "http://localhost:8080/login";
+            return false;
+        }
+    })
 });

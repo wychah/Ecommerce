@@ -18,6 +18,14 @@ public class AddressServiceImpl implements AddressService {
     private AddressDao addressDao;
 
     @Override
+    public Map findUserAddress(int userId) {
+        Map map = new HashMap();
+        List<ReceiverInfo> receiverInfos = addressDao.findReceiverInfoById(userId);
+        map.put("receiverInfo",receiverInfos);
+        return map;
+    }
+
+    @Override
     public List<ReceiverInfo> findReceiverInfoById(int userId) {
         return addressDao.findReceiverInfoById(userId);
     }

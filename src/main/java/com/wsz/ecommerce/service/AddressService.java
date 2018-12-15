@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface AddressService {
+    Map findUserAddress(int userId);
     List<ReceiverInfo> findReceiverInfoById(int userId);
     void deleteReceiverInfoById(int addressId);
     void updateReceiverInfoById(ReceiverInfo receiverInfo);
