@@ -341,7 +341,6 @@
             '</div>' +
             '<div class="bigImg"><img src="{{commodityPicture}}" alt=""></div>';
         $.get("http://localhost:8080/commodity/detail", {"commodityId": sessionStorage.getItem("commodityId")}, function (res) {
-            console.log(res);
             var render = template.compile(arr);
             var html = render(res.commodities);
             $(".body_bottom_des").html(html);
@@ -410,6 +409,7 @@
                         success: function (res) {
                             if (res == "库存不足") {
                                 alert("库存不足");
+                                location.reload();
                             } else {
                                 $(".barrier").stop().show();
                                 $(".successToAddCart").stop().show();
@@ -446,6 +446,7 @@
                         success: function (res) {
                             if (res == "库存不足") {
                                 alert("库存不足");
+                                location.reload();
                             } else {
                                 sessionStorage.setItem("thingsNumber", thingsNumber);
                                 location.href = "http://localhost:8080/order";

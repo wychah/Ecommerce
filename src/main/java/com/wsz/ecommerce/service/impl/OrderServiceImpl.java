@@ -81,6 +81,7 @@ public class OrderServiceImpl implements OrderService {
                     orderDao.deleteFakeOrder(orderCheck.getUserId());
                     logger.info("订单号:" + orderCheck.getOrderId() + "删除无效订单异常，已重试");
                 }
+                commodityDao.commoditySold(orderCheck.getCommodityId(), commodityDao.getCommodityInventory(orderCheck.getCommodityId()) + orderCheck.getAmount());
                 return "订单提交失败";
             }
         } else {
