@@ -1,12 +1,33 @@
 package com.wsz.ecommerce.domain;
 
+import java.util.Date;
+
 public class UserOrderInfo {
+    private String orderId;
     private String commodityId;
     private String commodityTitle;
     private int commodityPrice;
     private int amount;
     private String commodityPicture;
     private String orderStatus;
+    private Date orderDate;
+    private int orderAmount;
+
+    public int getOrderAmount() {
+        return orderAmount;
+    }
+
+    public void setOrderAmount(int orderAmount) {
+        this.orderAmount = orderAmount;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
 
     public String getCommodityId() {
         return commodityId;
@@ -54,5 +75,13 @@ public class UserOrderInfo {
 
     public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
     }
 }

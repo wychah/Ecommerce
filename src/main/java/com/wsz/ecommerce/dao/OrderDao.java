@@ -75,4 +75,18 @@ public interface OrderDao {
      * @return 用户待发货的订单
      */
     List<UserOrderInfo> getWaitSend(@Param("userId") int userId);
+
+    /**
+     *
+     * @param userId 用户ID
+     * @return 用户已完成的订单
+     */
+    List<UserOrderInfo> getCompleted(@Param("userId") int userId);
+
+    /**
+     *
+     * @param orderId 用户Id
+     * @return 删除用户的订单
+     */
+    int orderDelete(@Param("orderId") String orderId);
 }

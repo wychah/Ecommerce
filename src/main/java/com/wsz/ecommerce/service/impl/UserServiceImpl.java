@@ -100,9 +100,24 @@ public class UserServiceImpl implements UserService{
     public Map getUserOrder(int userId) {
         List<UserOrderInfo> userOrderInfosWaitPush = orderDao.getWaitPush(userId);
         List<UserOrderInfo> userOrderInfosWaitSend = orderDao.getWaitSend(userId);
+        List<UserOrderInfo> userOrderInfoCompleted = orderDao.getCompleted(userId);
         Map map = new HashMap();
         map.put("waitPush",userOrderInfosWaitPush);
         map.put("waitSend",userOrderInfosWaitSend);
+        map.put("completed",userOrderInfoCompleted);
         return map;
+    }
+
+    @Override
+    public int userOrderDelete(String orderId) {
+        int i = 0;
+        int result=0;
+        for (;i<3;i++){
+            result = orderDao.orderDelete(orderId);
+            if (result == 2) {
+                break;
+            }
+        }
+        return result;
     }
 }

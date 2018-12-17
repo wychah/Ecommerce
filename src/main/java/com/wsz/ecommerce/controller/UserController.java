@@ -103,6 +103,15 @@ public class UserController {
         return map;
     }
 
+    @ResponseBody
+    @PostMapping("/orderDelete")
+    public Map orderDelete(@RequestParam("orderId") String orderId,
+                           @RequestParam("userId") int userId){
+        int result = userService.userOrderDelete(orderId);
+        Map map = userService.getUserOrder(userId);
+        return map;
+    }
+
     //用户注册，注册成功跳转到
 //    @PostMapping("/toRegister")
 //    public String userRegister(@RequestParam("userAccount") String userAccount,

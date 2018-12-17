@@ -18,6 +18,7 @@ public interface UserService {
     SuccessOrFail ifUserEmailRepeat(String userEmail);
     SuccessOrFail ifUserPhoneRepeat(String userPhone);
     SuccessOrFail userRegister(UserRegister userRegister);
+    int userOrderDelete(String orderId);
     List<CommodityCart> getShoppingCart(int userId);
     Map getUserOrder(int userId);
 }

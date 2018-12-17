@@ -34,4 +34,13 @@ public class CommoodityController {
     public String checkCommodityInventory(@RequestParam("commodityId") int commodityId, @RequestParam("amount") int amount) {
         return orderService.checkCommodityInventory(commodityId,amount);
     }
+
+    @GetMapping("/indexCommodity")
+    @ResponseBody
+    public Map getIndexCommodity() {
+        Map map = new HashMap();
+        map.put("digitalCommodities",commodityService.queryCommodityBySortId(1,1,8));
+        map.put("childrenCommodities",commodityService.queryCommodityBySortId(2,1,8));
+        return map;
+    }
 }

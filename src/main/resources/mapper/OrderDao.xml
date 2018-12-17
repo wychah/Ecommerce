@@ -92,7 +92,7 @@
             and `order`.orderStatus = '待提交'
     </delete>
     <select id="getWaitPush" resultType="com.wsz.ecommerce.domain.UserOrderInfo">
-        SELECT `order`.orderId,commodityTitle,commodityPrice,suborder.amount,commodityPicture,`order`.orderStatus
+        SELECT `order`.orderId,suborder.commodityId,commodityTitle,commodityPrice,suborder.amount,commodityPicture,`order`.orderStatus,orderDate,orderAmount
         FROM commodity,`order`,suborder
         WHERE `order`.userId = #{userId} AND
               `order`.orderId = suborder.orderId AND
@@ -100,11 +100,30 @@
             `order`.orderStatus = '待提交'
     </select>
     <select id="getWaitSend" resultType="com.wsz.ecommerce.domain.UserOrderInfo">
-        SELECT `order`.orderId,commodityTitle,commodityPrice,suborder.amount,commodityPicture,`order`.orderStatus
+        SELECT `order`.orderId,suborder.commodityId,commodityTitle,commodityPrice,suborder.amount,commodityPicture,`order`.orderStatus,orderDate,orderAmount
         FROM commodity,`order`,suborder
         WHERE `order`.userId = #{userId} AND
               `order`.orderId = suborder.orderId AND
               suborder.commodityId = commodity.commodityId AND
               `order`.orderStatus = '待发货'
     </select>
+    <select id="getCompleted" resultType="com.wsz.ecommerce.domain.UserOrderInfo">
+        SELECT `order`.orderId,suborder.commodityId,commodityTitle,commodityPrice,suborder.amount,commodityPicture,`order`.orderStatus,orderDate,orderAmount
+        FROM commodity,`order`,suborder
+        WHERE `order`.userId = #{userId} AND
+            `order`.orderId = suborder.orderId AND
+            suborder.commodityId = commodity.commodityId AND
+            `order`.orderStatus = '已完成'
+    </select>
+    <delete id="orderDelete">
+        DELETE
+            `order`,
+            suborder
+        FROM
+            `order`,
+            suborder
+        where
+            `order`.orderId = suborder.orderId and
+            `order`.orderId = #{orderId}
+    </delete>
 </mapper>
