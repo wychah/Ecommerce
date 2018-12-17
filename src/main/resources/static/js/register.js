@@ -137,7 +137,7 @@ $(function () {
         if ($(".registry input").val() != "" && $(".registry>span").length == 0) {
             // console.log($(".registry>span"));
         } else {
-            console.log("请正确填写信息");
+            alert("请正确填写信息");
         }
     });
 
