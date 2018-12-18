@@ -964,7 +964,24 @@
             '</div>' +
             '</div>' +
             '{{/each}}';
-        $.get("http://localhost:8080/commodity/indexCommodity", function (res) {
+        if (sessionStorage.getItem("indexCommodities") === null) {
+            $.get("http://localhost:8080/commodity/indexCommodity", function (res) {
+                sessionStorage.setItem("indexCommodities",JSON.stringify(res));
+                var render = template.compile(list2);
+                var html = render(res);
+                $(".my_clo2_title_bodyM").html(html);
+                var render3 = template.compile(data3);
+                var html3 = render3(res);
+                $(".my_clo3_title_bodyL").html(html3);
+                $(".img,.couponDes").on("click", function () {
+                    var id = $(this).parent().parent().attr("commodityId");
+                    sessionStorage.setItem("commodityId", id);
+                    location.href = "http://localhost:8080/commodity";
+                    return false;
+                });
+            });
+        } else {
+            var res = JSON.parse(sessionStorage.getItem("indexCommodities"));
             var render = template.compile(list2);
             var html = render(res);
             $(".my_clo2_title_bodyM").html(html);
@@ -977,7 +994,7 @@
                 location.href = "http://localhost:8080/commodity";
                 return false;
             });
-        });
+        }
         $("#searchAll").on("click", function () {
             sessionStorage.setItem("url", "http://localhost:8080/search/all?currentPage=1&maxSize=12&type=titleasc");
             sessionStorage.setItem("text", "");
