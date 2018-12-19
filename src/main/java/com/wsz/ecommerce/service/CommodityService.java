@@ -55,4 +55,6 @@ public interface CommodityService {
 
     List<CommodityBrief> getSecondHand(int startNum, int maxSize);
     List<CommodityBrief> getSecondHandAppliance(int startNum, int maxSize);
+
+    List<String> searchCommodityByTitleKeyword(String keyword);
 }

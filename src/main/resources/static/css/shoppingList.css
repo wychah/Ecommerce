@@ -12,6 +12,7 @@
     position: relative;
     margin-top: 15px;
     margin-bottom: 5px;
+    z-index: 10;
 }
 
 .body .searchItem > input {
@@ -22,8 +23,11 @@
 }
 
 .body .searchItem > span {
-    margin-left: -30px;
     cursor: pointer;
+    position: absolute;
+    z-index: 10;
+    left: 225px;
+    top: 5px
 }
 
 .body .searchItem > span > i {

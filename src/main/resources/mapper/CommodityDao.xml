@@ -328,4 +328,10 @@
         SET commodityInventory = #{commodityInventory}
         WHERE commodityId = #{commodityId}
     </update>
+
+    <select id="searchCommodityByTitleKeyword" resultType="String">
+        select commodityTitle
+        from commodity
+        where commodity.commodityTitle like CONCAT('%',#{keyword},'%')
+    </select>
 </mapper>

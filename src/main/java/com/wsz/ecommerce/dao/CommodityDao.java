@@ -168,4 +168,6 @@ public interface CommodityDao {
     int getCommodityInventory(@Param("commodityId") int commodityId);
 
     void commoditySold(@Param("commodityId") int commodityId, @Param("commodityInventory") int commodityInventory);
+
+    List<String> searchCommodityByTitleKeyword(@Param("keyword") String keyword);
 }

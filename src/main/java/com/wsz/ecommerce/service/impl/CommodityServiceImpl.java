@@ -146,4 +146,9 @@ public class CommodityServiceImpl implements CommodityService {
     public List<CommodityBrief> getSecondHandAppliance(int startNum, int maxSize) {
         return commodityDao.getSecondHandAppliance(startNum, maxSize);
     }
+
+    @Override
+    public List<String> searchCommodityByTitleKeyword(String keyword) {
+        return commodityDao.searchCommodityByTitleKeyword(keyword);
+    }
 }

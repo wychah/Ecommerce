@@ -172,6 +172,76 @@ function nextAJAX(url, datas, arr) {
     });
 }
 
+// 搜索时显示下拉框
+$(function () {
+    $("#searchText").on('keyup', function (e) {
+        if ($(this).val().length === 1 && e.keyCode !== 8) {
+            $.ajax({
+                url: "http://localhost:8080/search/keyword",
+                type: "get",
+                data: {keyword: $(this).val()},
+                async: false,
+                success: function (res) {
+                    window.keyWords = res;
+                }
+            });
+        }
+        // 每次键盘抬起的时候判断有没有div，有就删除一次
+        if ($("#dv")) {
+            $("#dv").remove();
+            // $(".searchItem").empty($("#dv"));
+        }
+        var value = this.value;
+        //创建空数组
+        var objArr = [];
+        // 循环遍历数组，找到匹配文本输入框内容的字符串
+        keyWords.forEach(function (data) {
+            if (data.indexOf(value) !== -1) {
+                objArr.push(data);
+            }
+        });
+        // 判断：当输入框内容为空或者objArr中没有内容时应该删除div
+        if (value == "" || objArr.length == 0) {
+            $("#dv").remove();
+            return;
+        }
+        // 创建显示数据的div
+        var dv = $("<div id='dv' style='border:1px solid green;width: 242px;background-color: white'></div>");
+        dv.appendTo($(".searchItem"));
+        // 显示objArr中的数据
+        objArr.forEach(function (data) {
+            var p = $("<p style='margin: 5px 0;cursor:pointer;text-overflow: ellipsis;overflow: hidden;white-space: nowrap'></p>");
+            p.text(data);
+            p.appendTo(dv);
+            p.on('mouseenter', f1);
+            p.on('mouseleave', f2);
+            p.on('click', f3);
+        });
+        $(".searchItem").on('click', function (e) {
+            e.stopPropagation();
+        });
+        $(document).on('click', function () {
+            $("#dv").remove();
+        });
+        $("#searchText").on('focus', function () {
+            $(this).trigger('keyup');
+        });
+
+        function f1() {
+            $(this).css("backgroundColor", "#e6e6e6");
+        }
+
+        function f2() {
+            $(this).css("backgroundColor", "");
+        }
+
+        function f3() {
+            $("#searchText").val($(this).text());
+            $("#dv").remove();
+        }
+    });
+});
+
 function urlGet(currentpage) {
     var newUrl = window.sessionStorage.getItem("url");
     newUrl = newUrl.split("&");

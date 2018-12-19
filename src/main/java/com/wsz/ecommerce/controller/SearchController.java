@@ -113,4 +113,10 @@ public class SearchController {
                 return MapUtil.setMap(commodityService.sortResultAmount(sortId), maxSize, currentPage, commodityService.queryCommodityBySortId(sortId,startNum,maxSize));
         }
     }
+
+    @GetMapping("/keyword")
+    @ResponseBody
+    public List<String> findCommodityTitleByKeyword(@RequestParam("keyword") String keyword) {
+        return commodityService.searchCommodityByTitleKeyword(keyword);
+    }
 }
