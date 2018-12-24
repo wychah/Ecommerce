@@ -4,15 +4,12 @@ import com.wsz.ecommerce.domain.NewReceiverInfo;
 import com.wsz.ecommerce.domain.ReceiverInfo;
 import com.wsz.ecommerce.domain.OrderCheck;
 import com.wsz.ecommerce.service.AddressService;
-import com.wsz.ecommerce.service.CommodityService;
 import com.wsz.ecommerce.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -60,4 +57,6 @@ public class OrderController {
     public Map checkOrderInfo(@RequestParam("orderId") String orderId) {
         return orderService.getFinalOrderInfo(orderId);
     }
+
+
 }

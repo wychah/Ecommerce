@@ -49,4 +49,17 @@
             commodity.commodityId = cart.commodityId
         ORDER BY addTIme DESC
     </select>
+    <update id="changeUserBasicInfo">
+        UPDATE user
+        SET
+            userName = #{userName},
+            userEmail = #{userEmail}
+        WHERE userId = #{userId}
+    </update>
+    <update id="changeUserAvatar">
+        UPDATE user
+        SET
+            userAvatar = #{userAvatar}
+        WHERE userId = #{userId}
+    </update>
 </mapper>

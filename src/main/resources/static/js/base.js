@@ -144,6 +144,7 @@ $(function () {
         '<a href="http://localhost:8080/userinfo"><i class="iconfont icon-huiyuan">{{userAccount}}</i></a>';
     if ($.cookie("userId") != undefined) {
         $.post("http://localhost:8080/user/getUserBasicInfo", {userId: $.cookie("userId")}, function (res) {
+            console.log(res);
             var render = template.compile(myStuff);
             var html = render(res);
             $(".myStuffTab").html(html);
@@ -154,6 +155,10 @@ $(function () {
             $.cookie("userName", res.userName);
             $.cookie("userPhone", res.userPhone);
             $.cookie("userEmail", res.userEmail);
+            $.cookie("userAvatar",res.userAvatar);
+            $(".myStuffTab_top").on('click',function () {
+                location.href = "http://localhost:8080/userinfo";
+            });
         });
     }
     if ($.cookie("userId") != undefined) {

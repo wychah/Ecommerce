@@ -26,4 +26,8 @@ public interface UserDao {
     int userRegister(UserRegister userRegister);
     //返回用户购物车列表
     List<CommodityCart> getShoppingCart(@Param("userId") int userId);
+    //更改用户基本信息
+    int changeUserBasicInfo(@Param("userId") int userId,@Param("userName") String userName,@Param("userEmail")String userEmail);
+    //修改用户头像
+    int changeUserAvatar(@Param("userAvatar") String userAvatar,@Param("userId") int userId);
 }

@@ -120,4 +120,20 @@ public class UserServiceImpl implements UserService{
         }
         return result;
     }
+
+    @Override
+    public SuccessOrFail changeUserBasicInfo(int userId, String userName, String userEmail) {
+        int result = userDao.changeUserBasicInfo(userId, userName, userEmail);
+        SuccessOrFail successOrFail = new SuccessOrFail();
+        successOrFail.setResult(result);
+        return successOrFail;
+    }
+
+    @Override
+    public SuccessOrFail changeUserAvatar(String userAvatar, int userId) {
+        int result = userDao.changeUserAvatar(userAvatar, userId);
+        SuccessOrFail successOrFail = new SuccessOrFail();
+        successOrFail.setResult(result);
+        return successOrFail;
+    }
 }

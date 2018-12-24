@@ -88,6 +88,23 @@ public class UserController {
         return successOrFail;
     }
 
+    //修改用户信息
+    @ResponseBody
+    @PostMapping("/changeUserInfo")
+    public SuccessOrFail changeUserBasicInfo(@RequestParam("userName") String userName,
+                                             @RequestParam("userEmail") String userEmail,
+                                             @RequestParam("userId") int userId){
+        return userService.changeUserBasicInfo(userId, userName, userEmail);
+    }
+
+    //修改用户图像
+    @ResponseBody
+    @PostMapping("/changeUserAvatar")
+    public SuccessOrFail changeUserAvatar(@RequestParam("userAvatar") String userAvatar,
+                                          @RequestParam("userId") int  userId){
+        return userService.changeUserAvatar(userAvatar,userId);
+    }
+
     //这个是返回购物车Map,Map在Service封装
     @ResponseBody
     @PostMapping("/getShoppingCart")
@@ -110,33 +127,6 @@ public class UserController {
         int result = userService.userOrderDelete(orderId);
         Map map = userService.getUserOrder(userId);
         return map;
-    }
-
-    //用户注册，注册成功跳转到
-//    @PostMapping("/toRegister")
-//    public String userRegister(@RequestParam("userAccount") String userAccount,
-//                               @RequestParam("userPassword") String userPassword,
-//                               @RequestParam("userName") String userName,
-//                               @RequestParam("userEmail") String userEmail,
-//                               @RequestParam("userPhone") String userPhone,
-//                               @RequestParam("userAvatar") String userAvatar,
-//                               HttpServletRequest request){
-//
-//        return "";
-//    }
-
-    //测试用
-//    @ResponseBody
-//    @RequestMapping(value = "/hello")
-//    public String hello(){
-//        return "Hello World!";
-//    }
-
-    //传入json字符串,测试用
-    @ResponseBody
-    @PostMapping("/test")
-    public User test(@RequestBody User user){
-        return user;
     }
 
     @ResponseBody

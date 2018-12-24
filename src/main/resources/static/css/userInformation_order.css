@@ -32,29 +32,33 @@
     border-bottom: 3px solid orange;
 }
 
-.body .body_right > .body_right_bO, .body_right_b1 {
+.body .body_right > .b1, .body .body_right > .body_right_b1 {
     width: 100%;
     margin-top: 25px;
     position: absolute;
     display: none;
 }
 
-.body_right_b1 > .orderImg {
+.body .body_right > .b0 {
+    display: block;
+}
+
+.body_right_b1 > .orderImg, .body .body_right > .b0 > .orderImg, .body .body_right > .b1 > .orderImg {
     width: 180px;
     height: 140px;
     background: url("../image/defaultIcon.png") 0 -998px no-repeat;
     margin: 150px auto;
 }
 
-.body_right_b1 > span {
+.body_right_b1 > span, .body .body_right > .b0 > span, .body .body_right > .b1 > span {
     position: absolute;
     top: 295px;
     left: 353px;
     color: #b5b5b5;
 }
 
-.body .body_right > .body_right_bO {
-    display: block;
+.body .body_right > .b0 > span {
+    top: 350px;
 }
 
 .body .body_right > .body_right_bO > .body_right_b_tO table {

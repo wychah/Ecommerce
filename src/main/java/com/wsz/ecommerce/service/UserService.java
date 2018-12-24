@@ -21,4 +21,6 @@ public interface UserService {
     int userOrderDelete(String orderId);
     List<CommodityCart> getShoppingCart(int userId);
     Map getUserOrder(int userId);
+    SuccessOrFail changeUserBasicInfo(int userId,String userName,String userEmail);
+    SuccessOrFail changeUserAvatar(String userAvatar,int userId);
 }

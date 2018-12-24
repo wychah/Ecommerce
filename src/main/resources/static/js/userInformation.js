@@ -6,6 +6,16 @@ $(function () {
         $(".body_right").load(url + " .body_right>*", function () {
             console.log(url);
             if (url == "http://localhost:8080/userInformation") {
+                $(".body_right_m").children("span").eq(1).children("span").text($.cookie("userAccount"));
+                $(".imgHead").attr("src",$.cookie("userAvatar"));
+                $("#accountname").val($.cookie("userAccount"));
+                $("#name").val($.cookie("userName"));
+                if ($.cookie("userEmail") == "null") {
+                    $("#userEmail").val("");
+                } else {
+                    $("#userEmail").val($.cookie("userEmail"));
+                }
+                $("#telphone").val($.cookie("userPhone"));
                 $(".writeHead").on("click", function () {
                     $(".file").click();
                 });
@@ -14,7 +24,35 @@ $(function () {
                         var out = $(".imgHead");
                         out.attr("src", img_base64);
                     });
-                    this.val("");
+                    $(this).val("");
+                });
+                $("#storeInformation").on('click',function () {
+                    var userName = $("#name").val();
+                    var userEmail = $("#userEmail").val();
+                    if (userName==""){
+                        alert("请填写您的姓名");
+                        return false;
+                    }
+                    else {
+                        $.ajax({
+                            url:"http://localhost:8080/user/changeUserInfo",
+                            type:"post",
+                            data:{"userId":$.cookie("userId"),"userName":userName,"userEmail":userEmail},
+                            success:function (res) {
+                                console.log(res);
+                                if (res.result==1){
+                                    alert("修改成功");
+                                    $.cookie("userName",userName);
+                                    $.cookie("userEmail",userEmail);
+                                    location.reload();
+                                }
+                                else {
+                                    alert("修改失败");
+                                    return false;
+                                }
+                            }
+                        });
+                    }
                 });
             } else if (url == "http://localhost:8080/userInformationaddress") {
                 var data3 = '{{each receiverInfo as value}}' +
@@ -181,7 +219,7 @@ $(function () {
                     type: "post",
                     data: {"userId": $.cookie("userId")},
                     success: function (res) {
-                        console.log(res);
+
                         var totalorder =
                             '<div class="body_right_b_tO">' +
                             '<table>' +
@@ -224,15 +262,28 @@ $(function () {
                         res.completed.forEach(function (data) {
                             res.waitPush.push(data);
                         });
-                        var render = template.compile(totalorder);
-                        var html = render(res);
-                        $(".body_right_bO").html(html);
+                        if (res.waitPush.length == 0) {
+                            console.log("hah");
+                            $(".body .body_right > div:nth-of-type(2)").html("<div class=\"orderImg\"></div>\n" +
+                                "<span>亲，您还没有相关的订单哟~</span>");
+                        }
+                        else {
+                            var render = template.compile(totalorder);
+                            var html = render(res);
+                            $(".body_right_bO").html(html);
+                        }
                         $("#tabOrderTotalO>td").on("click", function () {
                             var index = $(this).index();
                             if (index == 0) {
-                                var render = template.compile(totalorder);
-                                var html = render(res);
-                                $(".body_right_bO").html(html);
+                                if (res.waitPush.length == 0) {
+                                    $(".body .body_right > div:nth-of-type(2)").html("<div class=\"orderImg\"></div>\n" +
+                                        "<span>亲，您还没有相关的订单哟~</span>");
+                                }
+                                else {
+                                    var render = template.compile(totalorder);
+                                    var html = render(res);
+                                    $(".body_right_bO").html(html);
+                                }
                             } else if (index == 1) {
                                 var reciveOrder =
                                     '<div class="body_right_b_tO">' +
@@ -269,9 +320,15 @@ $(function () {
                                     '</div>' +
                                     '</div>' +
                                     '{{/each}}';
-                                var render1 = template.compile(reciveOrder);
-                                var html1 = render1(res);
-                                $(".body_right_bO").html(html1);
+                                if (res.waitPush.length == 0) {
+                                    $(".body .body_right > div:nth-of-type(3)").html("<div class=\"orderImg\"></div>\n" +
+                                        "<span>亲，您还没有相关的订单哟~</span>");
+                                }
+                                else {
+                                    var render1 = template.compile(reciveOrder);
+                                    var html1 = render1(res);
+                                    $(".body_right_bO").html(html1);
+                                }
                             }
                             $(this).children().addClass("bodyRbb").parent().siblings().children().removeClass("bodyRbb");
                             $(".body_right>div").eq(index + 1).show().siblings(".except").not(".body_right_tO").hide();
