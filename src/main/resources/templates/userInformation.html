@@ -243,13 +243,24 @@
             picture_clip.init(e.target, 400, 400, function (img_base64) {
                 var out = $(".imgHead");
                 out.attr("src", img_base64);
+                $.ajax({
+                    url: "http://localhost:8080/user/changeUserAvatar",
+                    type: "post",
+                    data: {"userId": $.cookie("userId"), "userAvatar": img_base64},
+                    success: function (res) {
+                        if (res.result == 1) {
+                            localStorage.setItem("userAvatar",img_base64);
+                            location.reload();
+                        }
+                    }
+                });
             });
-            this.val("");
+            $(this).val("");
         });
         $(".body_right_m").children("span").eq(1).children("span").text($.cookie("userAccount"));
         $("#accountname").val($.cookie("userAccount"));
         $("#name").val($.cookie("userName"));
-        $(".imgHead").attr("src",$.cookie("userAvatar"));
+        $(".imgHead").attr("src", localStorage.getItem("userAvatar"));
         if ($.cookie("userEmail") == "null") {
             $("#userEmail").val("");
         } else {

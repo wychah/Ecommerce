@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -61,8 +62,11 @@ public class UserController {
 
     @ResponseBody
     @PostMapping("/getUserBasicInfo")
-    public UserBasicInfo getUserBasicInfo(@RequestParam("userId") int userId){
-        return userService.getUserBasicInfo(userId);
+    public Map getUserBasicInfo(@RequestParam("userId") int userId){
+        Map map = new HashMap();
+        map.put("userBasicInfo",userService.getUserBasicInfo(userId));
+        map.put("shoppingCart",userService.getShoppingCart(userId));
+        return map;
     }
     //用户注册，注册成功跳转到
     @ResponseBody

@@ -7,7 +7,7 @@ $(function () {
             console.log(url);
             if (url == "http://localhost:8080/userInformation") {
                 $(".body_right_m").children("span").eq(1).children("span").text($.cookie("userAccount"));
-                $(".imgHead").attr("src",$.cookie("userAvatar"));
+                $(".imgHead").attr("src", localStorage.getItem("userAvatar"));
                 $("#accountname").val($.cookie("userAccount"));
                 $("#name").val($.cookie("userName"));
                 if ($.cookie("userEmail") == "null") {
@@ -23,27 +23,38 @@ $(function () {
                     picture_clip.init(e.target, 400, 400, function (img_base64) {
                         var out = $(".imgHead");
                         out.attr("src", img_base64);
+                        $.ajax({
+                            url: "http://localhost:8080/user/changeUserAvatar",
+                            type: "post",
+                            data: {"userId": $.cookie("userId"), "userAvatar": img_base64},
+                            success: function (res) {
+                                if (res.result == 1) {
+                                    localStorage.setItem("userAvatar",img_base64);
+                                    location.reload();
+                                }
+                            }
+                        });
                     });
                     $(this).val("");
                 });
-                $("#storeInformation").on('click',function () {
+                $("#storeInformation").on('click', function () {
                     var userName = $("#name").val();
                     var userEmail = $("#userEmail").val();
-                    if (userName==""){
+                    if (userName == "") {
                         alert("请填写您的姓名");
                         return false;
                     }
                     else {
                         $.ajax({
-                            url:"http://localhost:8080/user/changeUserInfo",
-                            type:"post",
-                            data:{"userId":$.cookie("userId"),"userName":userName,"userEmail":userEmail},
-                            success:function (res) {
+                            url: "http://localhost:8080/user/changeUserInfo",
+                            type: "post",
+                            data: {"userId": $.cookie("userId"), "userName": userName, "userEmail": userEmail},
+                            success: function (res) {
                                 console.log(res);
-                                if (res.result==1){
+                                if (res.result == 1) {
                                     alert("修改成功");
-                                    $.cookie("userName",userName);
-                                    $.cookie("userEmail",userEmail);
+                                    $.cookie("userName", userName);
+                                    $.cookie("userEmail", userEmail);
                                     location.reload();
                                 }
                                 else {

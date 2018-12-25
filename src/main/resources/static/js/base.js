@@ -142,21 +142,45 @@ $(function () {
 
     var userAccoutData =
         '<a href="http://localhost:8080/userinfo"><i class="iconfont icon-huiyuan">{{userAccount}}</i></a>';
+    var myCart =
+        '{{each shoppingCart}}' +
+        '<div class="hasCartThings_top">' +
+        '<div class="cartThing">' +
+        '<img src="image/111.jpg" class="cartThingImg">' +
+        '<div class="cartThingTitle">8成新 新概念摄像机 高清专业数码摄像机</div>' +
+        '<div class="cartThingPrice">￥11099</div>' +
+        '<div class="cartThingNumber">x1</div>' +
+        '<div class="cartThingDelete">删除</div>' +
+        '</div>' +
+        '</div>' +
+        '{{/each}}' +
+        '<div class="hasCartThings_bottom">去购物车结算</div>';
     if ($.cookie("userId") != undefined) {
         $.post("http://localhost:8080/user/getUserBasicInfo", {userId: $.cookie("userId")}, function (res) {
             console.log(res);
             var render = template.compile(myStuff);
-            var html = render(res);
+            var html = render(res.userBasicInfo);
             $(".myStuffTab").html(html);
             var userAccountRender = template.compile(userAccoutData);
-            var userAccountHtml = userAccountRender(res);
+            var userAccountHtml = userAccountRender(res.userBasicInfo);
             $(".userAccount").html(userAccountHtml);
-            $.cookie("userAccount", res.userAccount);
-            $.cookie("userName", res.userName);
-            $.cookie("userPhone", res.userPhone);
-            $.cookie("userEmail", res.userEmail);
-            $.cookie("userAvatar",res.userAvatar);
-            $(".myStuffTab_top").on('click',function () {
+            if (res.shoppingCart == "") {
+                $(".hasNoCartThings").stop().show().sibling().stop().hide();
+            }
+            else {
+                $(".hasCartThings").stop().show().sibling().stop().hide();
+                var userCartRender = template.compile(myCart);
+                var userCartHtml = userCartRender(res.shoppingCart);
+                $(".hasCartThings").html(userCartHtml);
+                sessionStorage.setItem("shoppingCart", JSON.stringify(res.shoppingCart));
+            }
+            $.cookie("userAccount", res.userBasicInfo.userAccount);
+            $.cookie("userName", res.userBasicInfo.userName);
+            $.cookie("userPhone", res.userBasicInfo.userPhone);
+            $.cookie("userEmail", res.userBasicInfo.userEmail);
+            localStorage.setItem("userAvatar", res.userBasicInfo.userAvatar);
+            // $.cookie("userAvatar",res.userAvatar);
+            $(".myStuffTab_top").on('click', function () {
                 location.href = "http://localhost:8080/userinfo";
             });
         });

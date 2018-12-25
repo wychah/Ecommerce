@@ -277,12 +277,6 @@
                         self.saved = 1;  //事件已经移除~ 但是这里依旧检测是否已保存! 以防止特殊情况!
                     }
                     document.querySelector('#picture_clip').style.display = 'none';
-                    console.log(base64);
-                    $.ajax({
-                        url:"http://localhost:8080/user/changeUserAvatar",
-                        type:"post",
-                        data:{"userId":$.cookie("userId"),"userAvatar":base64}
-                    });
                     removeEvent();
                 };
                 //关闭按钮
