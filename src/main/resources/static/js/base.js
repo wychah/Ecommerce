@@ -22,9 +22,6 @@ $(function () {
     $(".loginTitle").on("mousedown", function (e) {
         var spacex = e.clientX - $(".wechart").offset().left;
         var spacey = e.clientY - $(".wechart").offset().top;
-        // console.log(e.clientX);
-        // console.log($(".wechart").offset().left);
-        // console.log(spacex);
         $(document).on("mousemove", function (e) {
             console.log(spacex);
             $(".wechart").css("left", e.clientX - spacex + 190);
@@ -145,11 +142,11 @@ $(function () {
     var myCart =
         '{{each shoppingCart}}' +
         '<div class="hasCartThings_top">' +
-        '<div class="cartThing">' +
-        '<img src="image/111.jpg" class="cartThingImg">' +
-        '<div class="cartThingTitle">8成新 新概念摄像机 高清专业数码摄像机</div>' +
-        '<div class="cartThingPrice">￥11099</div>' +
-        '<div class="cartThingNumber">x1</div>' +
+        '<div class="cartThing" commodityId = "{{$value.commodityId}}">' +
+        '<img src="{{$value.commodityPicture}}" class="cartThingImg">' +
+        '<div class="cartThingTitle">{{$value.commodityTitle}}</div>' +
+        '<div class="cartThingPrice">￥{{$value.commodityPrice}}</div>' +
+        '<div class="cartThingNumber">x{{$value.amount}}</div>' +
         '<div class="cartThingDelete">删除</div>' +
         '</div>' +
         '</div>' +
@@ -164,22 +161,60 @@ $(function () {
             var userAccountRender = template.compile(userAccoutData);
             var userAccountHtml = userAccountRender(res.userBasicInfo);
             $(".userAccount").html(userAccountHtml);
+            $(".shoppingCar").children("span").text(res.shoppingCart.length);
             if (res.shoppingCart == "") {
-                $(".hasNoCartThings").stop().show().sibling().stop().hide();
+                $(".hasNoCartThings").stop().show().siblings().stop().hide();
             }
             else {
-                $(".hasCartThings").stop().show().sibling().stop().hide();
-                var userCartRender = template.compile(myCart);
-                var userCartHtml = userCartRender(res.shoppingCart);
-                $(".hasCartThings").html(userCartHtml);
-                sessionStorage.setItem("shoppingCart", JSON.stringify(res.shoppingCart));
+                $(".hasCartThings").stop().show().siblings().stop().hide();
+                if (sessionStorage.getItem("shoppingCart") == undefined || sessionStorage.getItem("shoppingCart") == "[]") {
+                    var userCartRender = template.compile(myCart);
+                    var userCartHtml = userCartRender(res);
+                    $(".hasCartThings").html(userCartHtml);
+                    sessionStorage.setItem("shoppingCart", JSON.stringify(res.shoppingCart));
+                }
+                else {
+                    var myCartA =
+                        '{{each}}' +
+                        '<div class="hasCartThings_top">' +
+                        '<div class="cartThing" commodityId = "{{$value.commodityId}}">' +
+                        '<img src="{{$value.commodityPicture}}" class="cartThingImg">' +
+                        '<div class="cartThingTitle">{{$value.commodityTitle}}</div>' +
+                        '<div class="cartThingPrice">￥{{$value.commodityPrice}}</div>' +
+                        '<div class="cartThingNumber">x{{$value.amount}}</div>' +
+                        '<div class="cartThingDelete">删除</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '{{/each}}' +
+                        '<div class="hasCartThings_bottom">去购物车结算</div>';
+                    var userCartRender = template.compile(myCartA);
+                    var userCartHtml = userCartRender(JSON.parse(sessionStorage.getItem("shoppingCart")));
+                    $(".hasCartThings").html(userCartHtml);
+                }
             }
             $.cookie("userAccount", res.userBasicInfo.userAccount);
             $.cookie("userName", res.userBasicInfo.userName);
             $.cookie("userPhone", res.userBasicInfo.userPhone);
             $.cookie("userEmail", res.userBasicInfo.userEmail);
             localStorage.setItem("userAvatar", res.userBasicInfo.userAvatar);
-            // $.cookie("userAvatar",res.userAvatar);
+            $(".cartThingDelete").on('click', function () {
+                var currentShoppingId = $(this).parent().attr("commodityId");
+                $(this).parent().parent().remove();
+                $.ajax({
+                    url: "http://localhost:8080/cart/delete",
+                    type: "post",
+                    data: {"userId": $.cookie("userId"), "commodityId": currentShoppingId},
+                    success: function (res) {
+                        sessionStorage.setItem("shoppingCart", JSON.stringify(res));
+                        if (sessionStorage.getItem("shoppingCart") == "[]"){
+                            $(".hasNoCartThings").stop().show().siblings().stop().hide();
+                        }
+                    }
+                });
+            });
+            $(".hasCartThings_bottom").on('click', function () {
+                location.href = "http://localhost:8080/shoppingcart";
+            });
             $(".myStuffTab_top").on('click', function () {
                 location.href = "http://localhost:8080/userinfo";
             });

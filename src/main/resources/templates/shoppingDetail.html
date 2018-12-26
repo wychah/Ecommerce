@@ -413,6 +413,18 @@
                             } else {
                                 $(".barrier").stop().show();
                                 $(".successToAddCart").stop().show();
+                                $.ajax({
+                                    url: "http://localhost:8080/cart/add",
+                                    type: "post",
+                                    data: {
+                                        "userId": $.cookie("userId"),
+                                        "amount": thingsNumber,
+                                        "commodityId": sessionStorage.getItem("commodityId")
+                                    },
+                                    success: function (res) {
+                                        sessionStorage.setItem("shoppingCart", res);
+                                    }
+                                });
                             }
                         }
                     });
