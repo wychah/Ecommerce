@@ -188,7 +188,7 @@
         <i class="shoppingCar iconfont icon-icon1">
             <div></div>
             <h1>购物车</h1>
-            <span>0</span>
+            <span></span>
         </i>
         <i class="leaveMessage iconfont icon-liuyan">
             <div class="slogans">留言
@@ -956,7 +956,7 @@
             '{{/each}}';
         if (sessionStorage.getItem("indexCommodities") === null) {
             $.get("http://localhost:8080/commodity/indexCommodity", function (res) {
-                sessionStorage.setItem("indexCommodities",JSON.stringify(res));
+                sessionStorage.setItem("indexCommodities", JSON.stringify(res));
                 var render = template.compile(list2);
                 var html = render(res);
                 $(".my_clo2_title_bodyM").html(html);

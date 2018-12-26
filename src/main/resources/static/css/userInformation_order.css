@@ -41,6 +41,7 @@
 
 .body .body_right > .b0 {
     display: block;
+    margin-top: 25px;
 }
 
 .body_right_b1 > .orderImg, .body .body_right > .b0 > .orderImg, .body .body_right > .b1 > .orderImg {

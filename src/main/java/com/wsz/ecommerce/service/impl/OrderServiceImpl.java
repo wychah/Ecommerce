@@ -63,6 +63,12 @@ public class OrderServiceImpl implements OrderService {
         return orderId;
     }
 
+    /**
+     * 提交订单
+     * @param orderCheck
+     * @param request
+     * @return
+     */
     @Override
     public String orderGenerate(OrderCheck orderCheck, HttpServletRequest request) {
         if (orderDao.getOrderStatus(orderCheck.getOrderId()).equals("待提交")) {
@@ -89,6 +95,15 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
+    /**
+     * 生成假订单
+     * @param orderId
+     * @param userId
+     * @param commodityId
+     * @param amount
+     * @param request
+     * @return
+     */
     @Override
     public String fakeOrderGenerate(String orderId, int userId, int commodityId, int amount,HttpServletRequest request) {
         int inventory = commodityDao.getCommodityInventory(commodityId);
@@ -115,6 +130,11 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
+    /**
+     * 返回订单完成信息
+     * @param orderId
+     * @return
+     */
     @Override
     public Map getFinalOrderInfo(String orderId) {
         Map map = new HashMap();
@@ -144,6 +164,12 @@ public class OrderServiceImpl implements OrderService {
         return map;
     }
 
+    /**
+     * 检验库存
+     * @param commodityId
+     * @param amount
+     * @return
+     */
     @Override
     public String checkCommodityInventory(int commodityId, int amount) {
         if (commodityDao.getCommodityInventory(commodityId) < amount) {

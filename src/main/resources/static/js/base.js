@@ -4,7 +4,6 @@ $(function () {
         if ($(window).scrollTop() > 0) {
             $(".shortcut").addClass("fixed");
             $(".header").css("marginTop", $(".shortcut").height());
-            // console.log($(".main").css("marginTop"));
         } else {
             $(".shortcut").removeClass("fixed");
             $(".header").css("marginTop", "0");
@@ -23,7 +22,6 @@ $(function () {
         var spacex = e.clientX - $(".wechart").offset().left;
         var spacey = e.clientY - $(".wechart").offset().top;
         $(document).on("mousemove", function (e) {
-            console.log(spacex);
             $(".wechart").css("left", e.clientX - spacex + 190);
             $(".wechart").css("top", e.clientY - spacey + 225);
         });
@@ -70,8 +68,7 @@ $(function () {
                 }
             });
             // $(this).siblings().children("div").eq(1).stop().hide();
-        }
-        else if ($(this).children("div").eq(1).css("display") == "block") {
+        } else if ($(this).children("div").eq(1).css("display") == "block") {
             $(this).children("div").eq(1).stop().hide();
         }
     });
@@ -85,7 +82,6 @@ $(function () {
     });
     $(".fk-rbar-tabs>i").on("click", function (e) {
         var index = $(this).index();
-        console.log($(".afterLogin").css("right"));
         if ($(".fk-rbar-plugins>div").eq(index).css("opacity") == 1 && $(".afterLogin").css("right") == "0px") {
             $(".afterLogin").stop().animate({right: -255});
         }
@@ -154,7 +150,6 @@ $(function () {
         '<div class="hasCartThings_bottom">去购物车结算</div>';
     if ($.cookie("userId") != undefined) {
         $.post("http://localhost:8080/user/getUserBasicInfo", {userId: $.cookie("userId")}, function (res) {
-            console.log(res);
             var render = template.compile(myStuff);
             var html = render(res.userBasicInfo);
             $(".myStuffTab").html(html);
@@ -164,16 +159,14 @@ $(function () {
             $(".shoppingCar").children("span").text(res.shoppingCart.length);
             if (res.shoppingCart == "") {
                 $(".hasNoCartThings").stop().show().siblings().stop().hide();
-            }
-            else {
+            } else {
                 $(".hasCartThings").stop().show().siblings().stop().hide();
                 if (sessionStorage.getItem("shoppingCart") == undefined || sessionStorage.getItem("shoppingCart") == "[]") {
                     var userCartRender = template.compile(myCart);
                     var userCartHtml = userCartRender(res);
                     $(".hasCartThings").html(userCartHtml);
                     sessionStorage.setItem("shoppingCart", JSON.stringify(res.shoppingCart));
-                }
-                else {
+                } else {
                     var myCartA =
                         '{{each}}' +
                         '<div class="hasCartThings_top">' +
@@ -205,8 +198,9 @@ $(function () {
                     type: "post",
                     data: {"userId": $.cookie("userId"), "commodityId": currentShoppingId},
                     success: function (res) {
+                        $(".shoppingCar").children("span").html(res.length);
                         sessionStorage.setItem("shoppingCart", JSON.stringify(res));
-                        if (sessionStorage.getItem("shoppingCart") == "[]"){
+                        if (sessionStorage.getItem("shoppingCart") == "[]") {
                             $(".hasNoCartThings").stop().show().siblings().stop().hide();
                         }
                     }
@@ -223,8 +217,7 @@ $(function () {
     if ($.cookie("userId") != undefined) {
         $(".shortcut").children().eq(1).css("display", "block").siblings().css("display", "none");
         $(".afterLogin").css("display", "block").siblings(".rightBar").css("display", "none");
-    }
-    else {
+    } else {
         $(".shortcut").children().eq(0).css("display", "block").siblings().css("display", "none");
         $(".rightBar").css("display", "block").siblings(".afterLogin").css("display", "none");
     }

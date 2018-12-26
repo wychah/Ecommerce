@@ -190,7 +190,7 @@
         <i class="shoppingCar iconfont icon-icon1">
             <div></div>
             <h1>购物车</h1>
-            <span>0</span>
+            <span></span>
         </i>
         <i class="leaveMessage iconfont icon-liuyan">
             <div class="slogans">留言
@@ -422,7 +422,15 @@
                                         "commodityId": sessionStorage.getItem("commodityId")
                                     },
                                     success: function (res) {
-                                        sessionStorage.setItem("shoppingCart", res);
+                                        console.log(res);
+                                        var tPrice = 0;
+                                        res.forEach(function (data, index) {
+                                            tPrice += data.amount * data.commodityPrice;
+                                        });
+                                        var string = '购物车共有' + res.length + '件商品。合计：￥' + tPrice + '';
+                                        $(".cartDes").html(string);
+                                        sessionStorage.setItem("shoppingCart", JSON.stringify(res));
+                                        $(".shoppingCar").children("span").html(res.length);
                                     }
                                 });
                             }
@@ -434,6 +442,7 @@
             $(".successBtn>a,.successToAddCart>span").on("click", function () {
                 $(".barrier").stop().hide();
                 $(".successToAddCart").stop().hide();
+                location.reload();
                 return false;
             });
             //跳转到购物车
@@ -474,21 +483,18 @@
             var thingsNumber = changeElement.val();
             if (clickElement.attr("id") == "up") {
                 thingsNumber++;
-            }
-            else {
+            } else {
                 thingsNumber--;
             }
             if (thingsNumber <= 1) {
                 thingsNumber = 1;
                 $("#up").css("backgroundPosition", "-625px -974px");
                 $("#down").css("backgroundPosition", "-591px -1005px");
-            }
-            else if (thingsNumber >= maxValue) {
+            } else if (thingsNumber >= maxValue) {
                 thingsNumber = maxValue;
                 $("#up").css("backgroundPosition", "-591px -974px");
                 $("#down").css("backgroundPosition", "-625px -1005px");
-            }
-            else {
+            } else {
                 $("#down").css("backgroundPosition", "-625px -1005px");
                 $("#up").css("backgroundPosition", "-625px -974px");
             }
@@ -501,12 +507,10 @@
             if (thingsNumber <= 1) {
                 $("#up").css("backgroundPosition", "-625px -974px");
                 $("#down").css("backgroundPosition", "-591px -1005px");
-            }
-            else if (thingsNumber >= maxValue) {
+            } else if (thingsNumber >= maxValue) {
                 $("#up").css("backgroundPosition", "-591px -974px");
                 $("#down").css("backgroundPosition", "-625px -1005px");
-            }
-            else {
+            } else {
                 $("#down").css("backgroundPosition", "-625px -1005px");
                 $("#up").css("backgroundPosition", "-625px -974px");
             }

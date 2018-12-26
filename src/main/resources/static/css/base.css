@@ -561,12 +561,12 @@ ol {
     overflow: hidden;
     white-space: nowrap;
     left: 85px;
-    top: 15px;
+    top: -45px;
 }
 
 .afterLogin > .fk-rbar-plugins > .myCartTab > .hasCartThings > .hasCartThings_top > .cartThing > .cartThingPrice {
     right: -126px;
-    top: 36px;
+    top: -25px;
     color: #e43a3d;
     white-space: nowrap;
     overflow: hidden;
@@ -575,7 +575,7 @@ ol {
 
 .afterLogin > .fk-rbar-plugins > .myCartTab > .hasCartThings > .hasCartThings_top > .cartThing > .cartThingNumber {
     right: -184px;
-    top: 22px;
+    top: -39px;
 }
 
 .afterLogin > .fk-rbar-plugins > .myCartTab > .hasCartThings > .hasCartThings_top > .cartThing > .cartThingDelete {
@@ -585,7 +585,7 @@ ol {
     cursor: pointer;
     font-size: 14px;
     right: -208px;
-    top: -35px;
+    top: -95px;
 }
 
 .afterLogin > .fk-rbar-plugins > .myCartTab > .hasCartThings > .hasCartThings_bottom {

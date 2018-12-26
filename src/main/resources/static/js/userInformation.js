@@ -4,7 +4,6 @@ $(function () {
         var url = $(this).attr("href");
         $(this).parent().addClass("addBlBgc").siblings().removeClass("addBlBgc");
         $(".body_right").load(url + " .body_right>*", function () {
-            console.log(url);
             if (url == "http://localhost:8080/userInformation") {
                 $(".body_right_m").children("span").eq(1).children("span").text($.cookie("userAccount"));
                 $(".imgHead").attr("src", localStorage.getItem("userAvatar"));
@@ -29,7 +28,7 @@ $(function () {
                             data: {"userId": $.cookie("userId"), "userAvatar": img_base64},
                             success: function (res) {
                                 if (res.result == 1) {
-                                    localStorage.setItem("userAvatar",img_base64);
+                                    localStorage.setItem("userAvatar", img_base64);
                                     location.reload();
                                 }
                             }
@@ -43,8 +42,7 @@ $(function () {
                     if (userName == "") {
                         alert("请填写您的姓名");
                         return false;
-                    }
-                    else {
+                    } else {
                         $.ajax({
                             url: "http://localhost:8080/user/changeUserInfo",
                             type: "post",
@@ -56,8 +54,7 @@ $(function () {
                                     $.cookie("userName", userName);
                                     $.cookie("userEmail", userEmail);
                                     location.reload();
-                                }
-                                else {
+                                } else {
                                     alert("修改失败");
                                     return false;
                                 }
@@ -230,7 +227,7 @@ $(function () {
                     type: "post",
                     data: {"userId": $.cookie("userId")},
                     success: function (res) {
-
+                        console.log(res);
                         var totalorder =
                             '<div class="body_right_b_tO">' +
                             '<table>' +
@@ -245,7 +242,7 @@ $(function () {
                             '</div>' +
                             '{{each waitPush}}' +
                             '<div class="body_right_b_bO">' +
-                            '<div class="body_right_b_b_tO">' +
+                            '<div class="body_right_b_b_tO" orderId = "{{$value.orderId}}">' +
                             '<span>订单编号：{{$value.orderId}}</span>' +
                             '<span>订单时间：{{$value.orderDate}}</span>' +
                             '</div>' +
@@ -260,7 +257,6 @@ $(function () {
                             '<td><span>{{$value.orderStatus}}</span></td>' +
                             '<td>' +
                             ' <span class="watchOrder"></span>' +
-                            '<span class="deletOrder"></span>' +
                             '</td>' +
                             '</tr>' +
                             '</table>' +
@@ -274,11 +270,9 @@ $(function () {
                             res.waitPush.push(data);
                         });
                         if (res.waitPush.length == 0) {
-                            console.log("hah");
                             $(".body .body_right > div:nth-of-type(2)").html("<div class=\"orderImg\"></div>\n" +
                                 "<span>亲，您还没有相关的订单哟~</span>");
-                        }
-                        else {
+                        } else {
                             var render = template.compile(totalorder);
                             var html = render(res);
                             $(".body_right_bO").html(html);
@@ -289,8 +283,7 @@ $(function () {
                                 if (res.waitPush.length == 0) {
                                     $(".body .body_right > div:nth-of-type(2)").html("<div class=\"orderImg\"></div>\n" +
                                         "<span>亲，您还没有相关的订单哟~</span>");
-                                }
-                                else {
+                                } else {
                                     var render = template.compile(totalorder);
                                     var html = render(res);
                                     $(".body_right_bO").html(html);
@@ -310,7 +303,7 @@ $(function () {
                                     '</div>' +
                                     '{{each waitSend}}' +
                                     '<div class="body_right_b_bO">' +
-                                    '<div class="body_right_b_b_tO">' +
+                                    '<div class="body_right_b_b_tO" orderId = "{{$value.orderId}}">' +
                                     '<span>订单编号：{{$value.orderId}}</span>' +
                                     '<span>订单时间：{{$value.orderDate}}</span>' +
                                     '</div>' +
@@ -324,7 +317,6 @@ $(function () {
                                     '<td><span>{{$value.orderStatus}}</span></td>' +
                                     '<td>' +
                                     '<span class="watchOrder"></span>' +
-                                    '<span class="deletOrder"></span>' +
                                     '</td>' +
                                     '</tr>' +
                                     '</table>' +
@@ -334,15 +326,46 @@ $(function () {
                                 if (res.waitPush.length == 0) {
                                     $(".body .body_right > div:nth-of-type(3)").html("<div class=\"orderImg\"></div>\n" +
                                         "<span>亲，您还没有相关的订单哟~</span>");
-                                }
-                                else {
+                                } else {
                                     var render1 = template.compile(reciveOrder);
                                     var html1 = render1(res);
                                     $(".body_right_bO").html(html1);
                                 }
                             }
+                            $(".watchOrder").on("click", function () {
+                                var orderId = $(this).parent().parent().parent().parent().parent().siblings().attr("orderId");
+                                $(this).parent().parent().parent().parent().parent().parent().remove();
+                                if ($(this).parents(".body_right_b_bO").length == 1) {
+                                    $(".body .body_right > div:nth-of-type(2)").html("<div class=\"orderImg\"></div>\n" +
+                                        "<span>亲，您还没有相关的订单哟~</span>");
+                                }
+                                // $.ajax({
+                                //     url: "",
+                                //     type: "post",
+                                //     data: {"orderId": orderId},
+                                //     success: function (res) {
+                                //         console.log(res);
+                                //     }
+                                // });
+                            });
                             $(this).children().addClass("bodyRbb").parent().siblings().children().removeClass("bodyRbb");
                             $(".body_right>div").eq(index + 1).show().siblings(".except").not(".body_right_tO").hide();
+                        });
+                        $(".watchOrder").on("click", function () {
+                            var orderId = $(this).parent().parent().parent().parent().parent().siblings().attr("orderId");
+                            $(this).parent().parent().parent().parent().parent().parent().remove();
+                            if ($(this).parents(".body_right_b_bO").length == 1) {
+                                $(".body .body_right > div:nth-of-type(2)").html("<div class=\"orderImg\"></div>\n" +
+                                    "<span>亲，您还没有相关的订单哟~</span>");
+                            }
+                            // $.ajax({
+                            //     url: "",
+                            //     type: "post",
+                            //     data: {"orderId": orderId},
+                            //     success: function (res) {
+                            //         console.log(res);
+                            //     }
+                            // });
                         });
                     }
                 });

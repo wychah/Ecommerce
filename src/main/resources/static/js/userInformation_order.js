@@ -6,3 +6,4 @@ $(function () {
         $(".body_right>div").eq(index + 1).show().siblings(".except").not(".body_right_tO").hide();
     });
 });
+
