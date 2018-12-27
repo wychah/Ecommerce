@@ -334,13 +334,33 @@
                         $(".itemListCheck>label").removeClass("imgCheck");
                         $(".itemListCheck>label").parent().parent().parent().parent().parent().prev(".activity").children(".manjian").css("backgroundColor", "#e2e2e2");
                     }
+                    if ($(this).hasClass("imgCheck")) {
+                        $(".itemList").each(function (index, data) {
+                            var value = $(data).find(".itemListNumber").children("input").val();
+                            var prices = $(data).find(".itemListPrice").html();
+                            prices = prices.substr(1, 4);
+                            thingsPrice += prices * value;
+                        });
+                        discountPrice = $(".itemList").length * 9;
+                        thingsDiscountPrice = thingsPrice - discountPrice;
+                        $(".selectAll").children("span").eq(2).html('￥' + thingsPrice + '.00');
+                        $(".discountAmount").children("span").eq(1).html('￥' + discountPrice + '.00');
+                        $(".payMoney").children("span").eq(1).html('￥' + thingsDiscountPrice + '.00');
+                    } else {
+                        thingsPrice = 0;
+                        discountPrice = 0;
+                        thingsDiscountPrice = 0;
+                        $(".selectAll").children("span").eq(2).html('￥' + thingsPrice + '.00');
+                        $(".discountAmount").children("span").eq(1).html('￥' + discountPrice + '.00');
+                        $(".payMoney").children("span").eq(1).html('￥' + thingsDiscountPrice + '.00');
+                    }
                 });
 
                 $(".itemListCheck>label").on("click", function () {
                     var flag = true;
-                    // var id = $(this).parents(".itemList").attr("commodityid");
-                    // var tP = $(this).parent().next();
-                    // var tP1 = $(this).parents(".itemList").prev().children(".subtotal");
+                    var id = $(this).parents(".itemList").attr("commodityid");
+                    var tP = $(this).parent().next();
+                    var tP1 = $(this).parents(".itemList").prev().children(".subtotal");
                     $(this).toggleClass("imgCheck");
                     for (var i = 0; i < $(".itemListCheck>label").length; i++) {
                         if (!$(".itemListCheck>label").eq(i).hasClass("imgCheck")) {
@@ -355,27 +375,35 @@
                     } else {
                         $("#checkAll").addClass("imgCheck");
                     }
-                    // if ($(this).hasClass("imgCheck")) {
-                    //     window.thingsNumber = $(this).parent().siblings(".itemListNumber").children("input").val();
-                    //     for (var i = 0; i < res.length; i++) {
-                    //         if (res[i].commodityId == id) {
-                    //             tP.html('￥' + res[i].commodityPrice * thingsNumber + '.00');
-                    //             tP1.children().eq(0).html('￥' + (res[i].commodityPrice * thingsNumber - 9) + '.00');
-                    //             tP1.children().eq(1).html('￥' + res[i].commodityPrice * thingsNumber + '.00');
-                    //             if (changeElement.parent().prev().prev().prev().children().hasClass("imgCheck")) {
-                    //                 thingsPrice += res[i].commodityPrice;
-                    //                 thingsDiscountPrice += res[i].commodityPrice;
-                    //                 $(".selectAll").children("span").eq(2).html('￥' + thingsPrice + '.00');
-                    //                 $(".payMoney").children("span").eq(1).html('￥' + thingsDiscountPrice + '.00');
-                    //             }
-                    //             break;
-                    //         }
-                    //     }
-                    // } else {
-                    //     window.thingsNumber = $(this).parent().siblings(".itemListNumber").children("input").val();
-                    // }
+                    if ($(this).hasClass("imgCheck")) {
+                        window.thingsNumber = $(this).parent().siblings(".itemListNumber").children("input").val();
+                        for (var i = 0; i < res.length; i++) {
+                            if (res[i].commodityId == id) {
+                                thingsPrice += res[i].commodityPrice * window.thingsNumber;
+                                discountPrice += 9;
+                                thingsDiscountPrice = thingsPrice - discountPrice;
+                                $(".selectAll").children("span").eq(2).html('￥' + thingsPrice + '.00');
+                                $(".discountAmount").children("span").eq(1).html('￥' + discountPrice + '.00');
+                                $(".payMoney").children("span").eq(1).html('￥' + thingsDiscountPrice + '.00');
+                                break;
+                            }
+                        }
+                    } else {
+                        window.thingsNumber = $(this).parent().siblings(".itemListNumber").children("input").val();
+                        for (var i = 0; i < res.length; i++) {
+                            if (res[i].commodityId == id) {
+                                console.log("哈哈");
+                                thingsPrice -= res[i].commodityPrice * window.thingsNumber;
+                                discountPrice -= 9;
+                                thingsDiscountPrice = thingsPrice - discountPrice;
+                                $(".selectAll").children("span").eq(2).html('￥' + thingsPrice + '.00');
+                                $(".discountAmount").children("span").eq(1).html('￥' + discountPrice + '.00');
+                                $(".payMoney").children("span").eq(1).html('￥' + thingsDiscountPrice + '.00');
+                                break;
+                            }
+                        }
+                    }
                 });
-
                 //结算订单
                 $("#payOrder").on("click", function () {
                     location.href = "orderSettlement.html";
