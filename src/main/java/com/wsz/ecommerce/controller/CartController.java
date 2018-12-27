@@ -37,4 +37,12 @@ public class CartController {
         List<CommodityCart> commodityCarts = cartService.addCommodity(userId, CommodityId, amount);
         return commodityCarts;
     }
+
+    //查询购物车中的商品
+    @ResponseBody
+    @PostMapping("/get")
+    public List<CommodityCart> getCommodity(@RequestParam("userId") int userId) {
+        List<CommodityCart> commodityCarts = cartService.getCommodity(userId);
+        return commodityCarts;
+    }
 }

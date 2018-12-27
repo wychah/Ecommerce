@@ -334,9 +334,10 @@ $(function () {
                             }
                             $(".watchOrder").on("click", function () {
                                 var orderId = $(this).parent().parent().parent().parent().parent().siblings().attr("orderId");
+                                var obj = $(this).parents(".body_right");
                                 $(this).parent().parent().parent().parent().parent().parent().remove();
                                 if ($(this).parents(".body_right_b_bO").length == 1) {
-                                    $(".body .body_right > div:nth-of-type(2)").html("<div class=\"orderImg\"></div>\n" +
+                                    obj.children("div").eq(2).html("<div class=\"orderImg\"></div>\n" +
                                         "<span>亲，您还没有相关的订单哟~</span>");
                                 }
                                 // $.ajax({
@@ -353,9 +354,10 @@ $(function () {
                         });
                         $(".watchOrder").on("click", function () {
                             var orderId = $(this).parent().parent().parent().parent().parent().siblings().attr("orderId");
+                            var obj = $(this).parents(".body_right");
                             $(this).parent().parent().parent().parent().parent().parent().remove();
                             if ($(this).parents(".body_right_b_bO").length == 1) {
-                                $(".body .body_right > div:nth-of-type(2)").html("<div class=\"orderImg\"></div>\n" +
+                                obj.children("div").eq(1).html("<div class=\"orderImg\"></div>\n" +
                                     "<span>亲，您还没有相关的订单哟~</span>");
                             }
                             // $.ajax({

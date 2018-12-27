@@ -42,4 +42,12 @@ public class CartServiceImpl implements CartService{
         List<CommodityCart> commodityCarts=userDao.getShoppingCart(userId);
         return commodityCarts;
     }
+
+    @Override
+    public List<CommodityCart> getCommodity(int userId) {
+        List<CommodityCart> commodityCarts=userDao.getShoppingCart(userId);
+        return commodityCarts;
+    }
+
+
 }
