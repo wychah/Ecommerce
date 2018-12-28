@@ -240,7 +240,7 @@ $(function () {
                             '</tr>' +
                             '</table>' +
                             '</div>' +
-                            '{{each waitPush}}' +
+                            '{{each waitSend}}' +
                             '<div class="body_right_b_bO">' +
                             '<div class="body_right_b_b_tO" orderId = "{{$value.orderId}}">' +
                             '<span>订单编号：{{$value.orderId}}</span>' +
@@ -297,13 +297,13 @@ $(function () {
                             '</div>' +
                             '</div>' +
                             '{{/each}}';
-                        res.waitSend.forEach(function (data) {
-                            res.waitPush.push(data);
-                        });
-                        res.completed.forEach(function (data) {
-                            res.waitPush.push(data);
-                        });
-                        if (res.waitPush.length == 0) {
+                        // res.waitSend.forEach(function (data) {
+                        //     res.waitPush.push(data);
+                        // });
+                        // res.completed.forEach(function (data) {
+                        //     res.waitPush.push(data);
+                        // });
+                        if (res.waitSend.length == 0) {
                             $(".body .body_right > div:nth-of-type(2),.body .body_right > div:nth-of-type(3)").html("<div class=\"orderImg\"></div>\n" +
                                 "<span>亲，您还没有相关的订单哟~</span>");
                         } else {
@@ -317,12 +317,12 @@ $(function () {
                         $("#tabOrderTotalO>td").on("click", function () {
                             var index = $(this).index();
                             if (index == 0) {
-                                if (res.waitPush.length == 0) {
+                                if (res.waitSend.length == 0) {
                                     $(".body .body_right > div:nth-of-type(2)").html("<div class=\"orderImg\"></div>\n" +
                                         "<span>亲，您还没有相关的订单哟~</span>");
                                 }
                             } else if (index == 1) {
-                                if (res.waitPush.length == 0) {
+                                if (res.waitSend.length == 0) {
                                     $(".body .body_right > div:nth-of-type(3)").html("<div class=\"orderImg\"></div>\n" +
                                         "<span>亲，您还没有相关的订单哟~</span>");
                                 }
@@ -336,7 +336,7 @@ $(function () {
                             var obj1 = $(this).parents(".body_right_bO ");
                             $(this).parent().parent().parent().parent().parent().parent().remove();
                             if (obj1.children().length == 1) {
-                                obj.children("div").eq(1).html("<div class=\"orderImg\"></div>\n" +
+                                obj.children("div").eq(1,2).html("<div class=\"orderImg\"></div>\n" +
                                     "<span>亲，您还没有相关的订单哟~</span>");
                             }
                             $.ajax({

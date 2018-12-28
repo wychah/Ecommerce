@@ -71,6 +71,11 @@ $(function () {
             $(this).children("div").eq(1).stop().hide();
         }
     });
+    $(".shortcut>.w1 a").on("click", function () {
+        alert("请先登录");
+        location.href = "http://localhost:8080/login";
+        return false;
+    });
     //阻止事件冒泡
     $("i").children("div").on("click", function (e) {
         e.stopPropagation();
