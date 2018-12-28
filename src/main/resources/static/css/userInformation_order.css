@@ -35,7 +35,6 @@
 .body .body_right > .b1, .body .body_right > .body_right_b1 {
     width: 100%;
     margin-top: 25px;
-    position: absolute;
     display: none;
 }
 
@@ -53,7 +52,7 @@
 
 .body_right_b1 > span, .body .body_right > .b0 > span, .body .body_right > .b1 > span {
     position: absolute;
-    top: 295px;
+    top: 340px;
     left: 353px;
     color: #b5b5b5;
 }

@@ -6,7 +6,7 @@ $(function () {
         if (count == 8) {
             count = 0;
         }
-        $(".main_middle ul li").eq(count).fadeIn(2000).siblings("li").fadeOut(2000);
+        $(".main_middle ul li").eq(count).stop().fadeIn(2000).siblings("li").fadeOut(2000);
         $(".main_middle ol li").eq(count).addClass("current").siblings("li").removeClass("current");
 
     });
@@ -15,13 +15,13 @@ $(function () {
         if (count == -1) {
             count = 7;
         }
-        $(".main_middle ul li").eq(count).fadeIn(2000).siblings("li").fadeOut(2000);
+        $(".main_middle ul li").eq(count).stop().fadeIn(2000).siblings("li").stop().fadeOut(2000);
         $(".main_middle ol li").eq(count).addClass("current").siblings("li").removeClass("current");
 
     });
 
     function slider() {
-        $(".main_middle ul li").eq(count).fadeIn(2000).siblings("li").fadeOut(2000);
+        $(".main_middle ul li").eq(count).stop().fadeIn(2000).siblings("li").stop().fadeOut(2000);
         $(".main_middle ol li").eq(count).addClass("current").siblings("li").removeClass("current");
         count++;
         if (count > 8) {
@@ -40,7 +40,7 @@ $(function () {
     $(".main_middle ol li").on("click", function () {
         var index = $(this).index();
         $(this).addClass("current").siblings().removeClass("current");
-        $(".main_middle ul li").eq(index).fadeIn(2000).siblings("li").fadeOut(2000);
+        $(".main_middle ul li").eq(index).fadeIn(2000).siblings("li").stop().fadeOut(2000);
     });
 });
 // 无缝滚动代码

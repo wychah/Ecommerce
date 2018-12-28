@@ -227,6 +227,7 @@ $(function () {
                     type: "post",
                     data: {"userId": $.cookie("userId")},
                     success: function (res) {
+                        console.log(res);
                         var totalorder =
                             '<div class="body_right_b_tO">' +
                             '<table>' +
@@ -262,6 +263,40 @@ $(function () {
                             '</div>' +
                             '</div>' +
                             '{{/each}}';
+                        var reciveOrder =
+                            '<div class="body_right_b_tO">' +
+                            '<table>' +
+                            '<tr>' +
+                            '<td><span>产品名称</span></td>' +
+                            '<td><span>单价/数量</span></td>' +
+                            '<td><span>总价</span></td>' +
+                            '<td><span>状态</span></td>' +
+                            '<td><span>操作</span></td>' +
+                            '</tr>' +
+                            '</table>' +
+                            '</div>' +
+                            '{{each waitSend}}' +
+                            '<div class="body_right_b_bO">' +
+                            '<div class="body_right_b_b_tO" orderId = "{{$value.orderId}}">' +
+                            '<span>订单编号：{{$value.orderId}}</span>' +
+                            '<span>订单时间：{{$value.orderDate}}</span>' +
+                            '</div>' +
+                            '<div class="body_right_b_b_bO">' +
+                            '<table>' +
+                            '<tr>' +
+                            '<td><span><img src="{{$value.commodityPicture}}" alt=""><a href="">{{$value.commodityTitle}}</a></span>' +
+                            '</td>' +
+                            '<td><span>￥{{$value.commodityPrice}} x {{$value.amount}}</span></td>' +
+                            '<td><span>￥{{$value.orderAmount}}.00</span></td>' +
+                            '<td><span>{{$value.orderStatus}}</span></td>' +
+                            '<td>' +
+                            '<span class="watchOrder"></span>' +
+                            '</td>' +
+                            '</tr>' +
+                            '</table>' +
+                            '</div>' +
+                            '</div>' +
+                            '{{/each}}';
                         res.waitSend.forEach(function (data) {
                             res.waitPush.push(data);
                         });
@@ -269,12 +304,15 @@ $(function () {
                             res.waitPush.push(data);
                         });
                         if (res.waitPush.length == 0) {
-                            $(".body .body_right > div:nth-of-type(2)").html("<div class=\"orderImg\"></div>\n" +
+                            $(".body .body_right > div:nth-of-type(2),.body .body_right > div:nth-of-type(3)").html("<div class=\"orderImg\"></div>\n" +
                                 "<span>亲，您还没有相关的订单哟~</span>");
                         } else {
                             var render = template.compile(totalorder);
                             var html = render(res);
-                            $(".body_right_bO").html(html);
+                            $(".body_right_bO").eq(0).html(html);
+                            var render1 = template.compile(reciveOrder);
+                            var html1 = render1(res);
+                            $(".body_right_bO").eq(1).html(html1);
                         }
                         $("#tabOrderTotalO>td").on("click", function () {
                             var index = $(this).index();
@@ -282,81 +320,22 @@ $(function () {
                                 if (res.waitPush.length == 0) {
                                     $(".body .body_right > div:nth-of-type(2)").html("<div class=\"orderImg\"></div>\n" +
                                         "<span>亲，您还没有相关的订单哟~</span>");
-                                } else {
-                                    var render = template.compile(totalorder);
-                                    var html = render(res);
-                                    $(".body_right_bO").html(html);
                                 }
                             } else if (index == 1) {
-                                var reciveOrder =
-                                    '<div class="body_right_b_tO">' +
-                                    '<table>' +
-                                    '<tr>' +
-                                    '<td><span>产品名称</span></td>' +
-                                    '<td><span>单价/数量</span></td>' +
-                                    '<td><span>总价</span></td>' +
-                                    '<td><span>状态</span></td>' +
-                                    '<td><span>操作</span></td>' +
-                                    '</tr>' +
-                                    '</table>' +
-                                    '</div>' +
-                                    '{{each waitSend}}' +
-                                    '<div class="body_right_b_bO">' +
-                                    '<div class="body_right_b_b_tO" orderId = "{{$value.orderId}}">' +
-                                    '<span>订单编号：{{$value.orderId}}</span>' +
-                                    '<span>订单时间：{{$value.orderDate}}</span>' +
-                                    '</div>' +
-                                    '<div class="body_right_b_b_bO">' +
-                                    '<table>' +
-                                    '<tr>' +
-                                    '<td><span><img src="{{$value.commodityPicture}}" alt=""><a href="">{{$value.commodityTitle}}</a></span>' +
-                                    '</td>' +
-                                    '<td><span>￥{{$value.commodityPrice}} x {{$value.amount}}</span></td>' +
-                                    '<td><span>￥{{$value.orderAmount}}.00</span></td>' +
-                                    '<td><span>{{$value.orderStatus}}</span></td>' +
-                                    '<td>' +
-                                    '<span class="watchOrder"></span>' +
-                                    '</td>' +
-                                    '</tr>' +
-                                    '</table>' +
-                                    '</div>' +
-                                    '</div>' +
-                                    '{{/each}}';
                                 if (res.waitPush.length == 0) {
                                     $(".body .body_right > div:nth-of-type(3)").html("<div class=\"orderImg\"></div>\n" +
                                         "<span>亲，您还没有相关的订单哟~</span>");
-                                } else {
-                                    var render1 = template.compile(reciveOrder);
-                                    var html1 = render1(res);
-                                    $(".body_right_bO").html(html1);
                                 }
                             }
-                            $(".watchOrder").on("click", function () {
-                                var orderId = $(this).parent().parent().parent().parent().parent().siblings().attr("orderId");
-                                var obj = $(this).parents(".body_right");
-                                $(this).parent().parent().parent().parent().parent().parent().remove();
-                                if ($(this).parents(".body_right_b_bO").length == 1) {
-                                    obj.children("div").eq(2).html("<div class=\"orderImg\"></div>\n" +
-                                        "<span>亲，您还没有相关的订单哟~</span>");
-                                }
-                                $.ajax({
-                                    url: "http://localhost:8080/order/cancel",
-                                    type: "post",
-                                    data: {"orderId": orderId, "userId": $.cookie("userId")},
-                                    success: function (res) {
-                                        console.log(res);
-                                    }
-                                });
-                            });
                             $(this).children().addClass("bodyRbb").parent().siblings().children().removeClass("bodyRbb");
                             $(".body_right>div").eq(index + 1).show().siblings(".except").not(".body_right_tO").hide();
                         });
-                        $(".watchOrder").on("click", function () {
+                        $(".body_right_bO").on("click", ".watchOrder", function () {
                             var orderId = $(this).parent().parent().parent().parent().parent().siblings().attr("orderId");
                             var obj = $(this).parents(".body_right");
+                            var obj1 = $(this).parents(".body_right_bO ");
                             $(this).parent().parent().parent().parent().parent().parent().remove();
-                            console.log($(this).parent().parent().parent().parent().parent().parent());
-                            if ($(this).parents(".body_right_b_bO").length == 1) {
+                            if (obj1.children().length == 1) {
                                 obj.children("div").eq(1).html("<div class=\"orderImg\"></div>\n" +
                                     "<span>亲，您还没有相关的订单哟~</span>");
                             }
@@ -366,6 +345,87 @@ $(function () {
                                 data: {"orderId": orderId, "userId": $.cookie("userId")},
                                 success: function (res) {
                                     console.log(res);
+                                    var totalorderD =
+                                        '<div class="body_right_b_tO">' +
+                                        '<table>' +
+                                        '<tr>' +
+                                        '<td><span>产品名称</span></td>' +
+                                        '<td><span>单价/数量</span></td>' +
+                                        '<td><span>总价</span></td>' +
+                                        '<td><span>状态</span></td>' +
+                                        '<td><span>操作</span></td>' +
+                                        '</tr>' +
+                                        '</table>' +
+                                        '</div>' +
+                                        '{{each waitSend}}' +
+                                        '<div class="body_right_b_bO">' +
+                                        '<div class="body_right_b_b_tO" orderId = "{{$value.orderId}}">' +
+                                        '<span>订单编号：{{$value.orderId}}</span>' +
+                                        '<span>订单时间：{{$value.orderDate}}</span>' +
+                                        '</div>' +
+                                        '<div class="body_right_b_b_bO">' +
+                                        '<table>' +
+                                        '<tr>' +
+                                        '<td><span><img src="{{$value.commodityPicture}}" alt="">' +
+                                        '<a href="">{{$value.commodityTitle}}</a></span>' +
+                                        '</td>' +
+                                        '<td><span>￥{{$value.commodityPrice}} x {{$value.amount}}</span></td>' +
+                                        '<td><span>￥{{$value.orderAmount}}.00</span></td>' +
+                                        '<td><span>{{$value.orderStatus}}</span></td>' +
+                                        '<td>' +
+                                        ' <span class="watchOrder"></span>' +
+                                        '</td>' +
+                                        '</tr>' +
+                                        '</table>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '{{/each}}';
+                                    var reciveOrderD =
+                                        '<div class="body_right_b_tO">' +
+                                        '<table>' +
+                                        '<tr>' +
+                                        '<td><span>产品名称</span></td>' +
+                                        '<td><span>单价/数量</span></td>' +
+                                        '<td><span>总价</span></td>' +
+                                        '<td><span>状态</span></td>' +
+                                        '<td><span>操作</span></td>' +
+                                        '</tr>' +
+                                        '</table>' +
+                                        '</div>' +
+                                        '{{each waitSend}}' +
+                                        '<div class="body_right_b_bO">' +
+                                        '<div class="body_right_b_b_tO" orderId = "{{$value.orderId}}">' +
+                                        '<span>订单编号：{{$value.orderId}}</span>' +
+                                        '<span>订单时间：{{$value.orderDate}}</span>' +
+                                        '</div>' +
+                                        '<div class="body_right_b_b_bO">' +
+                                        '<table>' +
+                                        '<tr>' +
+                                        '<td><span><img src="{{$value.commodityPicture}}" alt=""><a href="">{{$value.commodityTitle}}</a></span>' +
+                                        '</td>' +
+                                        '<td><span>￥{{$value.commodityPrice}} x {{$value.amount}}</span></td>' +
+                                        '<td><span>￥{{$value.orderAmount}}.00</span></td>' +
+                                        '<td><span>{{$value.orderStatus}}</span></td>' +
+                                        '<td>' +
+                                        '<span class="watchOrder"></span>' +
+                                        '</td>' +
+                                        '</tr>' +
+                                        '</table>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '{{/each}}';
+                                    if (res.waitSend.length == 0) {
+                                        $(".body .body_right > div:nth-of-type(3)").html("<div class=\"orderImg\"></div>\n" +
+                                            "<span>亲，您还没有相关的订单哟~</span>");
+                                    }
+                                    else {
+                                        var render = template.compile(totalorderD);
+                                        var html = render(res);
+                                        $(".body_right_bO").eq(0).html(html);
+                                        var render1 = template.compile(reciveOrderD);
+                                        var html1 = render1(res);
+                                        $(".body_right_bO").eq(1).html(html1);
+                                    }
                                 }
                             });
                         });

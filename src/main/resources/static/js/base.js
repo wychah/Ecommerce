@@ -67,7 +67,6 @@ $(function () {
                     $(elements).stop().hide();
                 }
             });
-            // $(this).siblings().children("div").eq(1).stop().hide();
         } else if ($(this).children("div").eq(1).css("display") == "block") {
             $(this).children("div").eq(1).stop().hide();
         }
