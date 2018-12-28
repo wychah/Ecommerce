@@ -58,5 +58,9 @@ public class OrderController {
         return orderService.getFinalOrderInfo(orderId);
     }
 
-
+    @PostMapping("/cancel")
+    @ResponseBody
+    public Map cancelOrder(@RequestParam("orderId") String orderId,@RequestParam("userId") int userId) {
+        return orderService.cancelOrder(orderId,userId);
+    }
 }

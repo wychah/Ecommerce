@@ -170,4 +170,11 @@ public interface CommodityDao {
     void commoditySold(@Param("commodityId") int commodityId, @Param("commodityInventory") int commodityInventory);
 
     List<String> searchCommodityByTitleKeyword(@Param("keyword") String keyword);
+
+    /**
+     * 用户取消订单还原库存
+     * @param commodityId
+     * @return
+     */
+    int recoverCommodityInventory(@Param("commodityId") int commodityId,@Param("commodityInventory") int commodityInventory);
 }

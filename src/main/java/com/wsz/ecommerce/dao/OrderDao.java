@@ -89,4 +89,11 @@ public interface OrderDao {
      * @return 删除用户的订单
      */
     int orderDelete(@Param("orderId") String orderId);
+
+    /**
+     * 查询订单中的所有商品Id
+     * @param orderId
+     * @return
+     */
+    List<OrderCommodityAmount> getOrderCommodityAmount(@Param("orderId") String orderId);
 }

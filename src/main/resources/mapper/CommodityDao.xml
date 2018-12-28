@@ -334,4 +334,10 @@
         from commodity
         where commodity.commodityTitle like CONCAT('%',#{keyword},'%')
     </select>
+
+    <update id="recoverCommodityInventory">
+        UPDATE commodity
+        SET commodityInventory = #{commodityInventory}
+        WHERE commodityId = #{commodityId}
+    </update>
 </mapper>

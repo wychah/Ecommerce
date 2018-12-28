@@ -13,6 +13,11 @@
         <result property="orderAmount" column="orderAmount" />
     </resultMap>
 
+    <resultMap id="orderCommodityAmount" type="com.wsz.ecommerce.domain.OrderCommodityAmount">
+        <result property="commodityId" column="commodityId" />
+        <result property="amount" column="amount" />
+    </resultMap>
+
     <insert id="insertOrder">
         INSERT INTO `order` ( orderId, `order`.userId, `order`.addressId, orderStatus, orderAmount )
         VALUES (#{orderId},#{userId},#{addressId},#{orderStatus},#{orderAmount})
@@ -126,4 +131,13 @@
             `order`.orderId = suborder.orderId and
             `order`.orderId = #{orderId}
     </delete>
+    <select id="getOrderCommodityAmount" resultMap="orderCommodityAmount">
+        SELECT
+            suborder.commodityId,
+            suborder.amount
+        FROM
+            suborder
+        WHERE
+            orderId = #{orderId}
+    </select>
 </mapper>

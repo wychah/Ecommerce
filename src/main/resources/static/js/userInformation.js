@@ -227,7 +227,6 @@ $(function () {
                     type: "post",
                     data: {"userId": $.cookie("userId")},
                     success: function (res) {
-                        console.log(res);
                         var totalorder =
                             '<div class="body_right_b_tO">' +
                             '<table>' +
@@ -340,14 +339,14 @@ $(function () {
                                     obj.children("div").eq(2).html("<div class=\"orderImg\"></div>\n" +
                                         "<span>亲，您还没有相关的订单哟~</span>");
                                 }
-                                // $.ajax({
-                                //     url: "",
-                                //     type: "post",
-                                //     data: {"orderId": orderId},
-                                //     success: function (res) {
-                                //         console.log(res);
-                                //     }
-                                // });
+                                $.ajax({
+                                    url: "http://localhost:8080/order/cancel",
+                                    type: "post",
+                                    data: {"orderId": orderId, "userId": $.cookie("userId")},
+                                    success: function (res) {
+                                        console.log(res);
+                                    }
+                                });
                             });
                             $(this).children().addClass("bodyRbb").parent().siblings().children().removeClass("bodyRbb");
                             $(".body_right>div").eq(index + 1).show().siblings(".except").not(".body_right_tO").hide();
@@ -356,18 +355,19 @@ $(function () {
                             var orderId = $(this).parent().parent().parent().parent().parent().siblings().attr("orderId");
                             var obj = $(this).parents(".body_right");
                             $(this).parent().parent().parent().parent().parent().parent().remove();
+                            console.log($(this).parent().parent().parent().parent().parent().parent());
                             if ($(this).parents(".body_right_b_bO").length == 1) {
                                 obj.children("div").eq(1).html("<div class=\"orderImg\"></div>\n" +
                                     "<span>亲，您还没有相关的订单哟~</span>");
                             }
-                            // $.ajax({
-                            //     url: "",
-                            //     type: "post",
-                            //     data: {"orderId": orderId},
-                            //     success: function (res) {
-                            //         console.log(res);
-                            //     }
-                            // });
+                            $.ajax({
+                                url: "http://localhost:8080/order/cancel",
+                                type: "post",
+                                data: {"orderId": orderId, "userId": $.cookie("userId")},
+                                success: function (res) {
+                                    console.log(res);
+                                }
+                            });
                         });
                     }
                 });

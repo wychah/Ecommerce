@@ -3,10 +3,7 @@ package com.wsz.ecommerce.service.impl;
 import com.wsz.ecommerce.dao.AddressDao;
 import com.wsz.ecommerce.dao.CommodityDao;
 import com.wsz.ecommerce.dao.OrderDao;
-import com.wsz.ecommerce.domain.Order;
-import com.wsz.ecommerce.domain.OrderCheck;
-import com.wsz.ecommerce.domain.ReceiverInfo;
-import com.wsz.ecommerce.domain.SubOrder;
+import com.wsz.ecommerce.domain.*;
 import com.wsz.ecommerce.service.CommodityService;
 import com.wsz.ecommerce.service.OrderService;
 import org.slf4j.Logger;
@@ -176,6 +173,37 @@ public class OrderServiceImpl implements OrderService {
             return "库存不足";
         } else {
             return "可以购买";
+        }
+    }
+
+    /**
+     * 取消订单，还原库存
+     * @param orderId
+     * @return
+     */
+    @Override
+    public Map cancelOrder(String orderId, int userId) {
+        Map map = new HashMap();
+        int affect = 0;
+        List<OrderCommodityAmount> orderCommodityAmount = orderDao.getOrderCommodityAmount(orderId);
+        for (int i = 0; i < orderCommodityAmount.size() ; i++) {
+            int commodityInventory = commodityDao.getCommodityInventory(orderCommodityAmount.get(i).getCommodityId());
+            commodityInventory = commodityInventory + orderCommodityAmount.get(i).getAmount();
+            affect = commodityDao.recoverCommodityInventory(orderCommodityAmount.get(i).getCommodityId(),commodityInventory);
+        }
+        if (affect != 0) {
+            int orderDelete = orderDao.orderDelete(orderId);
+            if (orderDelete != 0) {
+                List<UserOrderInfo> userOrderInfosWaitSend = orderDao.getWaitSend(userId);
+                map.put("waitSend",userOrderInfosWaitSend);
+                return map;
+            } else {
+                map.put("error","订单取消失败");
+                return map;
+            }
+        } else {
+            map.put("error","订单取消失败");
+            return map;
         }
     }
 }
