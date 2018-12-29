@@ -1,5 +1,6 @@
 // 用户资料
 $(function () {
+    $(".message").css("pointerEvents", "none");
     $(".list-group-item").on("click", function () {
         var url = $(this).attr("href");
         $(this).parent().addClass("addBlBgc").siblings().removeClass("addBlBgc");
@@ -336,7 +337,7 @@ $(function () {
                             var obj1 = $(this).parents(".body_right_bO ");
                             $(this).parent().parent().parent().parent().parent().parent().remove();
                             if (obj1.children().length == 1) {
-                                obj.children("div").eq(1,2).html("<div class=\"orderImg\"></div>\n" +
+                                obj.children("div").eq(1, 2).html("<div class=\"orderImg\"></div>\n" +
                                     "<span>亲，您还没有相关的订单哟~</span>");
                             }
                             $.ajax({

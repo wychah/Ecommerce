@@ -57,12 +57,9 @@ $(function () {
     });
     // 显示快捷登陆框
     $("i").on("click", function () {
-        // console.log($(this).children("div").eq(1).css("display"));
         if ($(this).children("div").eq(1).css("display") == "none") {
-            // console.log($(this).children("div").eq(1).stop().show().parent().siblings().children("div").eq(1));
             $(this).children("div").eq(1).stop().show();
             $(this).siblings().children("div").each(function (index, elements) {
-                // console.log($(elements));
                 if ($(elements).hasClass("landingBoox")) {
                     $(elements).stop().hide();
                 }
@@ -71,19 +68,12 @@ $(function () {
             $(this).children("div").eq(1).stop().hide();
         }
     });
-    $(".shortcut>.w1 a").on("click", function () {
+    $(".shortcut>.w1>.fr a").on("click", function () {
         alert("请先登录");
         location.href = "http://localhost:8080/login";
         return false;
     });
-    //阻止事件冒泡
-    $("i").children("div").on("click", function (e) {
-        e.stopPropagation();
-    });
     //登录后右边菜单栏
-    $(".afterLogin").on("click", function (e) {
-        e.stopPropagation();
-    });
     $(".fk-rbar-tabs>i").on("click", function (e) {
         var index = $(this).index();
         if ($(".fk-rbar-plugins>div").eq(index).css("opacity") == 1 && $(".afterLogin").css("right") == "0px") {
@@ -94,6 +84,7 @@ $(function () {
         }
         $(".fk-rbar-plugins>div").eq(index).stop().animate({width: 255, height: 710, opacity: 1}, 400
         ).siblings().stop().animate({width: 0, height: 0, opacity: 0}, 500);
+        e.stopPropagation();
     });
     $(document).on("click", function () {
         if ($(".afterLogin").css("right") == "0px") {
@@ -194,7 +185,7 @@ $(function () {
             $.cookie("userPhone", res.userBasicInfo.userPhone);
             $.cookie("userEmail", res.userBasicInfo.userEmail);
             localStorage.setItem("userAvatar", res.userBasicInfo.userAvatar);
-            $(".cartThingDelete").on('click', function () {
+            $(".cartThingDelete").on('click', function (e) {
                 var currentShoppingId = $(this).parent().attr("commodityId");
                 $(this).parent().parent().remove();
                 $.ajax({
@@ -209,12 +200,15 @@ $(function () {
                         }
                     }
                 });
+                e.stopPropagation();
             });
-            $(".hasCartThings_bottom").on('click', function () {
+            $(".hasCartThings_bottom").on('click', function (e) {
                 location.href = "http://localhost:8080/shoppingcart";
+                e.stopPropagation();
             });
-            $(".myStuffTab_top").on('click', function () {
+            $(".myStuffTab_top").on('click', function (e) {
                 location.href = "http://localhost:8080/userinfo";
+                e.stopPropagation();
             });
         });
     }
@@ -225,12 +219,4 @@ $(function () {
         $(".shortcut").children().eq(0).css("display", "block").siblings().css("display", "none");
         $(".rightBar").css("display", "block").siblings(".afterLogin").css("display", "none");
     }
-
-    $(".shortcut>div").eq(0).children(".fr").children("li").eq(4).on("click", function () {
-        if ($.cookie("userId") === undefined) {
-            alert("请先登录");
-            location.href = "http://localhost:8080/login";
-            return false;
-        }
-    })
 });

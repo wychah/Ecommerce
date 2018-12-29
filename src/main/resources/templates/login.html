@@ -199,36 +199,8 @@
 <script src="js/jquery.lazyload.js"></script>
 <script src="js/template-web.js"></script>
 <script src="js/base.js"></script>
-<script src="js/login.js"></script>
 <script src="js/MD5.js"></script>
 <script src="js/jquery.cookie.js"></script>
-<script>
-    $(function () {
-        $("#loginBtn").on("click", function () {
-            var userAccount = $("#userName").val();
-            var userPassword = $.md5($("#password").val());
-            console.log(userPassword);
-            $.post("http://localhost:8080/user/toLogin", {
-                userAccount: userAccount,
-                userPassword: userPassword
-            }, function (res) {
-                console.log(res);
-                if (res.loginResult == "loginSuccess") {
-                    $.cookie("userId", res.userId, {expires: 1});
-                    if (sessionStorage.getItem("lastPage") != undefined) {
-                        location.href = sessionStorage.getItem("lastPage");
-                    }
-                    else {
-                        location.href = "http://localhost:8080";
-                    }
-                }
-                else {
-                    alert("登陆失败");
-                    return false;
-                }
-            });
-        });
-    });
-</script>
+<script src="js/login.js"></script>
 </body>
 </html>
