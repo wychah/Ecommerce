@@ -13,21 +13,23 @@ $(function () {
         '</tr>' +
         '</table>' +
         '</div>' +
+        '{{each}}' +
         '<div class="shoppingListHandlerDes">' +
         '<div class="shoppingListHandlerDesList">' +
         '<table>' +
         '<tr>' +
         '<td>' +
-        '<img src="{{commodityPicture}}" alt="">' +
-        '<span>{{commodityTitle}}</span>' +
+        '<img src="{{$value.commodityPicture}}" alt="">' +
+        '<span>{{$value.commodityTitle}}</span>' +
         '</td>' +
-        '<td>￥{{commodityPrice}}.00</td>' +
-        '<td>{{amount}}</td>' +
-        '<td>￥{{totalPrice}}.00</td>' +
+        '<td>￥{{$value.commodityPrice}}.00</td>' +
+        '<td>{{$value.amount}}</td>' +
+        '<td>￥{{$value.totalPrice}}.00</td>' +
         '</tr>' +
         '</table>' +
         '</div>' +
         '</div>' +
+        '{{/each}}' +
         '<div class="messageBoard">' +
         '<div>给卖家留言</div>' +
         '<div>' +
@@ -70,16 +72,21 @@ $(function () {
         '<div class="addAddr">添加信息</div>' +
         '</div>';
     $.ajax({
-        url: "http://localhost:8080/order/buy",
+        url: "http://localhost:8080/order/show",
         type: "get",
         data: {
             "userId": $.cookie("userId"),
-            "commodityId": sessionStorage.getItem("commodityId"),
-            "amount": sessionStorage.getItem("thingsNumber")
+            "orderId": sessionStorage.getItem("orderId")
         },
         success: function (res) {
+            console.log(res);
             var fakeOrderId = res.orderId;
-            res.orderInfo.finalPrice = res.orderInfo.totalPrice + 5;
+            var totalPrice = 0;
+            res.orderInfo.forEach(function (data) {
+                totalPrice += data.totalPrice;
+            });
+            res.orderInfo.totalPrice = totalPrice;
+            res.orderInfo.finalPrice = totalPrice + 5;
             var orderAmount = res.orderInfo.finalPrice;
             var render = template.compile(data);
             var html = render(res.orderInfo);
@@ -89,8 +96,7 @@ $(function () {
             $(".mstlTotalWarp").html(html1);
             if (res.receiverInfo.length == 0) {
                 $(".addConsigneeM").stop().show();
-            }
-            else {
+            } else {
                 var renderss = template.compile(data3);
                 var html2 = renderss(res);
                 $(".addConsignee").html(html2);
@@ -111,8 +117,7 @@ $(function () {
                 $.post("http://localhost:8080/order/delete", {"addressId": $(this).parent().parent().attr("addressId")});
                 if ($(".showConsigneeM").length == 1) {
                     $(this).parent().parent().stop().hide();
-                }
-                else {
+                } else {
                     $(this).parent().parent().remove();
                 }
             });
@@ -193,8 +198,7 @@ $(function () {
                                     newInformation.insertBefore($("#addConsigneeM"));
                                 }
                             });
-                        }
-                        else {
+                        } else {
                             alert("请填写完整的信息");
                             return false;
                         }
@@ -239,8 +243,7 @@ $(function () {
                             }
                         }
                     });
-                }
-                else {
+                } else {
                     alert("请选择收货地址");
                     return false;
                 }

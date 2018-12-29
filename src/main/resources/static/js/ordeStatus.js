@@ -7,7 +7,12 @@ $(function () {
             "orderId": sessionStorage.getItem("orderId")
         },
         success: function (res) {
-            console.log(res);
+            var orderAmount = 0;
+            res.commodities.forEach(function (data) {
+                orderAmount += data.totalPrice;
+            });
+            res.orderAmount = orderAmount;
+            res.finalPrice = orderAmount + 5;
             var order =
                 '<div class="orderNumber">' +
                 '<span>订单编号</span>' +
@@ -36,7 +41,6 @@ $(function () {
             var html = render(res.orderInfo);
             $(".orderInformation").html(html);
             var orderPrice =
-                '{{each commodities as value}}' +
                 '<div class="shoppingListTitle">购物清单</div>' +
                 '<div class="shoppingListHandler">' +
                 '<div class="shoppingListHandlerTitle">' +
@@ -49,31 +53,32 @@ $(function () {
                 '</tr>' +
                 '</table>' +
                 '</div>' +
+                '{{each commodities}}' +
                 '<div class="shoppingListHandlerDes">' +
                 '<div class="shoppingListHandlerDesList">' +
                 '<table>' +
                 '<tr>' +
                 '<td>' +
-                '<img src="{{value.commodityPicture}}" alt="">' +
-                '<span>{{value.commodityTitle}}</span>' +
+                '<img src="{{$value.commodityPicture}}" alt="">' +
+                '<span>{{$value.commodityTitle}}</span>' +
                 '</td>' +
-                '<td>￥{{value.commodityPrice}}.00</td>' +
-                '<td>{{value.amount}}</td>' +
-                '<td>￥{{value.totalPrice}}.00</td>' +
+                '<td>￥{{$value.commodityPrice}}.00</td>' +
+                '<td>{{$value.amount}}</td>' +
+                '<td>￥{{$value.totalPrice}}.00</td>' +
                 '</tr>' +
                 '</table>' +
                 '</div>' +
                 '</div>' +
+                '{{/each}}' +
                 '</div>' +
                 '</div>' +
                 '<div class="mstlTotalWarp">' +
-                '<div>商品总额：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;￥68.00' +
+                '<div>商品总额：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;￥{{orderAmount}}.00' +
                 '</div>' +
                 '<div>优惠金额：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;￥0.00</div>' +
                 '<div>运费：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;￥5.00</div>' +
-                '<div>订单总金额：<span>￥{{value.orderAmount}}.00</span></div>' +
-                '</div>' +
-                '{{/each}}';
+                '<div>订单总金额：<span>￥{{finalPrice}}.00</span></div>' +
+                '</div>';
             var renderPrice = template.compile(orderPrice);
             var html = renderPrice(res);
             $(".shoppingList").html(html);

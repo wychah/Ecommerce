@@ -74,6 +74,9 @@ $(function () {
         return false;
     });
     //登录后右边菜单栏
+    $(".fk-rbar-plugins").on("click", function (e) {
+        e.stopPropagation();
+    });
     $(".fk-rbar-tabs>i").on("click", function (e) {
         var index = $(this).index();
         if ($(".fk-rbar-plugins>div").eq(index).css("opacity") == 1 && $(".afterLogin").css("right") == "0px") {
@@ -89,7 +92,6 @@ $(function () {
     $(document).on("click", function () {
         if ($(".afterLogin").css("right") == "0px") {
             $(".afterLogin").stop().animate({right: -255});
-            return false;
         }
     });
     // 退出清楚数据

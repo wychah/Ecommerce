@@ -72,11 +72,9 @@ $(function () {
         type: "post",
         data: {"userId": $.cookie("userId")},
         success: function (res) {
-            console.log(res);
             if (res.length == 0) {
                 $(".noThings").stop().show().siblings().stop().hide();
-            }
-            else {
+            } else {
                 $(".hasThings").stop().show().siblings().stop().hide();
                 var thingsPrice = 0;
                 var discountPrice = res.length * 9;
@@ -193,8 +191,7 @@ $(function () {
                     $(".shoppingCar>span").html(number);
                     if ($(".hasThings").children(".hasThingsT").children().length == 1) {
                         $(".noThings").stop().show().siblings().hide();
-                    }
-                    else {
+                    } else {
                         $(".hasThings").stop().show().siblings().hide();
                     }
                     $.ajax({
@@ -207,33 +204,30 @@ $(function () {
                 $("#payOrder").on("click", function () {
                     var cartArr = [];
                     var cartObj = {};
-                    var orderArr = {
-                        "userId": $.cookie("userId"),
-                        "cartArr": cartArr
-                    };
                     $(".itemList").each(function (index, data) {
                         if ($(data).find(".itemListCheck").children().hasClass("imgCheck")) {
+                            cartObj.userId = $.cookie("userId");
                             cartObj.commodityId = $(data).attr("commodityid");
                             cartObj.amount = $(data).find(".itemListNumber").children("input").val();
                             cartArr.push(cartObj);
                             cartObj = {};
                         }
                     });
-                    console.log(orderArr);
+                    console.log(cartArr);
                     if (cartArr.length == 0) {
                         alert("请选择您的商品");
+                    } else {
+                        $.ajax({
+                            url: "http://localhost:8080/order/buyCommodities",
+                            type: "post",
+                            data: JSON.stringify(cartArr),
+                            contentType: 'application/json;charset=utf-8',
+                            success: function (res) {
+                                sessionStorage.setItem("orderId", res);
+                                location.href = "http://localhost:8080/order";
+                            }
+                        });
                     }
-                    // else {
-                    //     $.ajax({
-                    //         url: "",
-                    //         type: "post",
-                    //         data: cartArr,
-                    //         success: function (res) {
-                    //             console.log(res);
-                    //         }
-                    //     });
-                    //     location.href = "http://localhost:8080/order";
-                    // }
                 });
 
                 //改变商品数量的函数封装

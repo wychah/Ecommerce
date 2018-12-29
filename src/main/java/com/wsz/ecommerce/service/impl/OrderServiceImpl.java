@@ -1,6 +1,7 @@
 package com.wsz.ecommerce.service.impl;
 
 import com.wsz.ecommerce.dao.AddressDao;
+import com.wsz.ecommerce.dao.CartDao;
 import com.wsz.ecommerce.dao.CommodityDao;
 import com.wsz.ecommerce.dao.OrderDao;
 import com.wsz.ecommerce.domain.*;
@@ -15,10 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -34,10 +32,12 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private CommodityDao commodityDao;
 
+    @Autowired
+    private CartDao cartDao;
+
     /**
      * 生成订单编号
      * userId + 时间戳 + 时间戳长度
-     *
      * 时间戳转换成日期
      * String ntime = sd.format(unixTimestamp * 1000);
      *
@@ -62,6 +62,7 @@ public class OrderServiceImpl implements OrderService {
 
     /**
      * 提交订单
+     *
      * @param orderCheck
      * @param request
      * @return
@@ -70,14 +71,26 @@ public class OrderServiceImpl implements OrderService {
     public String orderGenerate(OrderCheck orderCheck, HttpServletRequest request) {
         if (orderDao.getOrderStatus(orderCheck.getOrderId()).equals("待提交")) {
             try {
-                orderDao.updateOrder(orderCheck.getOrderId(),orderCheck.getAddressId(),"待发货",orderCheck.getOrderAmount(),new Date());
+                orderDao.updateOrder(orderCheck.getOrderId(), orderCheck.getAddressId(), "待发货", orderCheck.getOrderAmount(), new Date());
                 logger.info("订单号:" + orderCheck.getOrderId() + "提交成功");
+                // 如果订单中的商品个数大于1，说明来自购物车提交订单，成功后清除购物车中相应商品
+                if (orderDao.getOrderCommodityAmount(orderCheck.getOrderId()).size() > 1) {
+                    for (int i = 0; i < orderDao.getOrderCommodityAmount(orderCheck.getOrderId()).size(); i++) {
+                        int commodityId = orderDao.getOrderCommodityAmount(orderCheck.getOrderId()).get(i).getCommodityId();
+                        int deleteShoppingCart = cartDao.deleteShoppingCart(orderCheck.getUserId(), commodityId);
+                        if (deleteShoppingCart == 0) {
+                            logger.info("商品:" + commodityId + "从购物车中删除失败");
+                        } else {
+                            logger.info("商品:" + commodityId + "从购物车中删除成功");
+                        }
+                    }
+                }
                 return "订单提交成功";
             } catch (Exception e) {
-                int backToCart = orderDao.backToCart(orderCheck.getUserId(),orderCheck.getCommodityId(),orderCheck.getAmount(),new Date());
+                int backToCart = orderDao.backToCart(orderCheck.getUserId(), orderCheck.getCommodityId(), orderCheck.getAmount(), new Date());
                 int deleteFakeOrder = orderDao.deleteFakeOrder(orderCheck.getUserId());
                 if (backToCart == 0) {
-                    orderDao.backToCart(orderCheck.getUserId(),orderCheck.getCommodityId(),orderCheck.getAmount(),new Date());
+                    orderDao.backToCart(orderCheck.getUserId(), orderCheck.getCommodityId(), orderCheck.getAmount(), new Date());
                     logger.info("订单号:" + orderCheck.getOrderId() + "退回购物车异常，已重试");
                 }
                 if (deleteFakeOrder == 0) {
@@ -93,7 +106,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     /**
-     * 生成假订单
+     * 生成假的副订单
      * @param orderId
      * @param userId
      * @param commodityId
@@ -102,16 +115,10 @@ public class OrderServiceImpl implements OrderService {
      * @return
      */
     @Override
-    public String fakeOrderGenerate(String orderId, int userId, int commodityId, int amount,HttpServletRequest request) {
+    public String fakeOrderGenerate(String orderId, int userId, int commodityId, int amount, HttpServletRequest request) {
         int inventory = commodityDao.getCommodityInventory(commodityId);
         if (inventory > 0) {
             commodityDao.commoditySold(commodityId, inventory - amount);
-
-            Order order = new Order();
-            order.setOrderId(orderId);
-            order.setUserId(userId);
-            order.setOrderStatus("待提交");
-            orderDao.insertOrder(order);
 
             SubOrder subOrder = new SubOrder();
             subOrder.setOrderId(orderId);
@@ -120,7 +127,7 @@ public class OrderServiceImpl implements OrderService {
             orderDao.insertSubOrder(subOrder);
 
             HttpSession session = request.getSession();
-            session.setAttribute("orderId",orderId);
+            session.setAttribute("orderId", orderId);
             return "订单生成成功";
         } else {
             return "库存不足";
@@ -129,40 +136,37 @@ public class OrderServiceImpl implements OrderService {
 
     /**
      * 返回订单完成信息
+     *
      * @param orderId
      * @return
      */
     @Override
     public Map getFinalOrderInfo(String orderId) {
         Map map = new HashMap();
-        map.put("commodities",orderDao.findOrderCommodityInfo(orderId));
-        map.put("orderInfo",orderDao.findOrderReceiverInfo(orderId));
+        map.put("commodities", getOrderInfo(orderId));
+        map.put("orderInfo", orderDao.findOrderReceiverInfo(orderId));
         return map;
     }
 
+    /**
+     * 返回订单页面所需数据
+     * @param userId
+     * @param orderId
+     * @return
+     */
     @Override
-    public Map showOrderInfo(int userId, int commodityId, int amount, HttpServletRequest request) {
+    public Map showOrderInfo(int userId, String orderId) {
         Map map = new HashMap();
-        HttpSession session = request.getSession();
-        if (session.getAttribute("orderId") == null) {
-            String orderId = setOrderId(userId);
-            List<ReceiverInfo> receiverInfo = addressDao.findReceiverInfoById(userId);
-            map.put("orderInfo",commodityDao.getOrderInfo(commodityId, amount));
-            map.put("receiverInfo",receiverInfo);
-            map.put("orderId",orderId);
-            fakeOrderGenerate(orderId,userId,commodityId,amount,request);
-        } else {
-            String lastOrder = (String) session.getAttribute("orderId");
-            List<ReceiverInfo> receiverInfo = addressDao.findReceiverInfoById(userId);
-            map.put("orderInfo",commodityDao.getOrderInfo(commodityId, amount));
-            map.put("receiverInfo",receiverInfo);
-            map.put("orderId",lastOrder);
-        }
+        List<ReceiverInfo> receiverInfo = addressDao.findReceiverInfoById(userId);
+        map.put("orderInfo", getOrderInfo(orderId));
+        map.put("receiverInfo", receiverInfo);
+        map.put("orderId", orderId);
         return map;
     }
 
     /**
      * 检验库存
+     *
      * @param commodityId
      * @param amount
      * @return
@@ -178,6 +182,7 @@ public class OrderServiceImpl implements OrderService {
 
     /**
      * 取消订单，还原库存
+     *
      * @param orderId
      * @return
      */
@@ -186,24 +191,66 @@ public class OrderServiceImpl implements OrderService {
         Map map = new HashMap();
         int affect = 0;
         List<OrderCommodityAmount> orderCommodityAmount = orderDao.getOrderCommodityAmount(orderId);
-        for (int i = 0; i < orderCommodityAmount.size() ; i++) {
+        for (int i = 0; i < orderCommodityAmount.size(); i++) {
             int commodityInventory = commodityDao.getCommodityInventory(orderCommodityAmount.get(i).getCommodityId());
             commodityInventory = commodityInventory + orderCommodityAmount.get(i).getAmount();
-            affect = commodityDao.recoverCommodityInventory(orderCommodityAmount.get(i).getCommodityId(),commodityInventory);
+            affect = commodityDao.recoverCommodityInventory(orderCommodityAmount.get(i).getCommodityId(), commodityInventory);
         }
         if (affect != 0) {
             int orderDelete = orderDao.orderDelete(orderId);
             if (orderDelete != 0) {
                 List<UserOrderInfo> userOrderInfosWaitSend = orderDao.getWaitSend(userId);
-                map.put("waitSend",userOrderInfosWaitSend);
+                map.put("waitSend", userOrderInfosWaitSend);
                 return map;
             } else {
-                map.put("error","订单取消失败");
+                map.put("error", "订单取消失败");
                 return map;
             }
         } else {
-            map.put("error","订单取消失败");
+            map.put("error", "订单取消失败");
             return map;
         }
+    }
+
+    /**
+     * 生成未提交订单
+     * @param listCommodities
+     * @param request
+     * @return
+     */
+    @Override
+    public String fakeOrderList(List<ListCommodities> listCommodities, HttpServletRequest request) {
+        int userId = listCommodities.get(0).getUserId();
+        String orderId = setOrderId(userId);
+        HttpSession session = request.getSession();
+        if (session.getAttribute("orderId") == null) {
+            Order order = new Order();
+            order.setOrderId(orderId);
+            order.setUserId(userId);
+            order.setOrderStatus("待提交");
+            orderDao.insertOrder(order);
+            for (int i = 0; i < listCommodities.size(); i++) {
+                fakeOrderGenerate(orderId, userId, listCommodities.get(i).getCommodityId(), listCommodities.get(i).getAmount(), request);
+            }
+            return orderId;
+        } else {
+            String lastOrder = (String) session.getAttribute("orderId");
+            return lastOrder;
+        }
+    }
+
+    /**
+     * 封装获取订单中的商品信息
+     * @param orderId
+     * @return
+     */
+    private List<OrderInfo> getOrderInfo(String orderId) {
+        List<OrderInfo> orderInfo = new ArrayList<>();
+        List<OrderCommodityAmount> orderCommodityAmount = orderDao.getOrderCommodityAmount(orderId);
+        for (int i = 0; i < orderCommodityAmount.size(); i++) {
+            OrderInfo info = commodityDao.getOrderInfo(orderCommodityAmount.get(i).getCommodityId(),orderCommodityAmount.get(i).getAmount());
+            orderInfo.add(info);
+        }
+        return orderInfo;
     }
 }

@@ -1,4 +1,6 @@
 $(function () {
+    // 清除orderId
+    sessionStorage.removeItem("orderId");
     var arr =
         '<table>' +
         '<tr>' +
@@ -162,7 +164,21 @@ $(function () {
                             location.reload();
                         } else {
                             sessionStorage.setItem("thingsNumber", thingsNumber);
-                            location.href = "http://localhost:8080/order";
+                            var orderArr = [{
+                                "userId": $.cookie("userId"),
+                                "commodityId": sessionStorage.getItem("commodityId"),
+                                "amount": sessionStorage.getItem("thingsNumber")
+                            }];
+                            $.ajax({
+                                url: "http://localhost:8080/order/buyCommodities",
+                                type: "post",
+                                data: JSON.stringify(orderArr),
+                                contentType: 'application/json;charset=utf-8',
+                                success: function (res) {
+                                    sessionStorage.setItem("orderId", res);
+                                    location.href = "http://localhost:8080/order";
+                                }
+                            });
                         }
                     }
                 });
