@@ -207,30 +207,33 @@ $(function () {
                 $("#payOrder").on("click", function () {
                     var cartArr = [];
                     var cartObj = {};
+                    var orderArr = {
+                        "userId": $.cookie("userId"),
+                        "cartArr": cartArr
+                    };
                     $(".itemList").each(function (index, data) {
                         if ($(data).find(".itemListCheck").children().hasClass("imgCheck")) {
-                            cartObj.userId = $.cookie("userId");
                             cartObj.commodityId = $(data).attr("commodityid");
-                            cartObj.amount = $(data).find(".itemListNumber").children("span").val();
+                            cartObj.amount = $(data).find(".itemListNumber").children("input").val();
                             cartArr.push(cartObj);
                             cartObj = {};
                         }
                     });
-                    console.log(cartArr);
+                    console.log(orderArr);
                     if (cartArr.length == 0) {
                         alert("请选择您的商品");
                     }
-                    else {
-                        $.ajax({
-                            url: "",
-                            type: "post",
-                            data: cartArr,
-                            success: function (res) {
-                                console.log(res);
-                            }
-                        });
-                        location.href = "http://localhost:8080/order";
-                    }
+                    // else {
+                    //     $.ajax({
+                    //         url: "",
+                    //         type: "post",
+                    //         data: cartArr,
+                    //         success: function (res) {
+                    //             console.log(res);
+                    //         }
+                    //     });
+                    //     location.href = "http://localhost:8080/order";
+                    // }
                 });
 
                 //改变商品数量的函数封装
