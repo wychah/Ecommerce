@@ -223,7 +223,8 @@ $(function () {
                         "addressId": addressId,
                         "commodityId": sessionStorage.getItem("commodityId"),
                         "amount": sessionStorage.getItem("thingsNumber"),
-                        "orderAmount": orderAmount
+                        "orderAmount": orderAmount,
+                        "flag": sessionStorage.getItem("flag")
                     };
                     $.ajax({
                         url: "http://localhost:8080/order/pay",

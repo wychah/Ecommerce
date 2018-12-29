@@ -93,6 +93,7 @@ $(function () {
         if ($(".afterLogin").css("right") == "0px") {
             $(".afterLogin").stop().animate({right: -255});
         }
+        return false;
     });
     // 退出清楚数据
     $(".myStuffTab_bottom,.loginOut").on("click", function () {

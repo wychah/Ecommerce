@@ -204,6 +204,7 @@ $(function () {
                 $("#payOrder").on("click", function () {
                     var cartArr = [];
                     var cartObj = {};
+                    sessionStorage.setItem("flag", "1");
                     $(".itemList").each(function (index, data) {
                         if ($(data).find(".itemListCheck").children().hasClass("imgCheck")) {
                             cartObj.userId = $.cookie("userId");

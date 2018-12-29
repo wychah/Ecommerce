@@ -151,6 +151,7 @@ $(function () {
                 location.href = "http://localhost:8080/login";
             } else {
                 var thingsNumber = $("#thingsNumber").val();
+                sessionStorage.setItem("flag", "-1");
                 $.ajax({
                     url: "http://localhost:8080/commodity/check",
                     type: "post",
