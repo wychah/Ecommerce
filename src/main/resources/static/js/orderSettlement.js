@@ -79,8 +79,7 @@ $(function () {
             "orderId": sessionStorage.getItem("orderId")
         },
         success: function (res) {
-            console.log(res);
-            var fakeOrderId = res.orderId;
+            var fakeOrderId = sessionStorage.getItem("orderId");
             var totalPrice = 0;
             res.orderInfo.forEach(function (data) {
                 totalPrice += data.totalPrice;

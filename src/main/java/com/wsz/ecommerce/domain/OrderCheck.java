@@ -7,6 +7,15 @@ public class OrderCheck {
     private int commodityId;
     private int amount;
     private int orderAmount;
+    private int flag;
+
+    public int getFlag() {
+        return flag;
+    }
+
+    public void setFlag(int flag) {
+        this.flag = flag;
+    }
 
     public String getOrderId() {
         return orderId;

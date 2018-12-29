@@ -203,6 +203,11 @@ $(function () {
                                                 newInformation.attr("addressId", res.receiverInfo[res.receiverInfo.length - 1].addressId);
                                                 newInformation.stop().show();
                                                 newInformation.insertBefore($("#addConsigneeM"));
+                                                $(".showConsigneeM").each(function (index,data) {
+                                                    if ($(data).css("display") == "none") {
+                                                        $(data).remove();
+                                                    }
+                                                });
                                             }
                                         });
                                     } else {
@@ -298,12 +303,6 @@ $(function () {
                             '</div>' +
                             '</div>' +
                             '{{/each}}';
-                        // res.waitSend.forEach(function (data) {
-                        //     res.waitPush.push(data);
-                        // });
-                        // res.completed.forEach(function (data) {
-                        //     res.waitPush.push(data);
-                        // });
                         if (res.waitSend.length == 0) {
                             $(".body .body_right > div:nth-of-type(2),.body .body_right > div:nth-of-type(3)").html("<div class=\"orderImg\"></div>\n" +
                                 "<span>亲，您还没有相关的订单哟~</span>");
@@ -418,8 +417,7 @@ $(function () {
                                     if (res.waitSend.length == 0) {
                                         $(".body .body_right > div:nth-of-type(3)").html("<div class=\"orderImg\"></div>\n" +
                                             "<span>亲，您还没有相关的订单哟~</span>");
-                                    }
-                                    else {
+                                    } else {
                                         var render = template.compile(totalorderD);
                                         var html = render(res);
                                         $(".body_right_bO").eq(0).html(html);

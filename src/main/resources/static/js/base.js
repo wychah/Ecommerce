@@ -92,15 +92,8 @@ $(function () {
     $(document).on("click", function () {
         if ($(".afterLogin").css("right") == "0px") {
             $(".afterLogin").stop().animate({right: -255});
+            return false;
         }
-        return false;
-    });
-    // 退出清楚数据
-    $(".myStuffTab_bottom,.loginOut").on("click", function () {
-        $.removeCookie("userId");
-        sessionStorage.clear();
-        location.href = "http://localhost:8080";
-        return false;
     });
     // 渲染头部和右侧导航栏
     var myStuff =
@@ -212,6 +205,13 @@ $(function () {
             $(".myStuffTab_top").on('click', function (e) {
                 location.href = "http://localhost:8080/userinfo";
                 e.stopPropagation();
+            });
+            // 退出清楚数据
+            $(".myStuffTab_bottom,.loginOut").on("click", function () {
+                $.removeCookie("userId");
+                sessionStorage.clear();
+                location.href = "http://localhost:8080";
+                return false;
             });
         });
     }

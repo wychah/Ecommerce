@@ -73,8 +73,8 @@ public class OrderServiceImpl implements OrderService {
             try {
                 orderDao.updateOrder(orderCheck.getOrderId(), orderCheck.getAddressId(), "待发货", orderCheck.getOrderAmount(), new Date());
                 logger.info("订单号:" + orderCheck.getOrderId() + "提交成功");
-                // 如果订单中的商品个数大于1，说明来自购物车提交订单，成功后清除购物车中相应商品
-                if (orderDao.getOrderCommodityAmount(orderCheck.getOrderId()).size() > 1) {
+                // 如果flag == 1，说明来自购物车提交订单，成功后清除购物车中相应商品
+                if (orderCheck.getFlag() == 1) {
                     for (int i = 0; i < orderDao.getOrderCommodityAmount(orderCheck.getOrderId()).size(); i++) {
                         int commodityId = orderDao.getOrderCommodityAmount(orderCheck.getOrderId()).get(i).getCommodityId();
                         int deleteShoppingCart = cartDao.deleteShoppingCart(orderCheck.getUserId(), commodityId);
@@ -223,20 +223,15 @@ public class OrderServiceImpl implements OrderService {
         int userId = listCommodities.get(0).getUserId();
         String orderId = setOrderId(userId);
         HttpSession session = request.getSession();
-        if (session.getAttribute("orderId") == null) {
-            Order order = new Order();
-            order.setOrderId(orderId);
-            order.setUserId(userId);
-            order.setOrderStatus("待提交");
-            orderDao.insertOrder(order);
-            for (int i = 0; i < listCommodities.size(); i++) {
-                fakeOrderGenerate(orderId, userId, listCommodities.get(i).getCommodityId(), listCommodities.get(i).getAmount(), request);
-            }
-            return orderId;
-        } else {
-            String lastOrder = (String) session.getAttribute("orderId");
-            return lastOrder;
+        Order order = new Order();
+        order.setOrderId(orderId);
+        order.setUserId(userId);
+        order.setOrderStatus("待提交");
+        orderDao.insertOrder(order);
+        for (int i = 0; i < listCommodities.size(); i++) {
+            fakeOrderGenerate(orderId, userId, listCommodities.get(i).getCommodityId(), listCommodities.get(i).getAmount(), request);
         }
+        return orderId;
     }
 
     /**
