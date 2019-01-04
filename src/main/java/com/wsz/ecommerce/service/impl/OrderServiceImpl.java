@@ -235,6 +235,19 @@ public class OrderServiceImpl implements OrderService {
     }
 
     /**
+     * 删除无效订单并还原库存
+     * @param userId
+     * @return
+     */
+    @Override
+    public void deleteFakeOrder(int userId) {
+        List<String> fakeOrderId = orderDao.getFakeOrderId(userId);
+        for (int i = 0; i < fakeOrderId.size(); i++) {
+            cancelOrder(fakeOrderId.get(i),userId);
+        }
+    }
+
+    /**
      * 封装获取订单中的商品信息
      * @param orderId
      * @return

@@ -140,4 +140,13 @@
         WHERE
             orderId = #{orderId}
     </select>
+    <select id="getFakeOrderId" resultType="String">
+        select
+            `order`.orderId
+        FROM
+            `order`
+        WHERE
+          `order`.userId = #{userId}
+          and `order`.orderStatus = '待提交'
+    </select>
 </mapper>

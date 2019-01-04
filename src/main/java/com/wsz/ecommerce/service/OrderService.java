@@ -25,4 +25,6 @@ public interface OrderService {
     Map cancelOrder(String orderId, int userId);
 
     String fakeOrderList(List<ListCommodities> listCommodities, HttpServletRequest request);
+
+    void deleteFakeOrder(int userId);
 }

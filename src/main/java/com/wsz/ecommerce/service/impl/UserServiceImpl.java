@@ -3,6 +3,7 @@ package com.wsz.ecommerce.service.impl;
 import com.wsz.ecommerce.dao.OrderDao;
 import com.wsz.ecommerce.dao.UserDao;
 import com.wsz.ecommerce.domain.*;
+import com.wsz.ecommerce.service.OrderService;
 import com.wsz.ecommerce.service.UserService;
 import com.wsz.ecommerce.util.LoginResult;
 import com.wsz.ecommerce.util.SuccessOrFail;
@@ -22,6 +23,9 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private OrderDao orderDao;
 
+    @Autowired
+    private OrderService orderService;
+
     @Override
     public User getUserById(int userId) {
         return userDao.getUserById(userId);
@@ -40,6 +44,7 @@ public class UserServiceImpl implements UserService{
         }
         else{
             userId = userDao.loginFindUserId(userAccount, userPassword);//再次查出userId
+            orderService.deleteFakeOrder(userId);
             loginResult.setLoginResult("loginSuccess");
             loginResult.setResultMsg("用户基本信息已经存入seesion");
             loginResult.setUserId(userId);//登录成功时存入用户id

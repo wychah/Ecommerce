@@ -96,4 +96,11 @@ public interface OrderDao {
      * @return
      */
     List<OrderCommodityAmount> getOrderCommodityAmount(@Param("orderId") String orderId);
+
+    /**
+     * 查询用户的所有假订单
+     * @param userId
+     * @return
+     */
+    List<String> getFakeOrderId(@Param("userId") int userId);
 }
