@@ -78,9 +78,9 @@ $(function () {
                     '<div class="showConsigneeMPlace">' +
                     '<i></i>' +
                     '<span>{{value.location}}</span>' +
-                    '</div>' +
-                    '<div class="showConsigneeMIcon">' +
-                    '<i></i>' +
+                    // '</div>' +
+                    // '<div class="showConsigneeMIcon">' +
+                    // '<i></i>' +
                     '</div>' +
                     '<div class="dealAddrHandler">' +
                     '<div class="delAddrBtn"></div>' +
@@ -107,11 +107,10 @@ $(function () {
                         // 点击收货人信息改变边框颜色
                         $(".showConsigneeM").on("click", function () {
                             $(this).addClass("addBorder").siblings(".showConsigneeM").removeClass("addBorder");
+                            $(this).append("<div class=\"showConsigneeMIcon\"><i></i></div>").siblings(".showConsigneeM").children(".showConsigneeMIcon").remove();
                         });
                         // 鼠标移入显示修改和删除按钮
                         $(".showConsigneeM").on("mouseenter", function () {
-                            // console.log("1");
-                            // $(this).children(".dealAddrHandler").css("top", "0");
                             $(this).children(".dealAddrHandler").stop().animate({"top": "0"}, 400);
                         });
                         $(".showConsigneeM").on("mouseleave", function () {
@@ -197,6 +196,7 @@ $(function () {
                                             success: function (res) {
                                                 var newInformation = $(".addConsignee").children().eq(0).clone(true);
                                                 newInformation.removeClass("addBorder");
+                                                newInformation.children(".showConsigneeMIcon").remove();
                                                 newInformation.children(".showConsigneeMName").children("span").html(name);
                                                 newInformation.children(".showConsigneeMPlace").children("span").html(address);
                                                 newInformation.children(".showConsigneeMTel").children("span").html(tel);

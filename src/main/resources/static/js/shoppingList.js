@@ -175,17 +175,15 @@ function nextAJAX(url, datas, arr) {
 // 搜索时显示下拉框
 $(function () {
     $("#searchText").on('keyup', function (e) {
-        if ($(this).val().length === 1 && e.keyCode !== 8) {
-            $.ajax({
-                url: "http://localhost:8080/search/keyword",
-                type: "get",
-                data: {keyword: $(this).val()},
-                async: false,
-                success: function (res) {
-                    window.keyWords = res;
-                }
-            });
-        }
+        $.ajax({
+            url: "http://localhost:8080/search/keyword",
+            type: "get",
+            data: {keyword: $(this).val()},
+            async: false,
+            success: function (res) {
+                window.keyWords = res;
+            }
+        });
         // 每次键盘抬起的时候判断有没有div，有就删除一次
         if ($("#dv")) {
             $("#dv").remove();

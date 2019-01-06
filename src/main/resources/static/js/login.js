@@ -1,6 +1,11 @@
 //登录
 $(function () {
     $("#loginBtn").on("click", function () {
+        if ($.cookie("userId") != undefined) {
+            alert("已存在用户登录");
+            location.href = "http://localhost:8080";
+            return;
+        }
         var userAccount = $("#userName").val();
         var userPassword = $.md5($("#password").val());
         console.log(userPassword);
@@ -13,12 +18,10 @@ $(function () {
                 $.cookie("userId", res.userId, {expires: 1});
                 if (sessionStorage.getItem("lastPage") != undefined) {
                     location.href = sessionStorage.getItem("lastPage");
-                }
-                else {
+                } else {
                     location.href = "http://localhost:8080";
                 }
-            }
-            else {
+            } else {
                 alert("登陆失败");
                 return false;
             }
